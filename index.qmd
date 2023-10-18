@@ -1,11 +1,352 @@
 ---
-title: "Olma_2023"
+title: "Die FHNW an der Olma"
 ---
 
-This is a Quarto website.
+```{r}
+#| echo: false
+#| warning: false
+#| label: library
 
-To learn more about Quarto websites visit <https://quarto.org/docs/websites>.
+library(survey)
+library(tidyverse)
+library(haven)
+library(ggplot2)
+library(knitr)
+library(gt)
+library(lavaan)
+library(psych)
+library(GPArotation)
+
+
+# Working directory
+ setwd("/Users/urschalupny/Library/Mobile Documents/com~apple~CloudDocs/R_Studio/OLMA")
+
+# Import data
+
+OLMA_Start <- read_sav("data_project.sav")
+
+# Data Prep
+OLMA_Ready <- OLMA_Start %>% 
+  mutate(Bildung = haven::as_factor(Bildung),
+         Bildung = case_when(
+           Bildung == "Berufsbildung (EBA/EFZ)" ~ "Berufsbildung",
+           Bildung == "Hochschule (Universität, ETH, Fachhochschule)" ~ "Hochschule",
+           Bildung == "höhere Berufsbildung (Berufs- und höhere Fachprüfung, höhere Fachschule)" ~ "höhere Berufsbildung",
+           Bildung == "obligatorische Schule" ~ "Volksschule",
+           Bildung == "Ich habe kein Bildungsabschluss" ~ "Ohne",
+           Bildung == "Andere" ~ "Volksschule",
+           TRUE ~ as.character(Bildung)
+         ),
+         Bildung = factor(Bildung, levels = c("Ohne", "Volksschule", "Gymnasium/Fachmittelschule", "Berufsbildung", "höhere Berufsbildung", "Hochschule"))) %>% 
+  mutate(
+    WIS_1=if_else(WIS_1==3,1,0),
+    WIS_2=if_else(WIS_2==1,1,0),
+    WIS_3=if_else(WIS_3==4,1,0),
+    Antworten=WIS_1+WIS_2+WIS_3
+  ) %>% 
+  mutate(
+    CANX_1=8-CANX_1,
+    IMO_3=6-IMO_3,
+    IMO_4=6-IMO_4
+    ) %>% 
+  select(-c(1:7,40:79))
+  
+  
+```
+
+# Deskriptive Statistik
+
+In diesem Datensatz haben bislang `r nrow(OLMA_Start)` Personen teilgennommen.
+
+## Demographische Angaben
+
+### Alter
+
+Die Angabe des Alters wurde in ganzen Jahren erfasst @fig-alter
 
 ```{r}
-1 + 1
+#| echo: false
+#| label: fig-alter
+#| fig-cap: Verteilung der Altersangaben
+#| cap-location: margin
+# Calculate the count for each bin
+bins <- cut(OLMA_Start$Alter, breaks = seq(min(OLMA_Start$Alter, na.rm = TRUE), 
+                                           max(OLMA_Start$Alter, na.rm = TRUE), by = 10), include.lowest = TRUE)
+bin_counts <- as.numeric(table(bins))
+
+# Find the maximum height of the bins
+max_count <- max(bin_counts)
+
+# First, calculate the mean and median outside of the ggplot2 calls
+alter_mean <- mean(OLMA_Start$Alter, na.rm = TRUE)
+alter_median <- median(OLMA_Start$Alter, na.rm = TRUE)
+
+OLMA_Start %>%
+  ggplot() +
+  geom_histogram(aes(Alter), binwidth = 5) +
+  geom_vline(aes(xintercept = alter_mean), color = "red", linetype = "dashed") +
+  geom_vline(aes(xintercept = alter_median), color = "red", linetype = "dashed")+
+  geom_text(aes(x = alter_mean, y = max_count, 
+                label = sprintf("Mw")),
+            color = "black", check_overlap = TRUE,  hjust=-0.2) +
+  geom_text(aes(x = alter_median, y = max_count, 
+                label = sprintf("M")),
+            color = "black", check_overlap = TRUE,  hjust=-0.2)+
+  labs(
+    title = "Altersverteilung",
+    subtitle = "mit Mittelwert (Mw) und Median (M)",
+    caption = paste(sprintf("Mittelwert: %.2f;", alter_mean), sprintf("Median: %.2f", alter_median))
+  )+
+  ylab("Anzahl")+
+  theme_minimal()
+```
+
+### Bildungsabschluss
+
+Die erreichten Bildungsabschlüsse verteilen sich wie in @tbl-bildung dargestellt.
+
+```{r}
+#| echo: false
+#| label: tbl-bildung
+#| cap-location: margin
+#| tbl-cap: "Übersicht der Bildungsabschlüsse"
+
+OLMA_Start %>%
+  mutate(Bildung = haven::as_factor(Bildung)) |>
+  group_by(Bildung) %>%
+  summarise(Anzahl = n(),
+            'Mw Alter' = round(mean(Alter),1),
+            'SD Alter' = round(sd(Alter),1)
+            ) %>%
+  mutate('%'=round(Anzahl/sum(Anzahl)*100,2)) %>% 
+  select(Bildung, Anzahl, '%', 'Mw Alter', 'SD Alter') %>% 
+ gt() %>% 
+  tab_style(
+    style = cell_text(
+      align = "left"),
+    locations = cells_body(
+      columns=Bildung
+    )) %>% 
+  tab_style(
+    style = cell_text(align = "left"),
+    locations = cells_column_labels(columns=Bildung)
+  )
+```
+
+## Vorwissen mit VR
+
+Das Vorwissen umfasst die Häufigkeit mit welcher die Personen bereits Erfahrungen mit VR Endgeräten gesammelt haben (vgl. @fig-VoWi). Bei vorhandenen Erfahrungen wurde weiter erfragt woher diese stammen (vgl @tbl-VoWi)
+
+```{r}
+#| echo: false
+#| fig-cap: "Angaben über die Benutzungshäufigkeit von VR Devices"
+#| cap-location: margin
+#| label: fig-VoWi
+
+OLMA_Start %>%
+  mutate(VoWi_Count = haven::as_factor(VoWi_Count)) %>%
+  select(VoWi_Count) %>%
+  ggplot() +
+  geom_bar(aes(VoWi_Count))+
+  labs(
+    title = "Angaben über Vorwissen in VR"
+  )+
+  ylab("Anzahl")+
+  xlab("")+
+  theme_minimal()
+```
+
+### Anwendung der VR Technologie
+
+Menschen, die bereits einige Vorerfahrung mit VR angaben, wurden gebeten, das Anwendungsfeld zu bezeichnen. Die folgende Tabelle zeigt nur Mehrfachnennungen.
+
+```{r}
+#| echo: false
+#| tbl-cap-location: margin
+#| tbl-cap: "Nennungen der Anwendungsorte"
+#| label: tbl-VoWi
+OLMA_Start %>% 
+  select(starts_with("VoWi")) %>% 
+  filter(VoWi_Anlass != -99,
+         VoWi_Count !=1) %>% 
+  mutate(Aussage=str_to_lower(VoWi_Anlass),
+         Kategorie=haven::as_factor(VoWi_Count)) %>% 
+   group_by(Kategorie, Aussage) %>%   # Group by both category and word
+  tally() %>%                         # Count occurrences
+  arrange(Kategorie, desc(n)) %>% 
+  filter(n>1) %>% 
+  gt() %>% 
+    tab_style(
+    style = list(
+      cell_fill(color = "bisque"),
+      cell_text(weight = "bold")),
+    locations = cells_row_groups(groups = c(1,2))
+  ) %>% 
+  cols_width(
+    everything() ~ pct(50)
+  ) |> 
+  cols_align(
+    align = "center",
+    columns = n
+  )  %>% 
+  cols_align(
+    align = "auto",
+    columns = Aussage
+  )
+  
+
+```
+
+## Skalenüberischt
+
+Die Angst oder Furcht vor Computern wurde mit der Computer Anxiety Scale[^1] erfasst.
+
+[^1]: The degree of "an individual's apprehension, or even fear, when she/he is faced with the possibility of using computers" [@venkateshDeterminantsPerceivedEase2000, p.349]
+
+::: panel-tabset
+## Übersicht
+
+```{r}
+#| echo: false
+#| tbl-cap-location: margin
+#| tbl-cap: "Item Statistik"
+#| label: tbl-item_stat
+OLMA_Items <- OLMA_Start %>% 
+  select(dplyr::starts_with(c("CAN", "PRA", "IMO", "KBE", "KBU"))) %>% 
+  mutate(
+    CANX_1=8-CANX_1,
+    IMO_3=6-IMO_3,
+    IMO_4=6-IMO_4
+    )
+
+Scale_Names <- c(
+  CAN = "Computer Ängstlichkeit",
+  PRA = "Präsenz",
+  IMO = "Intrinsische Motivation",
+  KBE = "Kognitive Belastung durch externe Faktoren",
+  KBU = "Kognitive Belastung durch die Umgebung"
+)
+
+OLMA_Items %>% 
+  describe() %>% 
+  as.data.frame() %>% 
+  mutate(Variable = rownames(.)) %>% 
+  select(Variable, dplyr::everything()) %>% 
+  select(-vars, -n, -trimmed, -mad) %>% 
+  mutate(Scale = substr(Variable, 1, 3)) %>% 
+  mutate(Scale = Scale_Names[Scale]) %>% 
+  group_by(Scale) %>% 
+  gt() %>% 
+  fmt_number() %>% 
+  tab_style(
+      style = list(
+      cell_fill(color = "bisque"),
+      cell_text(weight = "bold")),
+      locations = cells_row_groups(groups = c(1,2,3,4,5)))
+```
+
+## Reliabilität - Tabelle
+
+```{r}
+#| echo: false
+#| warning: false
+#| error: false
+item.list<-list(
+  CANX = c("CANX_1", "CANX_2", "CANX_3", "CANX_4"),
+  PRA = c("PRA_1", "PRA_2", "PRA_3", "PRA_4"),
+  IMO = c("IMO_1", "IMO_2", "IMO_3", "IMO_4", "IMO_5"),
+  KBE = c("KBE_1", "KBE_2", "KBE_3", "KBE_4"),
+  KBU = c("KBU_1", "KBU_2", "KBU_3", "KBU_4")
+)
+
+rel_items <-reliability(keys = item.list, OLMA_Items)
+
+rel_items$result.df %>% 
+  as.data.frame() %>% 
+  mutate(Variable=rownames(rel_items$result.d)) %>% 
+  select(Variable, dplyr::everything()) %>% 
+  select(-omega.tot, -min.split, -cong) %>% 
+  gt() %>% 
+  fmt_number() %>% 
+  fmt_number(columns = n.items, decimals = 0) %>% 
+  data_color(
+     columns = omega_h,
+     rows = omega_h<0.7,
+    fn = scales::col_numeric(
+      palette = c("red", "#FFCCCC"),
+      domain = c(0, 0.7)
+  )) %>% 
+  data_color(
+     columns = alpha,
+     rows = alpha<0.7,
+    fn = scales::col_numeric(
+      palette = c("red", "#FFCCCC"),
+      domain = c(0, 0.7)
+  )) %>% 
+  data_color(
+     columns = Uni,
+     rows = Uni<0.8,
+    fn = scales::col_numeric(
+      palette = c("red", "#FFCCCC"),
+      domain = c(0, 0.8)))
+```
+
+## Relibilität - Visualisierung
+
+```{r}
+#| echo: false
+
+plot(rel_items)
+```
+:::
+
+## Wissensfragen
+
+Das Lernen in der VR sImulation wurde durch drei MC-Fragen operationalisiert.
+
+```{r}
+#| echo: false
+OLMA_Ready %>% 
+   select(dplyr::starts_with("WIS"), Antworten) %>% 
+  group_by(Antworten) %>% 
+  summarise(Anzahl=n()) %>% 
+  mutate('%'=round(Anzahl/sum(Anzahl)*100,2)) %>% 
+  gt()
+```
+
+In Abhängigkeit von Alter und Bildungsstufe ergibt sich folgendes Bild:
+
+```{r}
+#| echo: false
+OLMA_Ready %>% 
+  ggplot(aes(x=Alter, y=Bildung, color=Antworten))+
+  geom_point(position = "jitter")+
+  annotate(
+    'rect',
+    ymax=2.8,
+    xmin=2,
+    ymin=0.5,
+    xmax = 20,
+    alpha=0.25
+  )+
+  annotate(
+    'text',
+    x=50,
+    y=1.2,
+    label="Gruppe der Jugendlichen")
+```
+
+```{r}
+#| echo: false
+#| warning: false
+OLMA_Ready %>% 
+  ggplot(aes(x=Alter, y=Antworten))+
+  geom_point(position = "jitter")+
+   geom_smooth(aes(group=1), method = 'lm',  color="blue")+
+  facet_wrap(~Bildung)+
+  theme_minimal()+
+  labs(
+    title = "Lernerfolg nach Bildung und Alter",
+    subtitle = "einfache lineare Regression"
+  )
 ```
