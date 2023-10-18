@@ -19,7 +19,8 @@ library(GPArotation)
 
 
 # Working directory
- setwd("/Users/urschalupny/Library/Mobile Documents/com~apple~CloudDocs/R_Studio/OLMA")
+setwd("~/Library/Mobile Documents/com~apple~CloudDocs/R_Studio/Olma_2023/Olma_2023")
+
 
 # Import data
 
@@ -35,6 +36,7 @@ OLMA_Ready <- OLMA_Start %>%
            Bildung == "obligatorische Schule" ~ "Volksschule",
            Bildung == "Ich habe kein Bildungsabschluss" ~ "Ohne",
            Bildung == "Andere" ~ "Volksschule",
+           Bildung == 0 ~ "Volksschule",
            TRUE ~ as.character(Bildung)
          ),
          Bildung = factor(Bildung, levels = c("Ohne", "Volksschule", "Gymnasium/Fachmittelschule", "Berufsbildung", "höhere Berufsbildung", "Hochschule"))) %>% 
@@ -111,8 +113,7 @@ Die erreichten Bildungsabschlüsse verteilen sich wie in @tbl-bildung dargestell
 #| cap-location: margin
 #| tbl-cap: "Übersicht der Bildungsabschlüsse"
 
-OLMA_Start %>%
-  mutate(Bildung = haven::as_factor(Bildung)) |>
+OLMA_Ready %>%
   group_by(Bildung) %>%
   summarise(Anzahl = n(),
             'Mw Alter' = round(mean(Alter),1),
