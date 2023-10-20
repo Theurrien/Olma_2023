@@ -1,9 +1,104 @@
 ---
-title: "About"
+title: "Statistische Analyse"
 ---
 
-About this site
+```{r}
+#| echo: false
+#| warning: false
+
+library(tidyverse)
+library(lavaan)
+library(haven)
+library(gt)
+library(lavaanPlot)
+library(performance)
+
+# Import data
+
+OLMA_Start <- read_sav("data_project.sav")
+
+# Data Prep
+OLMA_Ready <- OLMA_Start %>% 
+  mutate(Bildung = haven::as_factor(Bildung),
+         Bildung = case_when(
+           Bildung == "Berufsbildung (EBA/EFZ)" ~ "Berufsbildung",
+           Bildung == "Hochschule (Universität, ETH, Fachhochschule)" ~ "Hochschule",
+           Bildung == "höhere Berufsbildung (Berufs- und höhere Fachprüfung, höhere Fachschule)" ~ "höhere Berufsbildung",
+           Bildung == "obligatorische Schule" ~ "Volksschule",
+           Bildung == "Ich habe kein Bildungsabschluss" ~ "Ohne",
+           Bildung == "Andere" ~ "Volksschule",
+           Bildung == 0 ~ "Volksschule",
+           TRUE ~ as.character(Bildung)
+         ),
+         Bildung = factor(Bildung, levels = c("Ohne", "Volksschule", "Gymnasium/Fachmittelschule", "Berufsbildung", "höhere Berufsbildung", "Hochschule", ordered=TRUE))) %>% 
+  mutate(
+    WIS_1=if_else(WIS_1==3,1,0),
+    WIS_2=if_else(WIS_2==1,1,0),
+    WIS_3=if_else(WIS_3==4,1,0),
+    Antworten=WIS_1+WIS_2+WIS_3,
+    Antworten = factor(Antworten, levels=c(0,1,2,3), ordered=TRUE)
+  ) %>% 
+  mutate(
+    CANX_1=8-CANX_1,
+    IMO_3=6-IMO_3,
+    IMO_4=6-IMO_4
+    ) %>% 
+  select(-c(1:7,40:79))
+
+```
+
+## Strukturgleichungsmodell
+
+Basierend auf Camil und der Annahme, dass das Alter und die Ängstlichkeit vor Computern einen Einfluss auf das Lernen hat, wurde das folgenden Modell aufgestellt.
+
+![](images/Untitled - Frame 1-01.jpg)
+
+### Überprüfung des Messmodells
+
+Das Messmodell beinhaltet die fünf Skalen.
 
 ```{r}
-1 + 1
+#| echo: false
+
+messmodell_1 <- '
+        CANX =~ CANX_1+CANX_2 + CANX_3 + CANX_4
+        PRA  =~ PRA_1 + PRA_2 + PRA_3 + PRA_4
+        IMO  =~ IMO_1 + IMO_2 + IMO_3 + IMO_4 + IMO_5
+        KBE  =~ KBE_1 + KBE_2 + KBE_3 + KBE_4
+        KBU  =~ KBU_1 + KBU_2 + KBU_3 + KBU_4
+'
+
+
+model_fit1 <- sem(data=OLMA_Ready, model = messmodell_1)
+
+performance(model_fit1, metrics = c("Chi2", "Chi2_df", "p_Chi2", "RMSEA", "RMSEA_CI_low", "RMSEA_CI_high", "p_RMSEA", "CFI","SRMR")) %>% 
+  gt() %>% 
+  gt::fmt_number() %>% 
+  cols_label(
+    RMSEA = "Wert",
+    RMSEA_CI_low = "CI<sub>low</sub>",
+    RMSEA_CI_high = "CI<sub>high</sub>",
+    p_RMSEA = "p",
+    .fn = md
+  ) %>% 
+   tab_spanner(
+    label = "RMSEA ",
+    columns = c(RMSEA, RMSEA_CI_low, RMSEA_CI_high, p_RMSEA)
+  ) %>% 
+  tab_spanner(
+    label = "\u03C7\u00B2",
+    columns = c(Chi2,Chi2_df,p_Chi2)
+  ) %>% 
+  cols_label(
+    Chi2 = "Wert",
+    Chi2_df = "df",
+    p_Chi2 = "p"
+  )
+  
+```
+
+```{r}
+#| echo: false
+#| warning: false
+lavaanPlot(model = model_fit1, graph_options = list(rankdir = "LR", layout = "neato"))
 ```

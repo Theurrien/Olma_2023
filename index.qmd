@@ -39,12 +39,13 @@ OLMA_Ready <- OLMA_Start %>%
            Bildung == 0 ~ "Volksschule",
            TRUE ~ as.character(Bildung)
          ),
-         Bildung = factor(Bildung, levels = c("Ohne", "Volksschule", "Gymnasium/Fachmittelschule", "Berufsbildung", "höhere Berufsbildung", "Hochschule"))) %>% 
+         Bildung = factor(Bildung, levels = c("Ohne", "Volksschule", "Gymnasium/Fachmittelschule", "Berufsbildung", "höhere Berufsbildung", "Hochschule", ordered=TRUE))) %>% 
   mutate(
     WIS_1=if_else(WIS_1==3,1,0),
     WIS_2=if_else(WIS_2==1,1,0),
     WIS_3=if_else(WIS_3==4,1,0),
-    Antworten=WIS_1+WIS_2+WIS_3
+    Antworten=WIS_1+WIS_2+WIS_3,
+    Antworten = factor(Antworten, levels=c(0,1,2,3), ordered=TRUE)
   ) %>% 
   mutate(
     CANX_1=8-CANX_1,
@@ -253,7 +254,7 @@ OLMA_Items %>%
 #| warning: false
 #| error: false
 item.list<-list(
-  CANX = c("CANX_1", "CANX_2", "CANX_3", "CANX_4"),
+  CANX = c("CANX_1","CANX_2", "CANX_3", "CANX_4"),
   PRA = c("PRA_1", "PRA_2", "PRA_3", "PRA_4"),
   IMO = c("IMO_1", "IMO_2", "IMO_3", "IMO_4", "IMO_5"),
   KBE = c("KBE_1", "KBE_2", "KBE_3", "KBE_4"),
@@ -266,30 +267,11 @@ rel_items$result.df %>%
   as.data.frame() %>% 
   mutate(Variable=rownames(rel_items$result.d)) %>% 
   select(Variable, dplyr::everything()) %>% 
-  select(-omega.tot, -min.split, -cong) %>% 
+  select(-omega_h, -min.split, -cong) %>% 
   gt() %>% 
   fmt_number() %>% 
-  fmt_number(columns = n.items, decimals = 0) %>% 
-  data_color(
-     columns = omega_h,
-     rows = omega_h<0.7,
-    fn = scales::col_numeric(
-      palette = c("red", "#FFCCCC"),
-      domain = c(0, 0.7)
-  )) %>% 
-  data_color(
-     columns = alpha,
-     rows = alpha<0.7,
-    fn = scales::col_numeric(
-      palette = c("red", "#FFCCCC"),
-      domain = c(0, 0.7)
-  )) %>% 
-  data_color(
-     columns = Uni,
-     rows = Uni<0.8,
-    fn = scales::col_numeric(
-      palette = c("red", "#FFCCCC"),
-      domain = c(0, 0.8)))
+  fmt_number(columns = n.items, decimals = 0) 
+  
 ```
 
 ## Relibilität - Visualisierung
@@ -350,4 +332,33 @@ OLMA_Ready %>%
     title = "Lernerfolg nach Bildung und Alter",
     subtitle = "einfache lineare Regression"
   )
+```
+
+```{r}
+#| include: false
+#| eval: false
+
+# Einfärboptionen
+data_color(
+     columns = omega.tot,
+     rows = omega.tot<0.8,
+     method = "numeric",
+      palette = c("red", "#FFCCCC"),
+      domain = c(0, 0.79),
+     na_color = "white"
+  ) %>%
+  data_color(
+     columns = alpha,
+     rows = alpha<0.69,
+    method = "numeric",
+      palette = c("red", "#FFCCCC"),
+      domain = c(0, 0.69)
+  ) %>% 
+  data_color(
+     columns = Uni,
+     rows = Uni<0.79,
+    method = "numeric",
+      palette = c("red", "#FFCCCC"),
+      domain = c(0, 0.79))
+
 ```
