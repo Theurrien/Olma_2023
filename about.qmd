@@ -51,7 +51,7 @@ OLMA_Ready <- OLMA_Start %>%
 
 Basierend auf Camil und der Annahme, dass das Alter und die Ängstlichkeit vor Computern einen Einfluss auf das Lernen hat, wurde das folgenden Modell aufgestellt.
 
-![](images/Untitled - Frame 1-01.jpg)
+![](images/Untitled%20-%20Frame%201-01.jpg)
 
 ### Überprüfung des Messmodells
 
