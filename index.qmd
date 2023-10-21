@@ -50,18 +50,17 @@ OLMA_Ready <- OLMA_Start %>%
   mutate(
     CANX_1=8-CANX_1,
     IMO_3=6-IMO_3,
-    IMO_4=6-IMO_4
+    IMO_4=6-IMO_4,
+    Alter = as.numeric(Alter)
     ) %>% 
   select(-c(1:7,40:79))
   
   
 ```
 
-# Deskriptive Statistik
+## Demographische Angaben
 
 In diesem Datensatz haben bislang `r nrow(OLMA_Start)` Personen teilgennommen.
-
-## Demographische Angaben
 
 ### Alter
 

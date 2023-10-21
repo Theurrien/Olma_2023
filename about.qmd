@@ -12,6 +12,7 @@ library(haven)
 library(gt)
 library(lavaanPlot)
 library(performance)
+library(tidySEM)
 
 # Import data
 
@@ -41,7 +42,8 @@ OLMA_Ready <- OLMA_Start %>%
   mutate(
     CANX_1=8-CANX_1,
     IMO_3=6-IMO_3,
-    IMO_4=6-IMO_4
+    IMO_4=6-IMO_4,
+    Alter = as.numeric(Alter)
     ) %>% 
   select(-c(1:7,40:79))
 
@@ -101,4 +103,50 @@ performance(model_fit1, metrics = c("Chi2", "Chi2_df", "p_Chi2", "RMSEA", "RMSEA
 #| echo: false
 #| warning: false
 lavaanPlot(model = model_fit1, graph_options = list(rankdir = "LR", layout = "neato"))
+```
+
+## Strukturmodell
+
+```{r}
+#| echo: false
+
+strukturmodel_1 <- 'CANX =~ CANX_1+CANX_2 + CANX_3 + CANX_4
+        PRA  =~ PRA_1 + PRA_2 + PRA_3 + PRA_4
+        IMO  =~ IMO_1 + IMO_2 + IMO_3 + IMO_4 + IMO_5
+        KBE  =~ KBE_1 + KBE_2 + KBE_3 + KBE_4
+        KBU  =~ KBU_1 + KBU_2 + KBU_3 + KBU_4
+        PRA ~ CANX
+        IMO ~ PRA
+        KBE ~ PRA
+        KBU ~ PRA
+        Antworten ~ IMO + KBE + KBU
+        CANX ~ Alter
+        Antworten ~ Alter'
+
+
+columns_to_factor <- c("CANX_1", "CANX_2", "CANX_3", "CANX_4", 
+                       "PRA_1", "PRA_2", "PRA_3", "PRA_4", 
+                       "IMO_1", "IMO_2", "IMO_3", "IMO_4", "IMO_5", 
+                       "KBE_1", "KBE_2", "KBE_3", "KBE_4", 
+                       "KBU_1", "KBU_2", "KBU_3", "KBU_4")
+
+# Convert specified columns to factors
+Olma_factor <- OLMA_Ready %>%
+  mutate_at(vars(columns_to_factor), ~factor(., ordered = TRUE))
+
+model_fit2 <- sem(data=Olma_factor, model = strukturmodel_1)
+summary(model_fit2)
+```
+
+```{r}
+lavaanPlot(model=model_fit2,graph_options = list(layout = "fdp"))
+```
+
+```{r}
+#| echo: false
+#| include: false
+
+pfad_layout <- get_layout(model_fit2, layout_algorithm = "layout_in_circle")
+
+graph_sem(model=model_fit2, layout=pfad_layout, angle=170)
 ```

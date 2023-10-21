@@ -20,6 +20,40 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
 </style>
 
 
@@ -111,6 +145,7 @@ ul.task-list li input[type="checkbox"] {
   <ul class="collapse">
   <li><a href="#überprüfung-des-messmodells" id="toc-überprüfung-des-messmodells" class="nav-link" data-scroll-target="#überprüfung-des-messmodells">Überprüfung des Messmodells</a></li>
   </ul></li>
+  <li><a href="#strukturmodell" id="toc-strukturmodell" class="nav-link" data-scroll-target="#strukturmodell">Strukturmodell</a></li>
   </ul>
 </nav>
 </nav>
@@ -148,23 +183,23 @@ ul.task-list li input[type="checkbox"] {
 <div class="cell">
 <div class="cell-output-display">
 
-<div id="ygtdjviiaa" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
-<style>#ygtdjviiaa table {
+<div id="btrsmpcgwo" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>#btrsmpcgwo table {
   font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-#ygtdjviiaa thead, #ygtdjviiaa tbody, #ygtdjviiaa tfoot, #ygtdjviiaa tr, #ygtdjviiaa td, #ygtdjviiaa th {
+#btrsmpcgwo thead, #btrsmpcgwo tbody, #btrsmpcgwo tfoot, #btrsmpcgwo tr, #btrsmpcgwo td, #btrsmpcgwo th {
   border-style: none;
 }
 
-#ygtdjviiaa p {
+#btrsmpcgwo p {
   margin: 0;
   padding: 0;
 }
 
-#ygtdjviiaa .gt_table {
+#btrsmpcgwo .gt_table {
   display: table;
   border-collapse: collapse;
   line-height: normal;
@@ -190,12 +225,12 @@ ul.task-list li input[type="checkbox"] {
   border-left-color: #D3D3D3;
 }
 
-#ygtdjviiaa .gt_caption {
+#btrsmpcgwo .gt_caption {
   padding-top: 4px;
   padding-bottom: 4px;
 }
 
-#ygtdjviiaa .gt_title {
+#btrsmpcgwo .gt_title {
   color: #333333;
   font-size: 125%;
   font-weight: initial;
@@ -207,7 +242,7 @@ ul.task-list li input[type="checkbox"] {
   border-bottom-width: 0;
 }
 
-#ygtdjviiaa .gt_subtitle {
+#btrsmpcgwo .gt_subtitle {
   color: #333333;
   font-size: 85%;
   font-weight: initial;
@@ -219,7 +254,7 @@ ul.task-list li input[type="checkbox"] {
   border-top-width: 0;
 }
 
-#ygtdjviiaa .gt_heading {
+#btrsmpcgwo .gt_heading {
   background-color: #FFFFFF;
   text-align: center;
   border-bottom-color: #FFFFFF;
@@ -231,13 +266,13 @@ ul.task-list li input[type="checkbox"] {
   border-right-color: #D3D3D3;
 }
 
-#ygtdjviiaa .gt_bottom_border {
+#btrsmpcgwo .gt_bottom_border {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
 }
 
-#ygtdjviiaa .gt_col_headings {
+#btrsmpcgwo .gt_col_headings {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -252,7 +287,7 @@ ul.task-list li input[type="checkbox"] {
   border-right-color: #D3D3D3;
 }
 
-#ygtdjviiaa .gt_col_heading {
+#btrsmpcgwo .gt_col_heading {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -272,7 +307,7 @@ ul.task-list li input[type="checkbox"] {
   overflow-x: hidden;
 }
 
-#ygtdjviiaa .gt_column_spanner_outer {
+#btrsmpcgwo .gt_column_spanner_outer {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -284,15 +319,15 @@ ul.task-list li input[type="checkbox"] {
   padding-right: 4px;
 }
 
-#ygtdjviiaa .gt_column_spanner_outer:first-child {
+#btrsmpcgwo .gt_column_spanner_outer:first-child {
   padding-left: 0;
 }
 
-#ygtdjviiaa .gt_column_spanner_outer:last-child {
+#btrsmpcgwo .gt_column_spanner_outer:last-child {
   padding-right: 0;
 }
 
-#ygtdjviiaa .gt_column_spanner {
+#btrsmpcgwo .gt_column_spanner {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
@@ -304,11 +339,11 @@ ul.task-list li input[type="checkbox"] {
   width: 100%;
 }
 
-#ygtdjviiaa .gt_spanner_row {
+#btrsmpcgwo .gt_spanner_row {
   border-bottom-style: hidden;
 }
 
-#ygtdjviiaa .gt_group_heading {
+#btrsmpcgwo .gt_group_heading {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -334,7 +369,7 @@ ul.task-list li input[type="checkbox"] {
   text-align: left;
 }
 
-#ygtdjviiaa .gt_empty_group_heading {
+#btrsmpcgwo .gt_empty_group_heading {
   padding: 0.5px;
   color: #333333;
   background-color: #FFFFFF;
@@ -349,15 +384,15 @@ ul.task-list li input[type="checkbox"] {
   vertical-align: middle;
 }
 
-#ygtdjviiaa .gt_from_md > :first-child {
+#btrsmpcgwo .gt_from_md > :first-child {
   margin-top: 0;
 }
 
-#ygtdjviiaa .gt_from_md > :last-child {
+#btrsmpcgwo .gt_from_md > :last-child {
   margin-bottom: 0;
 }
 
-#ygtdjviiaa .gt_row {
+#btrsmpcgwo .gt_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -376,7 +411,7 @@ ul.task-list li input[type="checkbox"] {
   overflow-x: hidden;
 }
 
-#ygtdjviiaa .gt_stub {
+#btrsmpcgwo .gt_stub {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -389,7 +424,7 @@ ul.task-list li input[type="checkbox"] {
   padding-right: 5px;
 }
 
-#ygtdjviiaa .gt_stub_row_group {
+#btrsmpcgwo .gt_stub_row_group {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -403,15 +438,15 @@ ul.task-list li input[type="checkbox"] {
   vertical-align: top;
 }
 
-#ygtdjviiaa .gt_row_group_first td {
+#btrsmpcgwo .gt_row_group_first td {
   border-top-width: 2px;
 }
 
-#ygtdjviiaa .gt_row_group_first th {
+#btrsmpcgwo .gt_row_group_first th {
   border-top-width: 2px;
 }
 
-#ygtdjviiaa .gt_summary_row {
+#btrsmpcgwo .gt_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -421,16 +456,16 @@ ul.task-list li input[type="checkbox"] {
   padding-right: 5px;
 }
 
-#ygtdjviiaa .gt_first_summary_row {
+#btrsmpcgwo .gt_first_summary_row {
   border-top-style: solid;
   border-top-color: #D3D3D3;
 }
 
-#ygtdjviiaa .gt_first_summary_row.thick {
+#btrsmpcgwo .gt_first_summary_row.thick {
   border-top-width: 2px;
 }
 
-#ygtdjviiaa .gt_last_summary_row {
+#btrsmpcgwo .gt_last_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -440,7 +475,7 @@ ul.task-list li input[type="checkbox"] {
   border-bottom-color: #D3D3D3;
 }
 
-#ygtdjviiaa .gt_grand_summary_row {
+#btrsmpcgwo .gt_grand_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -450,7 +485,7 @@ ul.task-list li input[type="checkbox"] {
   padding-right: 5px;
 }
 
-#ygtdjviiaa .gt_first_grand_summary_row {
+#btrsmpcgwo .gt_first_grand_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -460,7 +495,7 @@ ul.task-list li input[type="checkbox"] {
   border-top-color: #D3D3D3;
 }
 
-#ygtdjviiaa .gt_last_grand_summary_row_top {
+#btrsmpcgwo .gt_last_grand_summary_row_top {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -470,11 +505,11 @@ ul.task-list li input[type="checkbox"] {
   border-bottom-color: #D3D3D3;
 }
 
-#ygtdjviiaa .gt_striped {
+#btrsmpcgwo .gt_striped {
   background-color: rgba(128, 128, 128, 0.05);
 }
 
-#ygtdjviiaa .gt_table_body {
+#btrsmpcgwo .gt_table_body {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -483,7 +518,7 @@ ul.task-list li input[type="checkbox"] {
   border-bottom-color: #D3D3D3;
 }
 
-#ygtdjviiaa .gt_footnotes {
+#btrsmpcgwo .gt_footnotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -497,7 +532,7 @@ ul.task-list li input[type="checkbox"] {
   border-right-color: #D3D3D3;
 }
 
-#ygtdjviiaa .gt_footnote {
+#btrsmpcgwo .gt_footnote {
   margin: 0px;
   font-size: 90%;
   padding-top: 4px;
@@ -506,7 +541,7 @@ ul.task-list li input[type="checkbox"] {
   padding-right: 5px;
 }
 
-#ygtdjviiaa .gt_sourcenotes {
+#btrsmpcgwo .gt_sourcenotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -520,7 +555,7 @@ ul.task-list li input[type="checkbox"] {
   border-right-color: #D3D3D3;
 }
 
-#ygtdjviiaa .gt_sourcenote {
+#btrsmpcgwo .gt_sourcenote {
   font-size: 90%;
   padding-top: 4px;
   padding-bottom: 4px;
@@ -528,63 +563,63 @@ ul.task-list li input[type="checkbox"] {
   padding-right: 5px;
 }
 
-#ygtdjviiaa .gt_left {
+#btrsmpcgwo .gt_left {
   text-align: left;
 }
 
-#ygtdjviiaa .gt_center {
+#btrsmpcgwo .gt_center {
   text-align: center;
 }
 
-#ygtdjviiaa .gt_right {
+#btrsmpcgwo .gt_right {
   text-align: right;
   font-variant-numeric: tabular-nums;
 }
 
-#ygtdjviiaa .gt_font_normal {
+#btrsmpcgwo .gt_font_normal {
   font-weight: normal;
 }
 
-#ygtdjviiaa .gt_font_bold {
+#btrsmpcgwo .gt_font_bold {
   font-weight: bold;
 }
 
-#ygtdjviiaa .gt_font_italic {
+#btrsmpcgwo .gt_font_italic {
   font-style: italic;
 }
 
-#ygtdjviiaa .gt_super {
+#btrsmpcgwo .gt_super {
   font-size: 65%;
 }
 
-#ygtdjviiaa .gt_footnote_marks {
+#btrsmpcgwo .gt_footnote_marks {
   font-size: 75%;
   vertical-align: 0.4em;
   position: initial;
 }
 
-#ygtdjviiaa .gt_asterisk {
+#btrsmpcgwo .gt_asterisk {
   font-size: 100%;
   vertical-align: 0;
 }
 
-#ygtdjviiaa .gt_indent_1 {
+#btrsmpcgwo .gt_indent_1 {
   text-indent: 5px;
 }
 
-#ygtdjviiaa .gt_indent_2 {
+#btrsmpcgwo .gt_indent_2 {
   text-indent: 10px;
 }
 
-#ygtdjviiaa .gt_indent_3 {
+#btrsmpcgwo .gt_indent_3 {
   text-indent: 15px;
 }
 
-#ygtdjviiaa .gt_indent_4 {
+#btrsmpcgwo .gt_indent_4 {
   text-indent: 20px;
 }
 
-#ygtdjviiaa .gt_indent_5 {
+#btrsmpcgwo .gt_indent_5 {
   text-indent: 25px;
 }
 </style>
@@ -612,14 +647,14 @@ ul.task-list li input[type="checkbox"] {
     </tr>
   </thead>
   <tbody class="gt_table_body">
-    <tr><td headers="Chi2" class="gt_row gt_right">531.03</td>
+    <tr><td headers="Chi2" class="gt_row gt_right">548.23</td>
 <td headers="Chi2_df" class="gt_row gt_right">179.00</td>
 <td headers="p_Chi2" class="gt_row gt_right">0.00</td>
-<td headers="RMSEA" class="gt_row gt_right">0.07</td>
+<td headers="RMSEA" class="gt_row gt_right">0.06</td>
 <td headers="RMSEA_CI_low" class="gt_row gt_right">0.06</td>
 <td headers="RMSEA_CI_high" class="gt_row gt_right">0.07</td>
 <td headers="p_RMSEA" class="gt_row gt_right">0.00</td>
-<td headers="CFI" class="gt_row gt_right">0.88</td>
+<td headers="CFI" class="gt_row gt_right">0.89</td>
 <td headers="SRMR" class="gt_row gt_right">0.06</td></tr>
   </tbody>
   
@@ -630,13 +665,291 @@ ul.task-list li input[type="checkbox"] {
 </div>
 <div class="cell">
 <div class="cell-output-display">
-<div class="grViz html-widget html-fill-item-overflow-hidden html-fill-item" id="htmlwidget-b90bd2823c2d9adf69cf" style="width:100%;height:464px;"></div>
-<script type="application/json" data-for="htmlwidget-b90bd2823c2d9adf69cf">{"x":{"diagram":" digraph plot { \n graph [ rankdir = LR, layout = neato ] \n node [ shape = box ] \n node [shape = box] \n CANX_1; CANX_2; CANX_3; CANX_4; PRA_1; PRA_2; PRA_3; PRA_4; IMO_1; IMO_2; IMO_3; IMO_4; IMO_5; KBE_1; KBE_2; KBE_3; KBE_4; KBU_1; KBU_2; KBU_3; KBU_4 \n node [shape = oval] \n CANX; PRA; IMO; KBE; KBU \n \n edge [ color = black ] \n  CANX->CANX_1 CANX->CANX_2 CANX->CANX_3 CANX->CANX_4 PRA->PRA_1 PRA->PRA_2 PRA->PRA_3 PRA->PRA_4 IMO->IMO_1 IMO->IMO_2 IMO->IMO_3 IMO->IMO_4 IMO->IMO_5 KBE->KBE_1 KBE->KBE_2 KBE->KBE_3 KBE->KBE_4 KBU->KBU_1 KBU->KBU_2 KBU->KBU_3 KBU->KBU_4 \n}","config":{"engine":"dot","options":null}},"evals":[],"jsHooks":[]}</script>
+<div class="grViz html-widget html-fill-item-overflow-hidden html-fill-item" id="htmlwidget-1a837a12fed744dd5246" style="width:100%;height:464px;"></div>
+<script type="application/json" data-for="htmlwidget-1a837a12fed744dd5246">{"x":{"diagram":" digraph plot { \n graph [ rankdir = LR, layout = neato ] \n node [ shape = box ] \n node [shape = box] \n CANX_1; CANX_2; CANX_3; CANX_4; PRA_1; PRA_2; PRA_3; PRA_4; IMO_1; IMO_2; IMO_3; IMO_4; IMO_5; KBE_1; KBE_2; KBE_3; KBE_4; KBU_1; KBU_2; KBU_3; KBU_4 \n node [shape = oval] \n CANX; PRA; IMO; KBE; KBU \n \n edge [ color = black ] \n  CANX->CANX_1 CANX->CANX_2 CANX->CANX_3 CANX->CANX_4 PRA->PRA_1 PRA->PRA_2 PRA->PRA_3 PRA->PRA_4 IMO->IMO_1 IMO->IMO_2 IMO->IMO_3 IMO->IMO_4 IMO->IMO_5 KBE->KBE_1 KBE->KBE_2 KBE->KBE_3 KBE->KBE_4 KBU->KBU_1 KBU->KBU_2 KBU->KBU_3 KBU->KBU_4 \n}","config":{"engine":"dot","options":null}},"evals":[],"jsHooks":[]}</script>
 </div>
 </div>
-
-
 </section>
+</section>
+<section id="strukturmodell" class="level2">
+<h2 class="anchored" data-anchor-id="strukturmodell">Strukturmodell</h2>
+<div class="cell">
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning: Using an external vector in selections was deprecated in tidyselect 1.1.0.
+ℹ Please use `all_of()` or `any_of()` instead.
+  # Was:
+  data %&gt;% select(columns_to_factor)
+
+  # Now:
+  data %&gt;% select(all_of(columns_to_factor))
+
+See &lt;https://tidyselect.r-lib.org/reference/faq-external-vector.html&gt;.</code></pre>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>lavaan 0.6.16 ended normally after 73 iterations
+
+  Estimator                                       DWLS
+  Optimization method                           NLMINB
+  Number of model parameters                       125
+
+  Number of observations                           497
+
+Model Test User Model:
+                                              Standard      Scaled
+  Test Statistic                              1281.844    1119.666
+  Degrees of freedom                               223         223
+  P-value (Chi-square)                           0.000       0.000
+  Scaling correction factor                                  1.253
+  Shift parameter                                           96.826
+    simple second-order correction                                
+
+Parameter Estimates:
+
+  Standard errors                           Robust.sem
+  Information                                 Expected
+  Information saturated (h1) model        Unstructured
+
+Latent Variables:
+                   Estimate  Std.Err  z-value  P(&gt;|z|)
+  CANX =~                                             
+    CANX_1            1.000                           
+    CANX_2            1.797    0.158   11.349    0.000
+    CANX_3            2.213    0.191   11.574    0.000
+    CANX_4            2.325    0.197   11.773    0.000
+  PRA =~                                              
+    PRA_1             1.000                           
+    PRA_2             0.770    0.072   10.723    0.000
+    PRA_3             0.939    0.072   12.992    0.000
+    PRA_4             1.035    0.079   13.121    0.000
+  IMO =~                                              
+    IMO_1             1.000                           
+    IMO_2             1.046    0.036   29.280    0.000
+    IMO_3             1.022    0.036   28.065    0.000
+    IMO_4             0.938    0.035   26.689    0.000
+    IMO_5             0.737    0.037   19.791    0.000
+  KBE =~                                              
+    KBE_1             1.000                           
+    KBE_2             0.809    0.045   17.937    0.000
+    KBE_3             1.113    0.050   22.267    0.000
+    KBE_4             1.159    0.053   21.743    0.000
+  KBU =~                                              
+    KBU_1             1.000                           
+    KBU_2             0.837    0.030   28.230    0.000
+    KBU_3             0.936    0.030   31.254    0.000
+    KBU_4             0.983    0.032   30.861    0.000
+
+Regressions:
+                   Estimate  Std.Err  z-value  P(&gt;|z|)
+  PRA ~                                               
+    CANX             -0.426    0.070   -6.092    0.000
+  IMO ~                                               
+    PRA               0.539    0.067    7.986    0.000
+  KBE ~                                               
+    PRA              -1.272    0.099  -12.824    0.000
+  KBU ~                                               
+    PRA              -1.416    0.100  -14.189    0.000
+  Antworten ~                                         
+    IMO               0.255    0.071    3.604    0.000
+    KBE               0.215    0.262    0.823    0.411
+    KBU              -0.159    0.222   -0.718    0.473
+  CANX ~                                              
+    Alter             0.001    0.001    1.093    0.274
+  Antworten ~                                         
+    Alter            -0.005    0.003   -1.867    0.062
+
+Intercepts:
+                   Estimate  Std.Err  z-value  P(&gt;|z|)
+   .CANX_1            0.000                           
+   .CANX_2            0.000                           
+   .CANX_3            0.000                           
+   .CANX_4            0.000                           
+   .PRA_1             0.000                           
+   .PRA_2             0.000                           
+   .PRA_3             0.000                           
+   .PRA_4             0.000                           
+   .IMO_1             0.000                           
+   .IMO_2             0.000                           
+   .IMO_3             0.000                           
+   .IMO_4             0.000                           
+   .IMO_5             0.000                           
+   .KBE_1             0.000                           
+   .KBE_2             0.000                           
+   .KBE_3             0.000                           
+   .KBE_4             0.000                           
+   .KBU_1             0.000                           
+   .KBU_2             0.000                           
+   .KBU_3             0.000                           
+   .KBU_4             0.000                           
+   .Antworten         0.000                           
+   .CANX              0.000                           
+   .PRA               0.000                           
+   .IMO               0.000                           
+   .KBE               0.000                           
+   .KBU               0.000                           
+
+Thresholds:
+                   Estimate  Std.Err  z-value  P(&gt;|z|)
+    CANX_1|t1        -0.088    0.128   -0.686    0.493
+    CANX_1|t2         0.547    0.129    4.237    0.000
+    CANX_1|t3         0.913    0.131    6.956    0.000
+    CANX_1|t4         1.086    0.130    8.359    0.000
+    CANX_1|t5         1.403    0.130   10.781    0.000
+    CANX_1|t6         1.692    0.139   12.213    0.000
+    CANX_2|t1         0.146    0.134    1.094    0.274
+    CANX_2|t2         0.812    0.136    5.982    0.000
+    CANX_2|t3         1.038    0.138    7.538    0.000
+    CANX_2|t4         1.198    0.139    8.614    0.000
+    CANX_2|t5         1.623    0.146   11.125    0.000
+    CANX_2|t6         2.021    0.153   13.217    0.000
+    CANX_3|t1         0.164    0.137    1.198    0.231
+    CANX_3|t2         0.855    0.140    6.103    0.000
+    CANX_3|t3         1.037    0.143    7.275    0.000
+    CANX_3|t4         1.320    0.145    9.121    0.000
+    CANX_3|t5         1.702    0.146   11.633    0.000
+    CANX_3|t6         2.184    0.170   12.877    0.000
+    CANX_4|t1         0.108    0.133    0.814    0.416
+    CANX_4|t2         0.793    0.135    5.876    0.000
+    CANX_4|t3         1.059    0.135    7.834    0.000
+    CANX_4|t4         1.395    0.143    9.750    0.000
+    CANX_4|t5         1.799    0.149   12.091    0.000
+    CANX_4|t6         2.127    0.165   12.915    0.000
+    PRA_1|t1         -2.397    0.192  -12.454    0.000
+    PRA_1|t2         -1.609    0.144  -11.193    0.000
+    PRA_1|t3         -1.000    0.137   -7.311    0.000
+    PRA_1|t4          0.502    0.134    3.741    0.000
+    PRA_2|t1         -1.056    0.132   -7.989    0.000
+    PRA_2|t2         -0.015    0.124   -0.119    0.905
+    PRA_2|t3          0.567    0.125    4.521    0.000
+    PRA_2|t4          1.791    0.152   11.801    0.000
+    PRA_3|t1         -2.003    0.159  -12.586    0.000
+    PRA_3|t2         -0.910    0.130   -6.994    0.000
+    PRA_3|t3         -0.420    0.126   -3.326    0.001
+    PRA_3|t4          1.020    0.129    7.915    0.000
+    PRA_4|t1         -1.747    0.160  -10.950    0.000
+    PRA_4|t2         -0.874    0.130   -6.703    0.000
+    PRA_4|t3         -0.431    0.129   -3.355    0.001
+    PRA_4|t4          0.715    0.130    5.505    0.000
+    IMO_1|t1         -1.753    0.149  -11.775    0.000
+    IMO_1|t2         -1.024    0.128   -8.010    0.000
+    IMO_1|t3         -0.215    0.124   -1.731    0.083
+    IMO_1|t4          0.678    0.125    5.425    0.000
+    IMO_2|t1         -2.132    0.174  -12.235    0.000
+    IMO_2|t2         -1.453    0.147   -9.914    0.000
+    IMO_2|t3         -0.733    0.129   -5.677    0.000
+    IMO_2|t4          0.453    0.129    3.522    0.000
+    IMO_3|t1         -2.068    0.206  -10.025    0.000
+    IMO_3|t2         -1.613    0.167   -9.663    0.000
+    IMO_3|t3         -0.881    0.131   -6.703    0.000
+    IMO_3|t4          0.149    0.131    1.144    0.253
+    IMO_4|t1         -1.892    0.177  -10.710    0.000
+    IMO_4|t2         -1.271    0.145   -8.766    0.000
+    IMO_4|t3         -0.678    0.131   -5.194    0.000
+    IMO_4|t4          0.109    0.128    0.852    0.394
+    IMO_5|t1         -1.631    0.177   -9.227    0.000
+    IMO_5|t2         -1.158    0.151   -7.663    0.000
+    IMO_5|t3         -0.662    0.138   -4.794    0.000
+    IMO_5|t4          0.376    0.137    2.749    0.006
+    KBE_1|t1          0.462    0.145    3.199    0.001
+    KBE_1|t2          1.529    0.163    9.360    0.000
+    KBE_1|t3          1.901    0.181   10.518    0.000
+    KBE_1|t4          2.340    0.225   10.416    0.000
+    KBE_2|t1         -0.551    0.129   -4.274    0.000
+    KBE_2|t2          0.138    0.128    1.080    0.280
+    KBE_2|t3          0.564    0.131    4.304    0.000
+    KBE_2|t4          1.276    0.141    9.029    0.000
+    KBE_3|t1         -0.128    0.128   -0.999    0.318
+    KBE_3|t2          0.842    0.132    6.397    0.000
+    KBE_3|t3          1.521    0.144   10.539    0.000
+    KBE_3|t4          2.012    0.172   11.678    0.000
+    KBE_4|t1          0.347    0.134    2.589    0.010
+    KBE_4|t2          1.282    0.141    9.107    0.000
+    KBE_4|t3          1.865    0.167   11.148    0.000
+    KBE_4|t4          2.467    0.228   10.831    0.000
+    KBU_1|t1         -0.034    0.139   -0.245    0.806
+    KBU_1|t2          1.160    0.145    7.994    0.000
+    KBU_1|t3          1.846    0.188    9.838    0.000
+    KBU_1|t4          2.515    0.307    8.195    0.000
+    KBU_2|t1         -0.186    0.135   -1.375    0.169
+    KBU_2|t2          0.734    0.140    5.228    0.000
+    KBU_2|t3          1.095    0.152    7.210    0.000
+    KBU_2|t4          1.649    0.174    9.494    0.000
+    KBU_3|t1         -0.237    0.132   -1.801    0.072
+    KBU_3|t2          0.806    0.134    6.013    0.000
+    KBU_3|t3          1.345    0.155    8.657    0.000
+    KBU_3|t4          2.027    0.206    9.819    0.000
+    KBU_4|t1          0.010    0.134    0.078    0.938
+    KBU_4|t2          1.045    0.140    7.494    0.000
+    KBU_4|t3          1.626    0.166    9.781    0.000
+    KBU_4|t4          2.178    0.208   10.480    0.000
+    Antworten|t1     -2.024    0.158  -12.777    0.000
+    Antworten|t2     -1.158    0.136   -8.522    0.000
+    Antworten|t3     -0.212    0.129   -1.644    0.100
+
+Variances:
+                   Estimate  Std.Err  z-value  P(&gt;|z|)
+   .CANX_1            0.839                           
+   .CANX_2            0.479                           
+   .CANX_3            0.210                           
+   .CANX_4            0.129                           
+   .PRA_1             0.707                           
+   .PRA_2             0.826                           
+   .PRA_3             0.741                           
+   .PRA_4             0.686                           
+   .IMO_1             0.376                           
+   .IMO_2             0.317                           
+   .IMO_3             0.348                           
+   .IMO_4             0.450                           
+   .IMO_5             0.660                           
+   .KBE_1             0.501                           
+   .KBE_2             0.673                           
+   .KBE_3             0.382                           
+   .KBE_4             0.330                           
+   .KBU_1             0.282                           
+   .KBU_2             0.497                           
+   .KBU_3             0.372                           
+   .KBU_4             0.307                           
+   .Antworten         0.958                           
+   .CANX              0.161    0.027    5.871    0.000
+   .PRA               0.264    0.034    7.732    0.000
+   .IMO               0.539    0.032   16.788    0.000
+   .KBE               0.024    0.026    0.922    0.357
+   .KBU               0.129    0.035    3.727    0.000
+
+Scales y*:
+                   Estimate  Std.Err  z-value  P(&gt;|z|)
+    CANX_1            1.000                           
+    CANX_2            1.000                           
+    CANX_3            1.000                           
+    CANX_4            1.000                           
+    PRA_1             1.000                           
+    PRA_2             1.000                           
+    PRA_3             1.000                           
+    PRA_4             1.000                           
+    IMO_1             1.000                           
+    IMO_2             1.000                           
+    IMO_3             1.000                           
+    IMO_4             1.000                           
+    IMO_5             1.000                           
+    KBE_1             1.000                           
+    KBE_2             1.000                           
+    KBE_3             1.000                           
+    KBE_4             1.000                           
+    KBU_1             1.000                           
+    KBU_2             1.000                           
+    KBU_3             1.000                           
+    KBU_4             1.000                           
+    Antworten         1.000                           </code></pre>
+</div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">lavaanPlot</span>(<span class="at">model=</span>model_fit2,<span class="at">graph_options =</span> <span class="fu">list</span>(<span class="at">layout =</span> <span class="st">"fdp"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div class="grViz html-widget html-fill-item-overflow-hidden html-fill-item" id="htmlwidget-eb6dfaa6cb05a80aebb8" style="width:100%;height:464px;"></div>
+<script type="application/json" data-for="htmlwidget-eb6dfaa6cb05a80aebb8">{"x":{"diagram":" digraph plot { \n graph [ layout = fdp ] \n node [ shape = box ] \n node [shape = box] \n Alter; Antworten; CANX_1; CANX_2; CANX_3; CANX_4; PRA_1; PRA_2; PRA_3; PRA_4; IMO_1; IMO_2; IMO_3; IMO_4; IMO_5; KBE_1; KBE_2; KBE_3; KBE_4; KBU_1; KBU_2; KBU_3; KBU_4 \n node [shape = oval] \n CANX; PRA; IMO; KBE; KBU \n \n edge [ color = black ] \n CANX->PRA PRA->IMO PRA->KBE PRA->KBU IMO->Antworten KBE->Antworten KBU->Antworten Alter->CANX Alter->Antworten CANX->CANX_1 CANX->CANX_2 CANX->CANX_3 CANX->CANX_4 PRA->PRA_1 PRA->PRA_2 PRA->PRA_3 PRA->PRA_4 IMO->IMO_1 IMO->IMO_2 IMO->IMO_3 IMO->IMO_4 IMO->IMO_5 KBE->KBE_1 KBE->KBE_2 KBE->KBE_3 KBE->KBE_4 KBU->KBU_1 KBU->KBU_2 KBU->KBU_3 KBU->KBU_4 \n}","config":{"engine":"dot","options":null}},"evals":[],"jsHooks":[]}</script>
+</div>
+</div>
+
+
 </section>
 
 </main> <!-- /main -->
