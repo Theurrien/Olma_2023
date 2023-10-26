@@ -128,7 +128,7 @@ performance(model_fit1, metrics = c("Chi2", "Chi2_df", "p_Chi2", "RMSEA", "CFI",
 semPaths(model_fit1, "std", style = "lisrel", layout = "tree2", residuals = FALSE, layoutSplit = FALSE,sizeMan = 3, rotation =2,exoCov = FALSE)
 ```
 
-Betrachtet man die standardisierten Kovarianzen zwischen den latenten Faktoren des Modells (@fig-Mess_latVar) fällt besonders die zwischen den beiden Skalen KBE und KBU auf. Die Kovarianz beträgt 0.264 (SE=.036, *z* = 7,421, *p* \< .001). Die standardisierte Kovarianz war mit 0,940 bemerkenswert hoch und deutet auf eine starke lineare Beziehung zwischen diesen beiden Konstrukten hin.
+Betrachtet man die standardisierten Kovarianzen zwischen den latenten Faktoren des Modells (@fig-Mess_latVar) fällt besonders die zwischen den beiden Skalen KBE und KBU auf. Die Kovarianz beträgt 0.264 (SE=.036, *z* = 7,421, *p* \< .001). Die standardisierte Kovarianz war mit 0,940 bemerkenswert hoch und deutet auf eine starke lineare Beziehung zwischen diesen beiden Konstrukten hin. Alle Kovarianzen sind signifikant (p\<.01) ausser CANX\~\~PRA (p\<.085) und CANX\~\~IMO (p\<.795).
 
 ```{r}
 #| echo: false
@@ -138,7 +138,17 @@ Betrachtet man die standardisierten Kovarianzen zwischen den latenten Faktoren d
 #| label: fig-Mess_latVar
 
 
-semPaths(model_fit1, "std", style = "ram", layout = "spring", residuals = FALSE, layoutSplit = TRUE,sizeMan = 0,edge.label.cex = 1.5, sizeLat = 10,nodeLabels = c("","","","","","","","","","","","","","","","","","","","","","CANX", "PRA", "IMO", "KBE", "KBU"))
+
+semPaths(model_fit1,
+         "std", 
+         style = "ram", 
+         layout = "spring", 
+         residuals = FALSE, 
+         layoutSplit = TRUE,
+         sizeMan = 0,
+         edge.label.cex = 1.5, 
+         sizeLat = 10,
+         nodeLabels = c("","","","","","","","","","","","","","","","","","","","","","CANX", "PRA", "IMO", "KBE", "KBU"))
 ```
 
 #### Modifikationsindices
