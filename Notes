@@ -1,0 +1,24 @@
+# Code für die Model Fit Indices
+performance(model_fit1, metrics = c("Chi2", "Chi2_df", "p_Chi2", "RMSEA", "RMSEA_CI_low", "RMSEA_CI_high", "p_RMSEA", "CFI","GFI","SRMR")) %>% 
+  gt() %>% 
+  gt::fmt_number(decimals = 3) %>% 
+  cols_label(
+    RMSEA = "Wert",
+    RMSEA_CI_low = "CI<sub>low</sub>",
+    RMSEA_CI_high = "CI<sub>high</sub>",
+    p_RMSEA = "p",
+    .fn = md
+  ) %>% 
+   tab_spanner(
+    label = "RMSEA ",
+    columns = c(RMSEA, RMSEA_CI_low, RMSEA_CI_high, p_RMSEA)
+  ) %>% 
+  tab_spanner(
+    label = "\u03C7\u00B2",
+    columns = c(Chi2,Chi2_df,p_Chi2)
+  ) %>% 
+  cols_label(
+    Chi2 = "Wert",
+    Chi2_df = "df",
+    p_Chi2 = "p"
+  )

@@ -1,5 +1,6 @@
 ---
 title: "Statistische Analyse"
+bibliography: references.bib
 ---
 
 ```{r}
@@ -14,6 +15,7 @@ library(lavaanPlot)
 library(performance)
 library(tidySEM)
 library(psych)
+library(semPlot)
 
 # Import data
 
@@ -52,42 +54,55 @@ OLMA_Ready <- OLMA_Start %>%
 
 ## Strukturgleichungsmodell
 
-Basierend auf Camil und der Annahme, dass das Alter und die Ängstlichkeit vor Computern einen Einfluss auf das Lernen hat, wurde das folgenden Modell aufgestellt.
+Basierend auf Camil [@makranskyCognitiveAffectiveModel2021] und der Annahme, dass das Alter und die Ängstlichkeit vor Computern einen Einfluss auf das Lernen hat, wurde das folgenden Modell aufgestellt.
 
 ![](images/Untitled%20-%20Frame%201-01.jpg)
 
 ### Überprüfung des Messmodells
 
-Das Messmodell beinhaltet die fünf Skalen.
+Das Messmodell beinhaltet die fünf Skalen:
+
+-   CANX (Computer Anxiety) - Ängstlichkeit vor Computern
+
+-   PRA (Presence) - Präsenz im virtuellen Raum
+
+-   IMO (Intrinsic motivation) - Intrinsische Motivation
+
+-   KBE (Extraneous Cognitive load Interaction) - Kognitive Belastung, Interaktion
+
+-   KBU (Extranous Cognitive load Environment) - Kognitive Belastung, Umgebung
+
+Die Analysen wurden mit dem lavaan Package durchgeführt [@rosseelLavaanPackageStructural2012].
 
 ```{r}
 #| echo: false
+#| warning: false
 
 messmodell_1 <- '
         CANX =~ CANX_1+CANX_2 + CANX_3 + CANX_4
         PRA  =~ PRA_1 + PRA_2 + PRA_3 + PRA_4
-        IMO  =~ IMO_1 + IMO_2 + IMO_3 + IMO_4 + IMO_5
+        IMO  =~ IMO_1 +IMO_2 + IMO_3 + IMO_4 + IMO_5
         KBE  =~ KBE_1 + KBE_2 + KBE_3 + KBE_4
         KBU  =~ KBU_1 + KBU_2 + KBU_3 + KBU_4
+        
 '
 
 
-model_fit1 <- sem(data=OLMA_Ready, model = messmodell_1)
+model_fit1 <- sem(data=OLMA_Ready, model = messmodell_1, estimator="MLM")
 
-performance(model_fit1, metrics = c("Chi2", "Chi2_df", "p_Chi2", "RMSEA", "RMSEA_CI_low", "RMSEA_CI_high", "p_RMSEA", "CFI","SRMR")) %>% 
+```
+
+Die Gütekriterien des Messmodels sind in der @tbl-fit_ind_measure aufgeführt und weisen auf eine akzeptable Passung des Models hin (CFI=`r round(performance(model_fit1, metrics = c("CFI")),2)` , GFI=`r round(performance(model_fit1, metrics = c("GFI")),2)`, RMSEA=`r round(performance(model_fit1, metrics = c("RMSEA")),2)`, SRMR=`r round(performance(model_fit1, metrics = c("SRMR")),2)`). Der $\chi^2$-Test ($\chi^2$(`r round(performance(model_fit1, metrics = c("Chi2_df")),0)`)=`r round(performance(model_fit1, metrics = c("Chi2")),2)`, *p* \<`r round(performance(model_fit1, metrics = c("p_Chi2")),2)`) fällt signifikant aus, was bei grossen Stichproben allerdings nicht ungewöhnlich ist, da diese direkt in die Teststatitsik miteinfliesst @eidStatistikUndForschungsmethoden2017.
+
+```{r}
+#| echo: false
+#| tbl-cap: Gütekriterien des Messmodels
+#| cap-location: margin
+#| label: tbl-fit_ind_measure
+
+performance(model_fit1, metrics = c("Chi2", "Chi2_df", "p_Chi2", "RMSEA", "CFI","GFI","AGFI","SRMR")) %>% 
   gt() %>% 
-  gt::fmt_number() %>% 
-  cols_label(
-    RMSEA = "Wert",
-    RMSEA_CI_low = "CI<sub>low</sub>",
-    RMSEA_CI_high = "CI<sub>high</sub>",
-    p_RMSEA = "p",
-    .fn = md
-  ) %>% 
-   tab_spanner(
-    label = "RMSEA ",
-    columns = c(RMSEA, RMSEA_CI_low, RMSEA_CI_high, p_RMSEA)
-  ) %>% 
+  gt::fmt_number(decimals = 3, drop_trailing_zeros = TRUE) %>% 
   tab_spanner(
     label = "\u03C7\u00B2",
     columns = c(Chi2,Chi2_df,p_Chi2)
@@ -100,13 +115,66 @@ performance(model_fit1, metrics = c("Chi2", "Chi2_df", "p_Chi2", "RMSEA", "RMSEA
   
 ```
 
+@fig-Messmodell zeigt die latenten Variablen des Messmodells mit den entsprechenden standardisierten Faktorladungen. Alle Ladungen erreichten ein signifikantes Resultat (*p*\<.001).
+
 ```{r}
 #| echo: false
 #| warning: false
-lavaanPlot(model = model_fit1, graph_options = list(rankdir = "LR", layout = "neato"))
+#| fig-cap: Darstellung des Messmodells
+#| cap-location: margin
+#| label: fig-Messmodell
+
+
+semPaths(model_fit1, "std", style = "lisrel", layout = "tree2", residuals = FALSE, layoutSplit = FALSE,sizeMan = 3, rotation =2,exoCov = FALSE)
 ```
 
-## Strukturmodell
+Betrachtet man die standardisierten Kovarianzen zwischen den latenten Faktoren des Modells (@fig-Mess_latVar) fällt besonders die zwischen den beiden Skalen KBE und KBU auf. Die Kovarianz beträgt 0.264 (SE=.036, *z* = 7,421, *p* \< .001). Die standardisierte Kovarianz war mit 0,940 bemerkenswert hoch und deutet auf eine starke lineare Beziehung zwischen diesen beiden Konstrukten hin.
+
+```{r}
+#| echo: false
+#| warning: false
+#| fig-cap: Latente Faktoren und deren Kovarianzen im Messmodell
+#| cap-location: margin
+#| label: fig-Mess_latVar
+
+
+semPaths(model_fit1, "std", style = "ram", layout = "spring", residuals = FALSE, layoutSplit = TRUE,sizeMan = 0,edge.label.cex = 1.5, sizeLat = 10,nodeLabels = c("","","","","","","","","","","","","","","","","","","","","","CANX", "PRA", "IMO", "KBE", "KBU"))
+```
+
+#### Modifikationsindices
+
+In den Modifikationsindices fällt besonders die hohe Kovarianz zwischen Items der Skala Intrinsische Motivation auf, was ein Hinweis auf Redundanz der Items sein könnte oder dass sie ein anderes Konstrukt messen.\
+Besonders scheint das Items IMO_1 zu sein, da es als ein äusserst starker Indikator für die beiden Skalen KBE und KBU angesehen werden muss. Da diese Skalen völlig unterschiedliche Konstrukte messen, sticht diese Beziehung in besonderer Weise hervor.
+
+```{r}
+#| echo: false
+#| tbl-cap: Modifikationsindices, fünf höchste Werte
+#| label: tbl-mod_indices
+#| tbl-cap-location: margin
+modindices(model_fit1, minimum.value = 10, sort. = TRUE, maximum.number = 5) %>% 
+  gt() %>% 
+  fmt_number() %>% 
+  tab_style(locations = cells_column_labels(columns=c(2:7)),
+            style = cell_text(align = "center"))
+```
+
+#### Items der Skala Intrinsische Motivation
+
+Die Items der Skala lauten wie folgt:
+
+1.  Ich arbeite gerne mit dem Thema der Kuhhaltung. (IMO_1)
+
+2.  Es macht Spass Aktivitäten rund um das Thema Kuhhaltung durchzuführen. (IMO_2)
+
+3.  Das Thema der Kuhhaltung ist langweilig. (IMO_3)
+
+4.  Das Thema der Kuhhaltung interessiert mich überhaupt nicht. (IMO_4)
+
+5.  Ich würde das Thema der Kuhhaltung als sehr interessant bezeichnen. (IMO_5)
+
+Da diese Items aus dem Englischen übersetzt und an unsere Situation adaptiert wurden, ist es sehr gut möglich, dass einzelne Items nicht ideal zum Konstrukt der intrinsischen Motivation passen. Item IMO_1 hat in dieser Hinsicht auch einen semantischen Fehler, da es nicht wirklich möglich ist mit einem Thema zu arbeiten.
+
+## Strukturmodell - Nicht betrachten ;-)
 
 ```{r}
 #| echo: false
@@ -190,8 +258,9 @@ graph_sem(model=model_fit2, layout=pfad_layout, angle=170)
 #| echo: false
 
 
-cfa(model=messmodell_1, data=OLMA_Ready) %>% 
-  summary(fit.measures=TRUE)
+model_CFA1 <- cfa(model=messmodell_1, data=OLMA_Ready) %>% 
+  summary(fit.measures=TRUE, standardized=TRUE)
+model_CFA1
 ```
 
 ## EFA
