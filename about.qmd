@@ -52,13 +52,13 @@ OLMA_Ready <- OLMA_Start %>%
 
 ```
 
-## Strukturgleichungsmodell
+# Strukturgleichungsmodell
 
 Basierend auf Camil [@makranskyCognitiveAffectiveModel2021] und der Annahme, dass das Alter und die Ängstlichkeit vor Computern einen Einfluss auf das Lernen hat, wurde das folgenden Modell aufgestellt.
 
 ![](images/Untitled%20-%20Frame%201-01.jpg)
 
-### Überprüfung des Messmodells
+# Überprüfung des Messmodells
 
 Das Messmodell beinhaltet die fünf Skalen:
 
@@ -151,10 +151,10 @@ semPaths(model_fit1,
          nodeLabels = c("","","","","","","","","","","","","","","","","","","","","","CANX", "PRA", "IMO", "KBE", "KBU"))
 ```
 
-#### Modifikationsindices
+## Modifikationsindices
 
 In den Modifikationsindices fällt besonders die hohe Kovarianz zwischen Items der Skala Intrinsische Motivation auf, was ein Hinweis auf Redundanz der Items sein könnte oder dass sie ein anderes Konstrukt messen.\
-Besonders scheint das Items IMO_1 zu sein, da es als ein äusserst starker Indikator für die beiden Skalen KBE und KBU angesehen werden muss. Da diese Skalen völlig unterschiedliche Konstrukte messen, sticht diese Beziehung in besonderer Weise hervor.
+Das Item IMO_1 kann als ein äusserst starker Indikator für die beiden Skalen KBE und KBU angesehen werden. Da diese Skalen völlig unterschiedliche Konstrukte messen, sticht diese Beziehung in besonderer Weise hervor.
 
 ```{r}
 #| echo: false
@@ -168,8 +168,25 @@ modindices(model_fit1, minimum.value = 10, sort. = TRUE, maximum.number = 5) %>%
             style = cell_text(align = "center"))
 ```
 
-#### Items der Skala Intrinsische Motivation
+## Items der Skala Intrinsische Motivation
+```{r}
+#| column: margin
+#| echo: false
+#| warning: false
+#| tbl-cap-location: margin
+#| tbl-cap: Faktorladungen IMO-Skala
+#| label: tbl-fakt_IMO
 
+
+omega(OLMA_Ready[,14:18], nfactors = 1)$schmid$sl %>% 
+  as.data.frame() %>% 
+  mutate(Item=rownames(omega(OLMA_Ready[,14:18], nfactors = 1)$schmid$sl)) %>% 
+  select(Item,dplyr::everything(), -"F1*", -"p2") %>% 
+  gt() %>% 
+  fmt_number() %>% 
+  tab_style(locations = cells_column_labels(columns=c(2:4)),
+            style = cell_text(align = "center"))
+```
 Die Items der Skala lauten wie folgt:
 
 1.  Ich arbeite gerne mit dem Thema der Kuhhaltung. (IMO_1)
@@ -182,7 +199,9 @@ Die Items der Skala lauten wie folgt:
 
 5.  Ich würde das Thema der Kuhhaltung als sehr interessant bezeichnen. (IMO_5)
 
-Da diese Items aus dem Englischen übersetzt und an unsere Situation adaptiert wurden, ist es sehr gut möglich, dass einzelne Items nicht ideal zum Konstrukt der intrinsischen Motivation passen. Item IMO_1 hat in dieser Hinsicht auch einen semantischen Fehler, da es nicht wirklich möglich ist mit einem Thema zu arbeiten.
+Diese Items wurden aus dem Englischen übersetzt und an das Thema der Kuhhaltung angepasst. Die Formulierung von IMO_1 ist nicht ideal, da die Wendung "arbeiten mit einem Thema" nicht sehr geläufig ist und wahrscheinlich mit dem Verb "beschäftigen" besser getroffen worden wäre.
+
+Eine Analyse der Itemskala mit der Omega Funktion des psych Packages [@williamrevellePsychProceduresPsychological2023] durchgeführt und zeigen eine akzeptable interne Konsistenz der Skala mit $\omega$=`r round(omega(OLMA_Ready[,14:18], nfactors = 1)$omega_h,2)` und $\alpha$=`r round(omega(OLMA_Ready[,14:18], nfactors = 1)$alpha,2)`. Desweiteren zeigen auch die Faktorladungen, dass das Item 1 sowohl die höchste Ladung, als auch die höchste Komunalität mit dem latenten Faktor der Skala aufweist (siehe @tbl-fakt_IMO). Diesen Analysen folgend macht eine Anpassung des Items IMO_1 keinen Sinn.
 
 ## Strukturmodell - Nicht betrachten ;-)
 
