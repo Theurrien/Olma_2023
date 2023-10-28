@@ -60,7 +60,7 @@ Basierend auf Camil [@makranskyCognitiveAffectiveModel2021] und der Annahme, das
 
 # Überprüfung des Messmodells
 
-Das Messmodell beinhaltet die fünf Skalen:
+Das Messmodell beinhaltet sechs latente Variablen, welche durch 24 manifeste Variablen geschätzt werden.
 
 -   CANX (Computer Anxiety) - Ängstlichkeit vor Computern
 
@@ -71,6 +71,8 @@ Das Messmodell beinhaltet die fünf Skalen:
 -   KBE (Extraneous Cognitive load Interaction) - Kognitive Belastung, Interaktion
 
 -   KBU (Extranous Cognitive load Environment) - Kognitive Belastung, Umgebung
+
+-   WIS (Drei multiple choice Fragen zur Theorie) -
 
 Die Analysen wurden mit dem lavaan Package durchgeführt [@rosseelLavaanPackageStructural2012].
 
@@ -84,15 +86,21 @@ messmodell_1 <- '
         IMO  =~ IMO_1 +IMO_2 + IMO_3 + IMO_4 + IMO_5
         KBE  =~ KBE_1 + KBE_2 + KBE_3 + KBE_4
         KBU  =~ KBU_1 + KBU_2 + KBU_3 + KBU_4
+        ANT =~ WIS_1 + WIS_2 + WIS_3
         
 '
+OLMA_Ready_R <- OLMA_Ready %>% 
+  mutate(across(where(is.labelled), as.double))
 
-
-model_fit1 <- sem(data=OLMA_Ready, model = messmodell_1, estimator="MLM")
+model_fit1 <- sem(data=OLMA_Ready_R[,6:29], model = messmodell_1, 
+                  ordered = c("WIS_1","WIS_2","WIS_3"),
+                  estimator="WLSMV")
 
 ```
 
-Die Gütekriterien des Messmodels sind in der @tbl-fit_ind_measure aufgeführt und weisen auf eine akzeptable Passung des Models hin (CFI=`r round(performance(model_fit1, metrics = c("CFI")),2)` , GFI=`r round(performance(model_fit1, metrics = c("GFI")),2)`, RMSEA=`r round(performance(model_fit1, metrics = c("RMSEA")),2)`, SRMR=`r round(performance(model_fit1, metrics = c("SRMR")),2)`). Der $\chi^2$-Test ($\chi^2$(`r round(performance(model_fit1, metrics = c("Chi2_df")),0)`)=`r round(performance(model_fit1, metrics = c("Chi2")),2)`, *p* \<`r round(performance(model_fit1, metrics = c("p_Chi2")),2)`) fällt signifikant aus, was bei grossen Stichproben allerdings nicht ungewöhnlich ist, da diese direkt in die Teststatitsik miteinfliesst @eidStatistikUndForschungsmethoden2017.
+Die Gütekriterien des Messmodels sind in der @tbl-fit_ind_measure aufgeführt und weisen auf eine akzeptable Passung des Models hin [@huCutoffCriteriaFit1999] [^1] (CFI=`r round(fitmeasures(model_fit1, fit.measures = c("CFI")),2)` , GFI=`r round(fitmeasures(model_fit1, fit.measures = c("GFI")),2)`, RMSEA=`r round(fitmeasures(model_fit1, fit.measures = c("RMSEA")),2)`, SRMR=`r round(fitmeasures(model_fit1, fit.measures = c("SRMR")),2)`). Der $\chi^2$-Test ($\chi^2$(`r round(fitmeasures(model_fit1, fit.measures = c("df")),0)`)=`r round(fitmeasures(model_fit1, fit.measures = c("Chisq")),2)`, *p* \<`r round(fitmeasures(model_fit1, fit.measures = c("pvalue")),2)`) fällt signifikant aus, was bei grossen Stichproben allerdings nicht ungewöhnlich ist, da diese direkt in die Teststatitsik miteinfliesst [@eidStatistikUndForschungsmethoden2017].
+
+[^1]: Diese CutOff Werte werden auch in Frage gestellt, da sie beeinflusst werden können von der Stichprobengrössen, Modellcharakteristika wie Non-Normalität, Anzahl der Indikatoren oder der Magnitude der Faktorladungen [@hoyle2023]. Eine mögliche Korrektur bietet Marcoulides und Yuan [-@marcoulidesNewWaysEvaluate2017]. Das vorgestellte Modell bleibt auch hinsichtlich dieser Angaben ein guter Fit.
 
 ```{r}
 #| echo: false
@@ -100,19 +108,35 @@ Die Gütekriterien des Messmodels sind in der @tbl-fit_ind_measure aufgeführt u
 #| cap-location: margin
 #| label: tbl-fit_ind_measure
 
-performance(model_fit1, metrics = c("Chi2", "Chi2_df", "p_Chi2", "RMSEA", "CFI","GFI","AGFI","SRMR")) %>% 
+fitmeasures(model_fit1, fit.measures = c("chisq", "df", "pvalue", "RMSEA", "rmsea.ci.lower", "rmsea.ci.upper", "p_RMSEA", "CFI","SRMR", "gfi", "agfi")) %>% 
+  enframe(name = "Index", value = "Value") %>%
+  spread(Index, Value) %>% 
+  select(chisq, df, pvalue, rmsea, rmsea.ci.lower, rmsea.ci.upper, cfi,srmr, gfi, agfi) %>% 
   gt() %>% 
-  gt::fmt_number(decimals = 3, drop_trailing_zeros = TRUE) %>% 
+  gt::fmt_number() %>% 
+  cols_label(
+    rmsea = "Wert",
+    rmsea.ci.lower = "CI<sub>low</sub>",
+    rmsea.ci.upper = "CI<sub>high</sub>",
+    .fn = md
+  ) %>% 
+   tab_spanner(
+    label = "RMSEA ",
+    columns = c(rmsea, rmsea.ci.lower, rmsea.ci.upper)
+  ) %>% 
   tab_spanner(
     label = "\u03C7\u00B2",
-    columns = c(Chi2,Chi2_df,p_Chi2)
+    columns = c(chisq, df, pvalue)
   ) %>% 
   cols_label(
-    Chi2 = "Wert",
-    Chi2_df = "df",
-    p_Chi2 = "p"
-  )
-  
+    chisq = "Wert",
+    df = "df",
+    pvalue = "p"
+  ) %>% 
+  tab_style(locations = cells_column_labels(columns=c(2:9)),
+            style = cell_text(align = "center")) %>% 
+  tab_style(locations = cells_column_labels(columns=1),
+            style = cell_text(align = "left"))
 ```
 
 @fig-Messmodell zeigt die latenten Variablen des Messmodells mit den entsprechenden standardisierten Faktorladungen. Alle Ladungen erreichten ein signifikantes Resultat (*p*\<.001).
@@ -125,7 +149,7 @@ performance(model_fit1, metrics = c("Chi2", "Chi2_df", "p_Chi2", "RMSEA", "CFI",
 #| label: fig-Messmodell
 
 
-semPaths(model_fit1, "std", style = "lisrel", layout = "tree2", residuals = FALSE, layoutSplit = FALSE,sizeMan = 3, rotation =2,exoCov = FALSE)
+semPaths(model_fit1, "std", style = "lisrel", layout = "tree2", residuals = FALSE, layoutSplit = FALSE,sizeMan = 2, sizeLat = 6, rotation =2,exoCov = FALSE, intercepts = FALSE)
 ```
 
 Betrachtet man die standardisierten Kovarianzen zwischen den latenten Faktoren des Modells (@fig-Mess_latVar) fällt besonders die zwischen den beiden Skalen KBE und KBU auf. Die Kovarianz beträgt 0.264 (SE=.036, *z* = 7,421, *p* \< .001). Die standardisierte Kovarianz war mit 0,940 bemerkenswert hoch und deutet auf eine starke lineare Beziehung zwischen diesen beiden Konstrukten hin. Alle Kovarianzen sind signifikant (p\<.01) ausser CANX\~\~PRA (p\<.085) und CANX\~\~IMO (p\<.795).
@@ -142,19 +166,23 @@ Betrachtet man die standardisierten Kovarianzen zwischen den latenten Faktoren d
 semPaths(model_fit1,
          "std", 
          style = "ram", 
-         layout = "spring", 
+         layout = "circle", 
          residuals = FALSE, 
          layoutSplit = TRUE,
          sizeMan = 0,
+         sizeLat2 = 8,
          edge.label.cex = 1.5, 
-         sizeLat = 10,
-         nodeLabels = c("","","","","","","","","","","","","","","","","","","","","","CANX", "PRA", "IMO", "KBE", "KBU"))
+         sizeLat = 10, 
+         intercepts = FALSE,
+         nodeLabels = c("","","","","","","","","","","","","","","","","","","","","","","","","CANX", "PRA", "IMO", "KBE", "KBU", "ANT")
+)
 ```
 
 ## Modifikationsindices
 
-In den Modifikationsindices fällt besonders die hohe Kovarianz zwischen Items der Skala Intrinsische Motivation auf, was ein Hinweis auf Redundanz der Items sein könnte oder dass sie ein anderes Konstrukt messen.\
-Das Item IMO_1 kann als ein äusserst starker Indikator für die beiden Skalen KBE und KBU angesehen werden. Da diese Skalen völlig unterschiedliche Konstrukte messen, sticht diese Beziehung in besonderer Weise hervor.
+Die Modifikationsindizes deuten auf mögliche Querladungen zwischen der kognitiven Belastung in VR-Settings (KBU und KBE) und den Items der Skala zur intrinsischen Motivation (IMO_1 und IMO_3) hin. Dies könnte darauf hindeuten, dass bestimmte Items der Skala zur intrinsischen Motivation auch Aspekte der kognitiven Belastung erfassen oder dass es eine gewisse Überschneidung zwischen den Konstrukten gibt.
+Die vermutete inverse Beziehung zwischen PRA und CANX_1 könnte darauf hindeuten, dass mit zunehmender Präsenz in der VR-Umgebung der Wert von CANX_1 sinkt oder umgekehrt.
+Aufgrund des sehr guten Modell Fits sind allerdings keine Anpassungen am Modell vorzunehmen, allerdings stellt sich die Frage nach der internen Kongruenz oder Reliabilität der Item-Skalen, besonders der Motivationsskala.
 
 ```{r}
 #| echo: false
@@ -168,7 +196,8 @@ modindices(model_fit1, minimum.value = 10, sort. = TRUE, maximum.number = 5) %>%
             style = cell_text(align = "center"))
 ```
 
-## Items der Skala Intrinsische Motivation
+### Items der Skala Intrinsische Motivation
+
 ```{r}
 #| column: margin
 #| echo: false
@@ -187,6 +216,7 @@ omega(OLMA_Ready[,14:18], nfactors = 1)$schmid$sl %>%
   tab_style(locations = cells_column_labels(columns=c(2:4)),
             style = cell_text(align = "center"))
 ```
+
 Die Items der Skala lauten wie folgt:
 
 1.  Ich arbeite gerne mit dem Thema der Kuhhaltung. (IMO_1)
@@ -203,7 +233,7 @@ Diese Items wurden aus dem Englischen übersetzt und an das Thema der Kuhhaltung
 
 Eine Analyse der Itemskala mit der Omega Funktion des psych Packages [@williamrevellePsychProceduresPsychological2023] durchgeführt und zeigen eine akzeptable interne Konsistenz der Skala mit $\omega$=`r round(omega(OLMA_Ready[,14:18], nfactors = 1)$omega_h,2)` und $\alpha$=`r round(omega(OLMA_Ready[,14:18], nfactors = 1)$alpha,2)`. Desweiteren zeigen auch die Faktorladungen, dass das Item 1 sowohl die höchste Ladung, als auch die höchste Komunalität mit dem latenten Faktor der Skala aufweist (siehe @tbl-fakt_IMO). Diesen Analysen folgend macht eine Anpassung des Items IMO_1 keinen Sinn.
 
-## Strukturmodell - Nicht betrachten ;-)
+# Strukturmodell - Nicht betrachten ;-)
 
 ```{r}
 #| echo: false
@@ -281,7 +311,7 @@ pfad_layout <- get_layout(model_fit2, layout_algorithm = "layout_in_circle")
 graph_sem(model=model_fit2, layout=pfad_layout, angle=170)
 ```
 
-## CFA
+# CFA
 
 ```{r}
 #| echo: false
@@ -292,7 +322,7 @@ model_CFA1 <- cfa(model=messmodell_1, data=OLMA_Ready) %>%
 model_CFA1
 ```
 
-## EFA
+# EFA
 
 ```{r}
 #| echo: false

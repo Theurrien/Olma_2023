@@ -131,12 +131,14 @@ div.csl-indent {
   <li><a href="#strukturgleichungsmodell" id="toc-strukturgleichungsmodell" class="nav-link active" data-scroll-target="#strukturgleichungsmodell">Strukturgleichungsmodell</a></li>
   <li><a href="#überprüfung-des-messmodells" id="toc-überprüfung-des-messmodells" class="nav-link" data-scroll-target="#überprüfung-des-messmodells">Überprüfung des Messmodells</a>
   <ul class="collapse">
-  <li><a href="#modifikationsindices" id="toc-modifikationsindices" class="nav-link" data-scroll-target="#modifikationsindices">Modifikationsindices</a></li>
+  <li><a href="#modifikationsindices" id="toc-modifikationsindices" class="nav-link" data-scroll-target="#modifikationsindices">Modifikationsindices</a>
+  <ul class="collapse">
   <li><a href="#items-der-skala-intrinsische-motivation" id="toc-items-der-skala-intrinsische-motivation" class="nav-link" data-scroll-target="#items-der-skala-intrinsische-motivation">Items der Skala Intrinsische Motivation</a></li>
+  </ul></li>
+  </ul></li>
   <li><a href="#strukturmodell---nicht-betrachten--" id="toc-strukturmodell---nicht-betrachten--" class="nav-link" data-scroll-target="#strukturmodell---nicht-betrachten--">Strukturmodell - Nicht betrachten ;-)</a></li>
   <li><a href="#cfa" id="toc-cfa" class="nav-link" data-scroll-target="#cfa">CFA</a></li>
   <li><a href="#efa" id="toc-efa" class="nav-link" data-scroll-target="#efa">EFA</a></li>
-  </ul></li>
   </ul>
 </nav>
 </nav>
@@ -171,37 +173,38 @@ div.csl-indent {
 </section>
 <section id="überprüfung-des-messmodells" class="level1 page-columns page-full">
 <h1>Überprüfung des Messmodells</h1>
-<p>Das Messmodell beinhaltet die fünf Skalen:</p>
+<p>Das Messmodell beinhaltet sechs latente Variablen, welche durch 24 manifeste Variablen geschätzt werden.</p>
 <ul>
 <li><p>CANX (Computer Anxiety) - Ängstlichkeit vor Computern</p></li>
 <li><p>PRA (Presence) - Präsenz im virtuellen Raum</p></li>
 <li><p>IMO (Intrinsic motivation) - Intrinsische Motivation</p></li>
 <li><p>KBE (Extraneous Cognitive load Interaction) - Kognitive Belastung, Interaktion</p></li>
 <li><p>KBU (Extranous Cognitive load Environment) - Kognitive Belastung, Umgebung</p></li>
+<li><p>WIS (Drei multiple choice Fragen zur Theorie) -</p></li>
 </ul>
 <p>Die Analysen wurden mit dem lavaan Package durchgeführt <span class="citation" data-cites="rosseelLavaanPackageStructural2012">(<a href="#ref-rosseelLavaanPackageStructural2012" role="doc-biblioref">Rosseel 2012</a>)</span>.</p>
-<p>Die Gütekriterien des Messmodels sind in der <a href="#tbl-fit_ind_measure">Tabelle&nbsp;1</a> aufgeführt und weisen auf eine akzeptable Passung des Models hin (CFI=0.89 , GFI=0.91, RMSEA=0.06, SRMR=0.06). Der <span class="math inline">\(\chi^2\)</span>-Test (<span class="math inline">\(\chi^2\)</span>(179)=583.55, <em>p</em> &lt;0) fällt signifikant aus, was bei grossen Stichproben allerdings nicht ungewöhnlich ist, da diese direkt in die Teststatitsik miteinfliesst <span class="citation" data-cites="eidStatistikUndForschungsmethoden2017">Eid, Gollwitzer, und Schmitt (<a href="#ref-eidStatistikUndForschungsmethoden2017" role="doc-biblioref">2017</a>)</span>.</p>
+<p>Die Gütekriterien des Messmodels sind in der <a href="#tbl-fit_ind_measure">Tabelle&nbsp;1</a> aufgeführt und weisen auf eine akzeptable Passung des Models hin <span class="citation" data-cites="huCutoffCriteriaFit1999">(<a href="#ref-huCutoffCriteriaFit1999" role="doc-biblioref">Hu und Bentler 1999</a>)</span> <a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a> (CFI=0.96 , GFI=0.99, RMSEA=0.04, SRMR=0.06). Der <span class="math inline">\(\chi^2\)</span>-Test (<span class="math inline">\(\chi^2\)</span>(237)=457.23, <em>p</em> &lt;0) fällt signifikant aus, was bei grossen Stichproben allerdings nicht ungewöhnlich ist, da diese direkt in die Teststatitsik miteinfliesst <span class="citation" data-cites="eidStatistikUndForschungsmethoden2017">(<a href="#ref-eidStatistikUndForschungsmethoden2017" role="doc-biblioref">Eid, Gollwitzer, und Schmitt 2017</a>)</span>.</p>
 <div class="cell page-columns page-full">
 <div class="cell-output-display page-columns page-full">
 <div id="tbl-fit_ind_measure" class="anchored page-columns page-full">
 
-<div id="dpymweswwq" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;" class="page-columns page-full">
-<style>#dpymweswwq table {
+<div id="fkuuukhltt" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;" class="page-columns page-full">
+<style>#fkuuukhltt table {
   font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-#dpymweswwq thead, #dpymweswwq tbody, #dpymweswwq tfoot, #dpymweswwq tr, #dpymweswwq td, #dpymweswwq th {
+#fkuuukhltt thead, #fkuuukhltt tbody, #fkuuukhltt tfoot, #fkuuukhltt tr, #fkuuukhltt td, #fkuuukhltt th {
   border-style: none;
 }
 
-#dpymweswwq p {
+#fkuuukhltt p {
   margin: 0;
   padding: 0;
 }
 
-#dpymweswwq .gt_table {
+#fkuuukhltt .gt_table {
   display: table;
   border-collapse: collapse;
   line-height: normal;
@@ -227,12 +230,12 @@ div.csl-indent {
   border-left-color: #D3D3D3;
 }
 
-#dpymweswwq .gt_caption {
+#fkuuukhltt .gt_caption {
   padding-top: 4px;
   padding-bottom: 4px;
 }
 
-#dpymweswwq .gt_title {
+#fkuuukhltt .gt_title {
   color: #333333;
   font-size: 125%;
   font-weight: initial;
@@ -244,7 +247,7 @@ div.csl-indent {
   border-bottom-width: 0;
 }
 
-#dpymweswwq .gt_subtitle {
+#fkuuukhltt .gt_subtitle {
   color: #333333;
   font-size: 85%;
   font-weight: initial;
@@ -256,7 +259,7 @@ div.csl-indent {
   border-top-width: 0;
 }
 
-#dpymweswwq .gt_heading {
+#fkuuukhltt .gt_heading {
   background-color: #FFFFFF;
   text-align: center;
   border-bottom-color: #FFFFFF;
@@ -268,13 +271,13 @@ div.csl-indent {
   border-right-color: #D3D3D3;
 }
 
-#dpymweswwq .gt_bottom_border {
+#fkuuukhltt .gt_bottom_border {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
 }
 
-#dpymweswwq .gt_col_headings {
+#fkuuukhltt .gt_col_headings {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -289,7 +292,7 @@ div.csl-indent {
   border-right-color: #D3D3D3;
 }
 
-#dpymweswwq .gt_col_heading {
+#fkuuukhltt .gt_col_heading {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -309,7 +312,7 @@ div.csl-indent {
   overflow-x: hidden;
 }
 
-#dpymweswwq .gt_column_spanner_outer {
+#fkuuukhltt .gt_column_spanner_outer {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -321,15 +324,15 @@ div.csl-indent {
   padding-right: 4px;
 }
 
-#dpymweswwq .gt_column_spanner_outer:first-child {
+#fkuuukhltt .gt_column_spanner_outer:first-child {
   padding-left: 0;
 }
 
-#dpymweswwq .gt_column_spanner_outer:last-child {
+#fkuuukhltt .gt_column_spanner_outer:last-child {
   padding-right: 0;
 }
 
-#dpymweswwq .gt_column_spanner {
+#fkuuukhltt .gt_column_spanner {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
@@ -341,11 +344,11 @@ div.csl-indent {
   width: 100%;
 }
 
-#dpymweswwq .gt_spanner_row {
+#fkuuukhltt .gt_spanner_row {
   border-bottom-style: hidden;
 }
 
-#dpymweswwq .gt_group_heading {
+#fkuuukhltt .gt_group_heading {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -371,7 +374,7 @@ div.csl-indent {
   text-align: left;
 }
 
-#dpymweswwq .gt_empty_group_heading {
+#fkuuukhltt .gt_empty_group_heading {
   padding: 0.5px;
   color: #333333;
   background-color: #FFFFFF;
@@ -386,15 +389,15 @@ div.csl-indent {
   vertical-align: middle;
 }
 
-#dpymweswwq .gt_from_md > :first-child {
+#fkuuukhltt .gt_from_md > :first-child {
   margin-top: 0;
 }
 
-#dpymweswwq .gt_from_md > :last-child {
+#fkuuukhltt .gt_from_md > :last-child {
   margin-bottom: 0;
 }
 
-#dpymweswwq .gt_row {
+#fkuuukhltt .gt_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -413,7 +416,7 @@ div.csl-indent {
   overflow-x: hidden;
 }
 
-#dpymweswwq .gt_stub {
+#fkuuukhltt .gt_stub {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -426,7 +429,7 @@ div.csl-indent {
   padding-right: 5px;
 }
 
-#dpymweswwq .gt_stub_row_group {
+#fkuuukhltt .gt_stub_row_group {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -440,15 +443,15 @@ div.csl-indent {
   vertical-align: top;
 }
 
-#dpymweswwq .gt_row_group_first td {
+#fkuuukhltt .gt_row_group_first td {
   border-top-width: 2px;
 }
 
-#dpymweswwq .gt_row_group_first th {
+#fkuuukhltt .gt_row_group_first th {
   border-top-width: 2px;
 }
 
-#dpymweswwq .gt_summary_row {
+#fkuuukhltt .gt_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -458,16 +461,16 @@ div.csl-indent {
   padding-right: 5px;
 }
 
-#dpymweswwq .gt_first_summary_row {
+#fkuuukhltt .gt_first_summary_row {
   border-top-style: solid;
   border-top-color: #D3D3D3;
 }
 
-#dpymweswwq .gt_first_summary_row.thick {
+#fkuuukhltt .gt_first_summary_row.thick {
   border-top-width: 2px;
 }
 
-#dpymweswwq .gt_last_summary_row {
+#fkuuukhltt .gt_last_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -477,7 +480,7 @@ div.csl-indent {
   border-bottom-color: #D3D3D3;
 }
 
-#dpymweswwq .gt_grand_summary_row {
+#fkuuukhltt .gt_grand_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -487,7 +490,7 @@ div.csl-indent {
   padding-right: 5px;
 }
 
-#dpymweswwq .gt_first_grand_summary_row {
+#fkuuukhltt .gt_first_grand_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -497,7 +500,7 @@ div.csl-indent {
   border-top-color: #D3D3D3;
 }
 
-#dpymweswwq .gt_last_grand_summary_row_top {
+#fkuuukhltt .gt_last_grand_summary_row_top {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -507,11 +510,11 @@ div.csl-indent {
   border-bottom-color: #D3D3D3;
 }
 
-#dpymweswwq .gt_striped {
+#fkuuukhltt .gt_striped {
   background-color: rgba(128, 128, 128, 0.05);
 }
 
-#dpymweswwq .gt_table_body {
+#fkuuukhltt .gt_table_body {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -520,7 +523,7 @@ div.csl-indent {
   border-bottom-color: #D3D3D3;
 }
 
-#dpymweswwq .gt_footnotes {
+#fkuuukhltt .gt_footnotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -534,7 +537,7 @@ div.csl-indent {
   border-right-color: #D3D3D3;
 }
 
-#dpymweswwq .gt_footnote {
+#fkuuukhltt .gt_footnote {
   margin: 0px;
   font-size: 90%;
   padding-top: 4px;
@@ -543,7 +546,7 @@ div.csl-indent {
   padding-right: 5px;
 }
 
-#dpymweswwq .gt_sourcenotes {
+#fkuuukhltt .gt_sourcenotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -557,7 +560,7 @@ div.csl-indent {
   border-right-color: #D3D3D3;
 }
 
-#dpymweswwq .gt_sourcenote {
+#fkuuukhltt .gt_sourcenote {
   font-size: 90%;
   padding-top: 4px;
   padding-bottom: 4px;
@@ -565,63 +568,63 @@ div.csl-indent {
   padding-right: 5px;
 }
 
-#dpymweswwq .gt_left {
+#fkuuukhltt .gt_left {
   text-align: left;
 }
 
-#dpymweswwq .gt_center {
+#fkuuukhltt .gt_center {
   text-align: center;
 }
 
-#dpymweswwq .gt_right {
+#fkuuukhltt .gt_right {
   text-align: right;
   font-variant-numeric: tabular-nums;
 }
 
-#dpymweswwq .gt_font_normal {
+#fkuuukhltt .gt_font_normal {
   font-weight: normal;
 }
 
-#dpymweswwq .gt_font_bold {
+#fkuuukhltt .gt_font_bold {
   font-weight: bold;
 }
 
-#dpymweswwq .gt_font_italic {
+#fkuuukhltt .gt_font_italic {
   font-style: italic;
 }
 
-#dpymweswwq .gt_super {
+#fkuuukhltt .gt_super {
   font-size: 65%;
 }
 
-#dpymweswwq .gt_footnote_marks {
+#fkuuukhltt .gt_footnote_marks {
   font-size: 75%;
   vertical-align: 0.4em;
   position: initial;
 }
 
-#dpymweswwq .gt_asterisk {
+#fkuuukhltt .gt_asterisk {
   font-size: 100%;
   vertical-align: 0;
 }
 
-#dpymweswwq .gt_indent_1 {
+#fkuuukhltt .gt_indent_1 {
   text-indent: 5px;
 }
 
-#dpymweswwq .gt_indent_2 {
+#fkuuukhltt .gt_indent_2 {
   text-indent: 10px;
 }
 
-#dpymweswwq .gt_indent_3 {
+#fkuuukhltt .gt_indent_3 {
   text-indent: 15px;
 }
 
-#dpymweswwq .gt_indent_4 {
+#fkuuukhltt .gt_indent_4 {
   text-indent: 20px;
 }
 
-#dpymweswwq .gt_indent_5 {
+#fkuuukhltt .gt_indent_5 {
   text-indent: 25px;
 }
 </style>
@@ -632,27 +635,34 @@ div.csl-indent {
       <th class="gt_center gt_columns_top_border gt_column_spanner_outer" rowspan="1" colspan="3" scope="colgroup" id="χ²">
         <span class="gt_column_spanner">χ²</span>
       </th>
-      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="2" colspan="1" scope="col" id="RMSEA">RMSEA</th>
-      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="2" colspan="1" scope="col" id="CFI">CFI</th>
-      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="2" colspan="1" scope="col" id="GFI">GFI</th>
-      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="2" colspan="1" scope="col" id="AGFI">AGFI</th>
-      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="2" colspan="1" scope="col" id="SRMR">SRMR</th>
+      <th class="gt_center gt_columns_top_border gt_column_spanner_outer" rowspan="1" colspan="3" scope="colgroup" id="RMSEA ">
+        <span class="gt_column_spanner">RMSEA </span>
+      </th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="2" colspan="1" style="text-align: center;" scope="col" id="cfi">cfi</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="2" colspan="1" style="text-align: center;" scope="col" id="srmr">srmr</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="2" colspan="1" style="text-align: center;" scope="col" id="gfi">gfi</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="2" colspan="1" scope="col" id="agfi">agfi</th>
     </tr>
     <tr class="gt_col_headings">
-      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" scope="col" id="Wert">Wert</th>
-      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" scope="col" id="df">df</th>
-      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" scope="col" id="p">p</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" style="text-align: left;" scope="col" id="Wert">Wert</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" style="text-align: center;" scope="col" id="df">df</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" style="text-align: center;" scope="col" id="p">p</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" style="text-align: center;" scope="col" id="Wert">Wert</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" style="text-align: center;" scope="col" id="CI<sub>low</sub>">CI<sub>low</sub></th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" style="text-align: center;" scope="col" id="CI<sub>high</sub>">CI<sub>high</sub></th>
     </tr>
   </thead>
   <tbody class="gt_table_body">
-    <tr><td headers="Chi2" class="gt_row gt_right">583.553</td>
-<td headers="Chi2_df" class="gt_row gt_right">179</td>
-<td headers="p_Chi2" class="gt_row gt_right">0</td>
-<td headers="RMSEA" class="gt_row gt_right">0.064</td>
-<td headers="CFI" class="gt_row gt_right">0.892</td>
-<td headers="GFI" class="gt_row gt_right">0.907</td>
-<td headers="AGFI" class="gt_row gt_right">0.88</td>
-<td headers="SRMR" class="gt_row gt_right">0.061</td></tr>
+    <tr><td headers="chisq" class="gt_row gt_right">457.23</td>
+<td headers="df" class="gt_row gt_right">237.00</td>
+<td headers="pvalue" class="gt_row gt_right">0.00</td>
+<td headers="rmsea" class="gt_row gt_right">0.04</td>
+<td headers="rmsea.ci.lower" class="gt_row gt_right">0.04</td>
+<td headers="rmsea.ci.upper" class="gt_row gt_right">0.05</td>
+<td headers="cfi" class="gt_row gt_right">0.96</td>
+<td headers="srmr" class="gt_row gt_right">0.06</td>
+<td headers="gfi" class="gt_row gt_right">0.99</td>
+<td headers="agfi" class="gt_row gt_right">0.99</td></tr>
   </tbody>
   
   
@@ -685,29 +695,28 @@ div.csl-indent {
 </div>
 <section id="modifikationsindices" class="level2 page-columns page-full">
 <h2 class="anchored" data-anchor-id="modifikationsindices">Modifikationsindices</h2>
-<p>In den Modifikationsindices fällt besonders die hohe Kovarianz zwischen Items der Skala Intrinsische Motivation auf, was ein Hinweis auf Redundanz der Items sein könnte oder dass sie ein anderes Konstrukt messen.<br>
-Das Item IMO_1 kann als ein äusserst starker Indikator für die beiden Skalen KBE und KBU angesehen werden. Da diese Skalen völlig unterschiedliche Konstrukte messen, sticht diese Beziehung in besonderer Weise hervor.</p>
+<p>Die Modifikationsindizes deuten auf mögliche Querladungen zwischen der kognitiven Belastung in VR-Settings (KBU und KBE) und den Items der Skala zur intrinsischen Motivation (IMO_1 und IMO_3) hin. Dies könnte darauf hindeuten, dass bestimmte Items der Skala zur intrinsischen Motivation auch Aspekte der kognitiven Belastung erfassen oder dass es eine gewisse Überschneidung zwischen den Konstrukten gibt. Die vermutete inverse Beziehung zwischen PRA und CANX_1 könnte darauf hindeuten, dass mit zunehmender Präsenz in der VR-Umgebung der Wert von CANX_1 sinkt oder umgekehrt. Aufgrund des sehr guten Modell Fits sind allerdings keine Anpassungen am Modell vorzunehmen, allerdings stellt sich die Frage nach der internen Kongruenz oder Reliabilität der Item-Skalen, besonders der Motivationsskala.</p>
 <div class="cell page-columns page-full">
 <div class="cell-output-display page-columns page-full">
 <div id="tbl-mod_indices" class="anchored page-columns page-full">
 
-<div id="oytlgjolan" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;" class="page-columns page-full">
-<style>#oytlgjolan table {
+<div id="bpeoickaiy" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;" class="page-columns page-full">
+<style>#bpeoickaiy table {
   font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-#oytlgjolan thead, #oytlgjolan tbody, #oytlgjolan tfoot, #oytlgjolan tr, #oytlgjolan td, #oytlgjolan th {
+#bpeoickaiy thead, #bpeoickaiy tbody, #bpeoickaiy tfoot, #bpeoickaiy tr, #bpeoickaiy td, #bpeoickaiy th {
   border-style: none;
 }
 
-#oytlgjolan p {
+#bpeoickaiy p {
   margin: 0;
   padding: 0;
 }
 
-#oytlgjolan .gt_table {
+#bpeoickaiy .gt_table {
   display: table;
   border-collapse: collapse;
   line-height: normal;
@@ -733,12 +742,12 @@ Das Item IMO_1 kann als ein äusserst starker Indikator für die beiden Skalen K
   border-left-color: #D3D3D3;
 }
 
-#oytlgjolan .gt_caption {
+#bpeoickaiy .gt_caption {
   padding-top: 4px;
   padding-bottom: 4px;
 }
 
-#oytlgjolan .gt_title {
+#bpeoickaiy .gt_title {
   color: #333333;
   font-size: 125%;
   font-weight: initial;
@@ -750,7 +759,7 @@ Das Item IMO_1 kann als ein äusserst starker Indikator für die beiden Skalen K
   border-bottom-width: 0;
 }
 
-#oytlgjolan .gt_subtitle {
+#bpeoickaiy .gt_subtitle {
   color: #333333;
   font-size: 85%;
   font-weight: initial;
@@ -762,7 +771,7 @@ Das Item IMO_1 kann als ein äusserst starker Indikator für die beiden Skalen K
   border-top-width: 0;
 }
 
-#oytlgjolan .gt_heading {
+#bpeoickaiy .gt_heading {
   background-color: #FFFFFF;
   text-align: center;
   border-bottom-color: #FFFFFF;
@@ -774,13 +783,13 @@ Das Item IMO_1 kann als ein äusserst starker Indikator für die beiden Skalen K
   border-right-color: #D3D3D3;
 }
 
-#oytlgjolan .gt_bottom_border {
+#bpeoickaiy .gt_bottom_border {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
 }
 
-#oytlgjolan .gt_col_headings {
+#bpeoickaiy .gt_col_headings {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -795,7 +804,7 @@ Das Item IMO_1 kann als ein äusserst starker Indikator für die beiden Skalen K
   border-right-color: #D3D3D3;
 }
 
-#oytlgjolan .gt_col_heading {
+#bpeoickaiy .gt_col_heading {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -815,7 +824,7 @@ Das Item IMO_1 kann als ein äusserst starker Indikator für die beiden Skalen K
   overflow-x: hidden;
 }
 
-#oytlgjolan .gt_column_spanner_outer {
+#bpeoickaiy .gt_column_spanner_outer {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -827,15 +836,15 @@ Das Item IMO_1 kann als ein äusserst starker Indikator für die beiden Skalen K
   padding-right: 4px;
 }
 
-#oytlgjolan .gt_column_spanner_outer:first-child {
+#bpeoickaiy .gt_column_spanner_outer:first-child {
   padding-left: 0;
 }
 
-#oytlgjolan .gt_column_spanner_outer:last-child {
+#bpeoickaiy .gt_column_spanner_outer:last-child {
   padding-right: 0;
 }
 
-#oytlgjolan .gt_column_spanner {
+#bpeoickaiy .gt_column_spanner {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
@@ -847,11 +856,11 @@ Das Item IMO_1 kann als ein äusserst starker Indikator für die beiden Skalen K
   width: 100%;
 }
 
-#oytlgjolan .gt_spanner_row {
+#bpeoickaiy .gt_spanner_row {
   border-bottom-style: hidden;
 }
 
-#oytlgjolan .gt_group_heading {
+#bpeoickaiy .gt_group_heading {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -877,7 +886,7 @@ Das Item IMO_1 kann als ein äusserst starker Indikator für die beiden Skalen K
   text-align: left;
 }
 
-#oytlgjolan .gt_empty_group_heading {
+#bpeoickaiy .gt_empty_group_heading {
   padding: 0.5px;
   color: #333333;
   background-color: #FFFFFF;
@@ -892,15 +901,15 @@ Das Item IMO_1 kann als ein äusserst starker Indikator für die beiden Skalen K
   vertical-align: middle;
 }
 
-#oytlgjolan .gt_from_md > :first-child {
+#bpeoickaiy .gt_from_md > :first-child {
   margin-top: 0;
 }
 
-#oytlgjolan .gt_from_md > :last-child {
+#bpeoickaiy .gt_from_md > :last-child {
   margin-bottom: 0;
 }
 
-#oytlgjolan .gt_row {
+#bpeoickaiy .gt_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -919,7 +928,7 @@ Das Item IMO_1 kann als ein äusserst starker Indikator für die beiden Skalen K
   overflow-x: hidden;
 }
 
-#oytlgjolan .gt_stub {
+#bpeoickaiy .gt_stub {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -932,7 +941,7 @@ Das Item IMO_1 kann als ein äusserst starker Indikator für die beiden Skalen K
   padding-right: 5px;
 }
 
-#oytlgjolan .gt_stub_row_group {
+#bpeoickaiy .gt_stub_row_group {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -946,15 +955,15 @@ Das Item IMO_1 kann als ein äusserst starker Indikator für die beiden Skalen K
   vertical-align: top;
 }
 
-#oytlgjolan .gt_row_group_first td {
+#bpeoickaiy .gt_row_group_first td {
   border-top-width: 2px;
 }
 
-#oytlgjolan .gt_row_group_first th {
+#bpeoickaiy .gt_row_group_first th {
   border-top-width: 2px;
 }
 
-#oytlgjolan .gt_summary_row {
+#bpeoickaiy .gt_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -964,16 +973,16 @@ Das Item IMO_1 kann als ein äusserst starker Indikator für die beiden Skalen K
   padding-right: 5px;
 }
 
-#oytlgjolan .gt_first_summary_row {
+#bpeoickaiy .gt_first_summary_row {
   border-top-style: solid;
   border-top-color: #D3D3D3;
 }
 
-#oytlgjolan .gt_first_summary_row.thick {
+#bpeoickaiy .gt_first_summary_row.thick {
   border-top-width: 2px;
 }
 
-#oytlgjolan .gt_last_summary_row {
+#bpeoickaiy .gt_last_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -983,7 +992,7 @@ Das Item IMO_1 kann als ein äusserst starker Indikator für die beiden Skalen K
   border-bottom-color: #D3D3D3;
 }
 
-#oytlgjolan .gt_grand_summary_row {
+#bpeoickaiy .gt_grand_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -993,7 +1002,7 @@ Das Item IMO_1 kann als ein äusserst starker Indikator für die beiden Skalen K
   padding-right: 5px;
 }
 
-#oytlgjolan .gt_first_grand_summary_row {
+#bpeoickaiy .gt_first_grand_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1003,7 +1012,7 @@ Das Item IMO_1 kann als ein äusserst starker Indikator für die beiden Skalen K
   border-top-color: #D3D3D3;
 }
 
-#oytlgjolan .gt_last_grand_summary_row_top {
+#bpeoickaiy .gt_last_grand_summary_row_top {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1013,11 +1022,11 @@ Das Item IMO_1 kann als ein äusserst starker Indikator für die beiden Skalen K
   border-bottom-color: #D3D3D3;
 }
 
-#oytlgjolan .gt_striped {
+#bpeoickaiy .gt_striped {
   background-color: rgba(128, 128, 128, 0.05);
 }
 
-#oytlgjolan .gt_table_body {
+#bpeoickaiy .gt_table_body {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -1026,7 +1035,7 @@ Das Item IMO_1 kann als ein äusserst starker Indikator für die beiden Skalen K
   border-bottom-color: #D3D3D3;
 }
 
-#oytlgjolan .gt_footnotes {
+#bpeoickaiy .gt_footnotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -1040,7 +1049,7 @@ Das Item IMO_1 kann als ein äusserst starker Indikator für die beiden Skalen K
   border-right-color: #D3D3D3;
 }
 
-#oytlgjolan .gt_footnote {
+#bpeoickaiy .gt_footnote {
   margin: 0px;
   font-size: 90%;
   padding-top: 4px;
@@ -1049,7 +1058,7 @@ Das Item IMO_1 kann als ein äusserst starker Indikator für die beiden Skalen K
   padding-right: 5px;
 }
 
-#oytlgjolan .gt_sourcenotes {
+#bpeoickaiy .gt_sourcenotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -1063,7 +1072,7 @@ Das Item IMO_1 kann als ein äusserst starker Indikator für die beiden Skalen K
   border-right-color: #D3D3D3;
 }
 
-#oytlgjolan .gt_sourcenote {
+#bpeoickaiy .gt_sourcenote {
   font-size: 90%;
   padding-top: 4px;
   padding-bottom: 4px;
@@ -1071,63 +1080,63 @@ Das Item IMO_1 kann als ein äusserst starker Indikator für die beiden Skalen K
   padding-right: 5px;
 }
 
-#oytlgjolan .gt_left {
+#bpeoickaiy .gt_left {
   text-align: left;
 }
 
-#oytlgjolan .gt_center {
+#bpeoickaiy .gt_center {
   text-align: center;
 }
 
-#oytlgjolan .gt_right {
+#bpeoickaiy .gt_right {
   text-align: right;
   font-variant-numeric: tabular-nums;
 }
 
-#oytlgjolan .gt_font_normal {
+#bpeoickaiy .gt_font_normal {
   font-weight: normal;
 }
 
-#oytlgjolan .gt_font_bold {
+#bpeoickaiy .gt_font_bold {
   font-weight: bold;
 }
 
-#oytlgjolan .gt_font_italic {
+#bpeoickaiy .gt_font_italic {
   font-style: italic;
 }
 
-#oytlgjolan .gt_super {
+#bpeoickaiy .gt_super {
   font-size: 65%;
 }
 
-#oytlgjolan .gt_footnote_marks {
+#bpeoickaiy .gt_footnote_marks {
   font-size: 75%;
   vertical-align: 0.4em;
   position: initial;
 }
 
-#oytlgjolan .gt_asterisk {
+#bpeoickaiy .gt_asterisk {
   font-size: 100%;
   vertical-align: 0;
 }
 
-#oytlgjolan .gt_indent_1 {
+#bpeoickaiy .gt_indent_1 {
   text-indent: 5px;
 }
 
-#oytlgjolan .gt_indent_2 {
+#bpeoickaiy .gt_indent_2 {
   text-indent: 10px;
 }
 
-#oytlgjolan .gt_indent_3 {
+#bpeoickaiy .gt_indent_3 {
   text-indent: 15px;
 }
 
-#oytlgjolan .gt_indent_4 {
+#bpeoickaiy .gt_indent_4 {
   text-indent: 20px;
 }
 
-#oytlgjolan .gt_indent_5 {
+#bpeoickaiy .gt_indent_5 {
   text-indent: 25px;
 }
 </style>
@@ -1146,46 +1155,46 @@ Das Item IMO_1 kann als ein äusserst starker Indikator für die beiden Skalen K
     </tr>
   </thead>
   <tbody class="gt_table_body">
-    <tr><td headers="lhs" class="gt_row gt_left">IMO_3</td>
-<td headers="op" class="gt_row gt_left">~~</td>
-<td headers="rhs" class="gt_row gt_left">IMO_4</td>
-<td headers="mi" class="gt_row gt_right">94.95</td>
-<td headers="epc" class="gt_row gt_right">0.27</td>
-<td headers="sepc.lv" class="gt_row gt_right">0.27</td>
-<td headers="sepc.all" class="gt_row gt_right">0.48</td>
-<td headers="sepc.nox" class="gt_row gt_right">0.48</td></tr>
-    <tr><td headers="lhs" class="gt_row gt_left">KBE_2</td>
-<td headers="op" class="gt_row gt_left">~~</td>
-<td headers="rhs" class="gt_row gt_left">KBU_2</td>
-<td headers="mi" class="gt_row gt_right">86.40</td>
-<td headers="epc" class="gt_row gt_right">0.44</td>
-<td headers="sepc.lv" class="gt_row gt_right">0.44</td>
-<td headers="sepc.all" class="gt_row gt_right">0.42</td>
-<td headers="sepc.nox" class="gt_row gt_right">0.42</td></tr>
-    <tr><td headers="lhs" class="gt_row gt_left">IMO_1</td>
-<td headers="op" class="gt_row gt_left">~~</td>
-<td headers="rhs" class="gt_row gt_left">IMO_2</td>
-<td headers="mi" class="gt_row gt_right">46.23</td>
-<td headers="epc" class="gt_row gt_right">0.32</td>
-<td headers="sepc.lv" class="gt_row gt_right">0.32</td>
-<td headers="sepc.all" class="gt_row gt_right">0.84</td>
-<td headers="sepc.nox" class="gt_row gt_right">0.84</td></tr>
     <tr><td headers="lhs" class="gt_row gt_left">KBU</td>
 <td headers="op" class="gt_row gt_left">=~</td>
 <td headers="rhs" class="gt_row gt_left">IMO_1</td>
-<td headers="mi" class="gt_row gt_right">34.87</td>
-<td headers="epc" class="gt_row gt_right">0.42</td>
-<td headers="sepc.lv" class="gt_row gt_right">0.23</td>
-<td headers="sepc.all" class="gt_row gt_right">0.21</td>
-<td headers="sepc.nox" class="gt_row gt_right">0.21</td></tr>
+<td headers="mi" class="gt_row gt_right">54.44</td>
+<td headers="epc" class="gt_row gt_right">0.44</td>
+<td headers="sepc.lv" class="gt_row gt_right">0.25</td>
+<td headers="sepc.all" class="gt_row gt_right">0.23</td>
+<td headers="sepc.nox" class="gt_row gt_right">0.23</td></tr>
+    <tr><td headers="lhs" class="gt_row gt_left">PRA</td>
+<td headers="op" class="gt_row gt_left">=~</td>
+<td headers="rhs" class="gt_row gt_left">CANX_1</td>
+<td headers="mi" class="gt_row gt_right">53.83</td>
+<td headers="epc" class="gt_row gt_right">−0.68</td>
+<td headers="sepc.lv" class="gt_row gt_right">−0.42</td>
+<td headers="sepc.all" class="gt_row gt_right">−0.23</td>
+<td headers="sepc.nox" class="gt_row gt_right">−0.23</td></tr>
     <tr><td headers="lhs" class="gt_row gt_left">KBE</td>
 <td headers="op" class="gt_row gt_left">=~</td>
 <td headers="rhs" class="gt_row gt_left">IMO_1</td>
-<td headers="mi" class="gt_row gt_right">32.14</td>
-<td headers="epc" class="gt_row gt_right">0.46</td>
-<td headers="sepc.lv" class="gt_row gt_right">0.23</td>
-<td headers="sepc.all" class="gt_row gt_right">0.21</td>
-<td headers="sepc.nox" class="gt_row gt_right">0.21</td></tr>
+<td headers="mi" class="gt_row gt_right">51.59</td>
+<td headers="epc" class="gt_row gt_right">0.51</td>
+<td headers="sepc.lv" class="gt_row gt_right">0.25</td>
+<td headers="sepc.all" class="gt_row gt_right">0.23</td>
+<td headers="sepc.nox" class="gt_row gt_right">0.23</td></tr>
+    <tr><td headers="lhs" class="gt_row gt_left">KBU</td>
+<td headers="op" class="gt_row gt_left">=~</td>
+<td headers="rhs" class="gt_row gt_left">IMO_3</td>
+<td headers="mi" class="gt_row gt_right">35.70</td>
+<td headers="epc" class="gt_row gt_right">−0.27</td>
+<td headers="sepc.lv" class="gt_row gt_right">−0.16</td>
+<td headers="sepc.all" class="gt_row gt_right">−0.18</td>
+<td headers="sepc.nox" class="gt_row gt_right">−0.18</td></tr>
+    <tr><td headers="lhs" class="gt_row gt_left">KBE</td>
+<td headers="op" class="gt_row gt_left">=~</td>
+<td headers="rhs" class="gt_row gt_left">IMO_3</td>
+<td headers="mi" class="gt_row gt_right">34.81</td>
+<td headers="epc" class="gt_row gt_right">−0.32</td>
+<td headers="sepc.lv" class="gt_row gt_right">−0.16</td>
+<td headers="sepc.all" class="gt_row gt_right">−0.18</td>
+<td headers="sepc.nox" class="gt_row gt_right">−0.18</td></tr>
   </tbody>
   
   
@@ -1194,31 +1203,30 @@ Das Item IMO_1 kann als ein äusserst starker Indikator für die beiden Skalen K
 </div>
 </div>
 </div>
-</section>
-<section id="items-der-skala-intrinsische-motivation" class="level2 page-columns page-full">
-<h2 class="anchored" data-anchor-id="items-der-skala-intrinsische-motivation">Items der Skala Intrinsische Motivation</h2>
+<section id="items-der-skala-intrinsische-motivation" class="level3 page-columns page-full">
+<h3 class="anchored" data-anchor-id="items-der-skala-intrinsische-motivation">Items der Skala Intrinsische Motivation</h3>
 <div class="cell page-columns page-full">
 
 <div class="no-row-height column-margin column-container"><div class="cell-output-display">
 <div id="tbl-fakt_IMO" class="anchored">
 
-<div id="fdalytkkbi" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
-<style>#fdalytkkbi table {
+<div id="bcpcijneey" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>#bcpcijneey table {
   font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-#fdalytkkbi thead, #fdalytkkbi tbody, #fdalytkkbi tfoot, #fdalytkkbi tr, #fdalytkkbi td, #fdalytkkbi th {
+#bcpcijneey thead, #bcpcijneey tbody, #bcpcijneey tfoot, #bcpcijneey tr, #bcpcijneey td, #bcpcijneey th {
   border-style: none;
 }
 
-#fdalytkkbi p {
+#bcpcijneey p {
   margin: 0;
   padding: 0;
 }
 
-#fdalytkkbi .gt_table {
+#bcpcijneey .gt_table {
   display: table;
   border-collapse: collapse;
   line-height: normal;
@@ -1244,12 +1252,12 @@ Das Item IMO_1 kann als ein äusserst starker Indikator für die beiden Skalen K
   border-left-color: #D3D3D3;
 }
 
-#fdalytkkbi .gt_caption {
+#bcpcijneey .gt_caption {
   padding-top: 4px;
   padding-bottom: 4px;
 }
 
-#fdalytkkbi .gt_title {
+#bcpcijneey .gt_title {
   color: #333333;
   font-size: 125%;
   font-weight: initial;
@@ -1261,7 +1269,7 @@ Das Item IMO_1 kann als ein äusserst starker Indikator für die beiden Skalen K
   border-bottom-width: 0;
 }
 
-#fdalytkkbi .gt_subtitle {
+#bcpcijneey .gt_subtitle {
   color: #333333;
   font-size: 85%;
   font-weight: initial;
@@ -1273,7 +1281,7 @@ Das Item IMO_1 kann als ein äusserst starker Indikator für die beiden Skalen K
   border-top-width: 0;
 }
 
-#fdalytkkbi .gt_heading {
+#bcpcijneey .gt_heading {
   background-color: #FFFFFF;
   text-align: center;
   border-bottom-color: #FFFFFF;
@@ -1285,13 +1293,13 @@ Das Item IMO_1 kann als ein äusserst starker Indikator für die beiden Skalen K
   border-right-color: #D3D3D3;
 }
 
-#fdalytkkbi .gt_bottom_border {
+#bcpcijneey .gt_bottom_border {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
 }
 
-#fdalytkkbi .gt_col_headings {
+#bcpcijneey .gt_col_headings {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -1306,7 +1314,7 @@ Das Item IMO_1 kann als ein äusserst starker Indikator für die beiden Skalen K
   border-right-color: #D3D3D3;
 }
 
-#fdalytkkbi .gt_col_heading {
+#bcpcijneey .gt_col_heading {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1326,7 +1334,7 @@ Das Item IMO_1 kann als ein äusserst starker Indikator für die beiden Skalen K
   overflow-x: hidden;
 }
 
-#fdalytkkbi .gt_column_spanner_outer {
+#bcpcijneey .gt_column_spanner_outer {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1338,15 +1346,15 @@ Das Item IMO_1 kann als ein äusserst starker Indikator für die beiden Skalen K
   padding-right: 4px;
 }
 
-#fdalytkkbi .gt_column_spanner_outer:first-child {
+#bcpcijneey .gt_column_spanner_outer:first-child {
   padding-left: 0;
 }
 
-#fdalytkkbi .gt_column_spanner_outer:last-child {
+#bcpcijneey .gt_column_spanner_outer:last-child {
   padding-right: 0;
 }
 
-#fdalytkkbi .gt_column_spanner {
+#bcpcijneey .gt_column_spanner {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
@@ -1358,11 +1366,11 @@ Das Item IMO_1 kann als ein äusserst starker Indikator für die beiden Skalen K
   width: 100%;
 }
 
-#fdalytkkbi .gt_spanner_row {
+#bcpcijneey .gt_spanner_row {
   border-bottom-style: hidden;
 }
 
-#fdalytkkbi .gt_group_heading {
+#bcpcijneey .gt_group_heading {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1388,7 +1396,7 @@ Das Item IMO_1 kann als ein äusserst starker Indikator für die beiden Skalen K
   text-align: left;
 }
 
-#fdalytkkbi .gt_empty_group_heading {
+#bcpcijneey .gt_empty_group_heading {
   padding: 0.5px;
   color: #333333;
   background-color: #FFFFFF;
@@ -1403,15 +1411,15 @@ Das Item IMO_1 kann als ein äusserst starker Indikator für die beiden Skalen K
   vertical-align: middle;
 }
 
-#fdalytkkbi .gt_from_md > :first-child {
+#bcpcijneey .gt_from_md > :first-child {
   margin-top: 0;
 }
 
-#fdalytkkbi .gt_from_md > :last-child {
+#bcpcijneey .gt_from_md > :last-child {
   margin-bottom: 0;
 }
 
-#fdalytkkbi .gt_row {
+#bcpcijneey .gt_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1430,7 +1438,7 @@ Das Item IMO_1 kann als ein äusserst starker Indikator für die beiden Skalen K
   overflow-x: hidden;
 }
 
-#fdalytkkbi .gt_stub {
+#bcpcijneey .gt_stub {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1443,7 +1451,7 @@ Das Item IMO_1 kann als ein äusserst starker Indikator für die beiden Skalen K
   padding-right: 5px;
 }
 
-#fdalytkkbi .gt_stub_row_group {
+#bcpcijneey .gt_stub_row_group {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1457,15 +1465,15 @@ Das Item IMO_1 kann als ein äusserst starker Indikator für die beiden Skalen K
   vertical-align: top;
 }
 
-#fdalytkkbi .gt_row_group_first td {
+#bcpcijneey .gt_row_group_first td {
   border-top-width: 2px;
 }
 
-#fdalytkkbi .gt_row_group_first th {
+#bcpcijneey .gt_row_group_first th {
   border-top-width: 2px;
 }
 
-#fdalytkkbi .gt_summary_row {
+#bcpcijneey .gt_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -1475,16 +1483,16 @@ Das Item IMO_1 kann als ein äusserst starker Indikator für die beiden Skalen K
   padding-right: 5px;
 }
 
-#fdalytkkbi .gt_first_summary_row {
+#bcpcijneey .gt_first_summary_row {
   border-top-style: solid;
   border-top-color: #D3D3D3;
 }
 
-#fdalytkkbi .gt_first_summary_row.thick {
+#bcpcijneey .gt_first_summary_row.thick {
   border-top-width: 2px;
 }
 
-#fdalytkkbi .gt_last_summary_row {
+#bcpcijneey .gt_last_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1494,7 +1502,7 @@ Das Item IMO_1 kann als ein äusserst starker Indikator für die beiden Skalen K
   border-bottom-color: #D3D3D3;
 }
 
-#fdalytkkbi .gt_grand_summary_row {
+#bcpcijneey .gt_grand_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -1504,7 +1512,7 @@ Das Item IMO_1 kann als ein äusserst starker Indikator für die beiden Skalen K
   padding-right: 5px;
 }
 
-#fdalytkkbi .gt_first_grand_summary_row {
+#bcpcijneey .gt_first_grand_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1514,7 +1522,7 @@ Das Item IMO_1 kann als ein äusserst starker Indikator für die beiden Skalen K
   border-top-color: #D3D3D3;
 }
 
-#fdalytkkbi .gt_last_grand_summary_row_top {
+#bcpcijneey .gt_last_grand_summary_row_top {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1524,11 +1532,11 @@ Das Item IMO_1 kann als ein äusserst starker Indikator für die beiden Skalen K
   border-bottom-color: #D3D3D3;
 }
 
-#fdalytkkbi .gt_striped {
+#bcpcijneey .gt_striped {
   background-color: rgba(128, 128, 128, 0.05);
 }
 
-#fdalytkkbi .gt_table_body {
+#bcpcijneey .gt_table_body {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -1537,7 +1545,7 @@ Das Item IMO_1 kann als ein äusserst starker Indikator für die beiden Skalen K
   border-bottom-color: #D3D3D3;
 }
 
-#fdalytkkbi .gt_footnotes {
+#bcpcijneey .gt_footnotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -1551,7 +1559,7 @@ Das Item IMO_1 kann als ein äusserst starker Indikator für die beiden Skalen K
   border-right-color: #D3D3D3;
 }
 
-#fdalytkkbi .gt_footnote {
+#bcpcijneey .gt_footnote {
   margin: 0px;
   font-size: 90%;
   padding-top: 4px;
@@ -1560,7 +1568,7 @@ Das Item IMO_1 kann als ein äusserst starker Indikator für die beiden Skalen K
   padding-right: 5px;
 }
 
-#fdalytkkbi .gt_sourcenotes {
+#bcpcijneey .gt_sourcenotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -1574,7 +1582,7 @@ Das Item IMO_1 kann als ein äusserst starker Indikator für die beiden Skalen K
   border-right-color: #D3D3D3;
 }
 
-#fdalytkkbi .gt_sourcenote {
+#bcpcijneey .gt_sourcenote {
   font-size: 90%;
   padding-top: 4px;
   padding-bottom: 4px;
@@ -1582,63 +1590,63 @@ Das Item IMO_1 kann als ein äusserst starker Indikator für die beiden Skalen K
   padding-right: 5px;
 }
 
-#fdalytkkbi .gt_left {
+#bcpcijneey .gt_left {
   text-align: left;
 }
 
-#fdalytkkbi .gt_center {
+#bcpcijneey .gt_center {
   text-align: center;
 }
 
-#fdalytkkbi .gt_right {
+#bcpcijneey .gt_right {
   text-align: right;
   font-variant-numeric: tabular-nums;
 }
 
-#fdalytkkbi .gt_font_normal {
+#bcpcijneey .gt_font_normal {
   font-weight: normal;
 }
 
-#fdalytkkbi .gt_font_bold {
+#bcpcijneey .gt_font_bold {
   font-weight: bold;
 }
 
-#fdalytkkbi .gt_font_italic {
+#bcpcijneey .gt_font_italic {
   font-style: italic;
 }
 
-#fdalytkkbi .gt_super {
+#bcpcijneey .gt_super {
   font-size: 65%;
 }
 
-#fdalytkkbi .gt_footnote_marks {
+#bcpcijneey .gt_footnote_marks {
   font-size: 75%;
   vertical-align: 0.4em;
   position: initial;
 }
 
-#fdalytkkbi .gt_asterisk {
+#bcpcijneey .gt_asterisk {
   font-size: 100%;
   vertical-align: 0;
 }
 
-#fdalytkkbi .gt_indent_1 {
+#bcpcijneey .gt_indent_1 {
   text-indent: 5px;
 }
 
-#fdalytkkbi .gt_indent_2 {
+#bcpcijneey .gt_indent_2 {
   text-indent: 10px;
 }
 
-#fdalytkkbi .gt_indent_3 {
+#bcpcijneey .gt_indent_3 {
   text-indent: 15px;
 }
 
-#fdalytkkbi .gt_indent_4 {
+#bcpcijneey .gt_indent_4 {
   text-indent: 20px;
 }
 
-#fdalytkkbi .gt_indent_5 {
+#bcpcijneey .gt_indent_5 {
   text-indent: 25px;
 }
 </style>
@@ -1691,28 +1699,30 @@ Das Item IMO_1 kann als ein äusserst starker Indikator für die beiden Skalen K
 <p>Diese Items wurden aus dem Englischen übersetzt und an das Thema der Kuhhaltung angepasst. Die Formulierung von IMO_1 ist nicht ideal, da die Wendung “arbeiten mit einem Thema” nicht sehr geläufig ist und wahrscheinlich mit dem Verb “beschäftigen” besser getroffen worden wäre.</p>
 <p>Eine Analyse der Itemskala mit der Omega Funktion des psych Packages <span class="citation" data-cites="williamrevellePsychProceduresPsychological2023">(<a href="#ref-williamrevellePsychProceduresPsychological2023" role="doc-biblioref">William Revelle 2023</a>)</span> durchgeführt und zeigen eine akzeptable interne Konsistenz der Skala mit <span class="math inline">\(\omega\)</span>=0.79 und <span class="math inline">\(\alpha\)</span>=0.78. Desweiteren zeigen auch die Faktorladungen, dass das Item 1 sowohl die höchste Ladung, als auch die höchste Komunalität mit dem latenten Faktor der Skala aufweist (siehe <a href="#tbl-fakt_IMO">Tabelle&nbsp;3</a>). Diesen Analysen folgend macht eine Anpassung des Items IMO_1 keinen Sinn.</p>
 </section>
-<section id="strukturmodell---nicht-betrachten--" class="level2">
-<h2 class="anchored" data-anchor-id="strukturmodell---nicht-betrachten--">Strukturmodell - Nicht betrachten ;-)</h2>
+</section>
+</section>
+<section id="strukturmodell---nicht-betrachten--" class="level1">
+<h1>Strukturmodell - Nicht betrachten ;-)</h1>
 <div class="cell">
 <div class="cell-output-display">
 
-<div id="xwtruicsjo" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
-<style>#xwtruicsjo table {
+<div id="pmcccwbwjq" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>#pmcccwbwjq table {
   font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-#xwtruicsjo thead, #xwtruicsjo tbody, #xwtruicsjo tfoot, #xwtruicsjo tr, #xwtruicsjo td, #xwtruicsjo th {
+#pmcccwbwjq thead, #pmcccwbwjq tbody, #pmcccwbwjq tfoot, #pmcccwbwjq tr, #pmcccwbwjq td, #pmcccwbwjq th {
   border-style: none;
 }
 
-#xwtruicsjo p {
+#pmcccwbwjq p {
   margin: 0;
   padding: 0;
 }
 
-#xwtruicsjo .gt_table {
+#pmcccwbwjq .gt_table {
   display: table;
   border-collapse: collapse;
   line-height: normal;
@@ -1738,12 +1748,12 @@ Das Item IMO_1 kann als ein äusserst starker Indikator für die beiden Skalen K
   border-left-color: #D3D3D3;
 }
 
-#xwtruicsjo .gt_caption {
+#pmcccwbwjq .gt_caption {
   padding-top: 4px;
   padding-bottom: 4px;
 }
 
-#xwtruicsjo .gt_title {
+#pmcccwbwjq .gt_title {
   color: #333333;
   font-size: 125%;
   font-weight: initial;
@@ -1755,7 +1765,7 @@ Das Item IMO_1 kann als ein äusserst starker Indikator für die beiden Skalen K
   border-bottom-width: 0;
 }
 
-#xwtruicsjo .gt_subtitle {
+#pmcccwbwjq .gt_subtitle {
   color: #333333;
   font-size: 85%;
   font-weight: initial;
@@ -1767,7 +1777,7 @@ Das Item IMO_1 kann als ein äusserst starker Indikator für die beiden Skalen K
   border-top-width: 0;
 }
 
-#xwtruicsjo .gt_heading {
+#pmcccwbwjq .gt_heading {
   background-color: #FFFFFF;
   text-align: center;
   border-bottom-color: #FFFFFF;
@@ -1779,13 +1789,13 @@ Das Item IMO_1 kann als ein äusserst starker Indikator für die beiden Skalen K
   border-right-color: #D3D3D3;
 }
 
-#xwtruicsjo .gt_bottom_border {
+#pmcccwbwjq .gt_bottom_border {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
 }
 
-#xwtruicsjo .gt_col_headings {
+#pmcccwbwjq .gt_col_headings {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -1800,7 +1810,7 @@ Das Item IMO_1 kann als ein äusserst starker Indikator für die beiden Skalen K
   border-right-color: #D3D3D3;
 }
 
-#xwtruicsjo .gt_col_heading {
+#pmcccwbwjq .gt_col_heading {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1820,7 +1830,7 @@ Das Item IMO_1 kann als ein äusserst starker Indikator für die beiden Skalen K
   overflow-x: hidden;
 }
 
-#xwtruicsjo .gt_column_spanner_outer {
+#pmcccwbwjq .gt_column_spanner_outer {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1832,15 +1842,15 @@ Das Item IMO_1 kann als ein äusserst starker Indikator für die beiden Skalen K
   padding-right: 4px;
 }
 
-#xwtruicsjo .gt_column_spanner_outer:first-child {
+#pmcccwbwjq .gt_column_spanner_outer:first-child {
   padding-left: 0;
 }
 
-#xwtruicsjo .gt_column_spanner_outer:last-child {
+#pmcccwbwjq .gt_column_spanner_outer:last-child {
   padding-right: 0;
 }
 
-#xwtruicsjo .gt_column_spanner {
+#pmcccwbwjq .gt_column_spanner {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
@@ -1852,11 +1862,11 @@ Das Item IMO_1 kann als ein äusserst starker Indikator für die beiden Skalen K
   width: 100%;
 }
 
-#xwtruicsjo .gt_spanner_row {
+#pmcccwbwjq .gt_spanner_row {
   border-bottom-style: hidden;
 }
 
-#xwtruicsjo .gt_group_heading {
+#pmcccwbwjq .gt_group_heading {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1882,7 +1892,7 @@ Das Item IMO_1 kann als ein äusserst starker Indikator für die beiden Skalen K
   text-align: left;
 }
 
-#xwtruicsjo .gt_empty_group_heading {
+#pmcccwbwjq .gt_empty_group_heading {
   padding: 0.5px;
   color: #333333;
   background-color: #FFFFFF;
@@ -1897,15 +1907,15 @@ Das Item IMO_1 kann als ein äusserst starker Indikator für die beiden Skalen K
   vertical-align: middle;
 }
 
-#xwtruicsjo .gt_from_md > :first-child {
+#pmcccwbwjq .gt_from_md > :first-child {
   margin-top: 0;
 }
 
-#xwtruicsjo .gt_from_md > :last-child {
+#pmcccwbwjq .gt_from_md > :last-child {
   margin-bottom: 0;
 }
 
-#xwtruicsjo .gt_row {
+#pmcccwbwjq .gt_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1924,7 +1934,7 @@ Das Item IMO_1 kann als ein äusserst starker Indikator für die beiden Skalen K
   overflow-x: hidden;
 }
 
-#xwtruicsjo .gt_stub {
+#pmcccwbwjq .gt_stub {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1937,7 +1947,7 @@ Das Item IMO_1 kann als ein äusserst starker Indikator für die beiden Skalen K
   padding-right: 5px;
 }
 
-#xwtruicsjo .gt_stub_row_group {
+#pmcccwbwjq .gt_stub_row_group {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1951,15 +1961,15 @@ Das Item IMO_1 kann als ein äusserst starker Indikator für die beiden Skalen K
   vertical-align: top;
 }
 
-#xwtruicsjo .gt_row_group_first td {
+#pmcccwbwjq .gt_row_group_first td {
   border-top-width: 2px;
 }
 
-#xwtruicsjo .gt_row_group_first th {
+#pmcccwbwjq .gt_row_group_first th {
   border-top-width: 2px;
 }
 
-#xwtruicsjo .gt_summary_row {
+#pmcccwbwjq .gt_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -1969,16 +1979,16 @@ Das Item IMO_1 kann als ein äusserst starker Indikator für die beiden Skalen K
   padding-right: 5px;
 }
 
-#xwtruicsjo .gt_first_summary_row {
+#pmcccwbwjq .gt_first_summary_row {
   border-top-style: solid;
   border-top-color: #D3D3D3;
 }
 
-#xwtruicsjo .gt_first_summary_row.thick {
+#pmcccwbwjq .gt_first_summary_row.thick {
   border-top-width: 2px;
 }
 
-#xwtruicsjo .gt_last_summary_row {
+#pmcccwbwjq .gt_last_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1988,7 +1998,7 @@ Das Item IMO_1 kann als ein äusserst starker Indikator für die beiden Skalen K
   border-bottom-color: #D3D3D3;
 }
 
-#xwtruicsjo .gt_grand_summary_row {
+#pmcccwbwjq .gt_grand_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -1998,7 +2008,7 @@ Das Item IMO_1 kann als ein äusserst starker Indikator für die beiden Skalen K
   padding-right: 5px;
 }
 
-#xwtruicsjo .gt_first_grand_summary_row {
+#pmcccwbwjq .gt_first_grand_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -2008,7 +2018,7 @@ Das Item IMO_1 kann als ein äusserst starker Indikator für die beiden Skalen K
   border-top-color: #D3D3D3;
 }
 
-#xwtruicsjo .gt_last_grand_summary_row_top {
+#pmcccwbwjq .gt_last_grand_summary_row_top {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -2018,11 +2028,11 @@ Das Item IMO_1 kann als ein äusserst starker Indikator für die beiden Skalen K
   border-bottom-color: #D3D3D3;
 }
 
-#xwtruicsjo .gt_striped {
+#pmcccwbwjq .gt_striped {
   background-color: rgba(128, 128, 128, 0.05);
 }
 
-#xwtruicsjo .gt_table_body {
+#pmcccwbwjq .gt_table_body {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -2031,7 +2041,7 @@ Das Item IMO_1 kann als ein äusserst starker Indikator für die beiden Skalen K
   border-bottom-color: #D3D3D3;
 }
 
-#xwtruicsjo .gt_footnotes {
+#pmcccwbwjq .gt_footnotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -2045,7 +2055,7 @@ Das Item IMO_1 kann als ein äusserst starker Indikator für die beiden Skalen K
   border-right-color: #D3D3D3;
 }
 
-#xwtruicsjo .gt_footnote {
+#pmcccwbwjq .gt_footnote {
   margin: 0px;
   font-size: 90%;
   padding-top: 4px;
@@ -2054,7 +2064,7 @@ Das Item IMO_1 kann als ein äusserst starker Indikator für die beiden Skalen K
   padding-right: 5px;
 }
 
-#xwtruicsjo .gt_sourcenotes {
+#pmcccwbwjq .gt_sourcenotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -2068,7 +2078,7 @@ Das Item IMO_1 kann als ein äusserst starker Indikator für die beiden Skalen K
   border-right-color: #D3D3D3;
 }
 
-#xwtruicsjo .gt_sourcenote {
+#pmcccwbwjq .gt_sourcenote {
   font-size: 90%;
   padding-top: 4px;
   padding-bottom: 4px;
@@ -2076,63 +2086,63 @@ Das Item IMO_1 kann als ein äusserst starker Indikator für die beiden Skalen K
   padding-right: 5px;
 }
 
-#xwtruicsjo .gt_left {
+#pmcccwbwjq .gt_left {
   text-align: left;
 }
 
-#xwtruicsjo .gt_center {
+#pmcccwbwjq .gt_center {
   text-align: center;
 }
 
-#xwtruicsjo .gt_right {
+#pmcccwbwjq .gt_right {
   text-align: right;
   font-variant-numeric: tabular-nums;
 }
 
-#xwtruicsjo .gt_font_normal {
+#pmcccwbwjq .gt_font_normal {
   font-weight: normal;
 }
 
-#xwtruicsjo .gt_font_bold {
+#pmcccwbwjq .gt_font_bold {
   font-weight: bold;
 }
 
-#xwtruicsjo .gt_font_italic {
+#pmcccwbwjq .gt_font_italic {
   font-style: italic;
 }
 
-#xwtruicsjo .gt_super {
+#pmcccwbwjq .gt_super {
   font-size: 65%;
 }
 
-#xwtruicsjo .gt_footnote_marks {
+#pmcccwbwjq .gt_footnote_marks {
   font-size: 75%;
   vertical-align: 0.4em;
   position: initial;
 }
 
-#xwtruicsjo .gt_asterisk {
+#pmcccwbwjq .gt_asterisk {
   font-size: 100%;
   vertical-align: 0;
 }
 
-#xwtruicsjo .gt_indent_1 {
+#pmcccwbwjq .gt_indent_1 {
   text-indent: 5px;
 }
 
-#xwtruicsjo .gt_indent_2 {
+#pmcccwbwjq .gt_indent_2 {
   text-indent: 10px;
 }
 
-#xwtruicsjo .gt_indent_3 {
+#pmcccwbwjq .gt_indent_3 {
   text-indent: 15px;
 }
 
-#xwtruicsjo .gt_indent_4 {
+#pmcccwbwjq .gt_indent_4 {
   text-indent: 20px;
 }
 
-#xwtruicsjo .gt_indent_5 {
+#pmcccwbwjq .gt_indent_5 {
   text-indent: 25px;
 }
 </style>
@@ -2176,60 +2186,60 @@ Das Item IMO_1 kann als ein äusserst starker Indikator für die beiden Skalen K
 </div>
 <div class="cell">
 <div class="cell-output-display">
-<div class="grViz html-widget html-fill-item-overflow-hidden html-fill-item" id="htmlwidget-427377ce404a77bd4f8e" style="width:100%;height:464px;"></div>
-<script type="application/json" data-for="htmlwidget-427377ce404a77bd4f8e">{"x":{"diagram":" digraph plot { \n graph [ layout = fdp ] \n node [ shape = box ] \n node [shape = box] \n Alter; Bildung; Antworten; CANX_1; CANX_2; CANX_3; CANX_4; PRA_1; PRA_2; PRA_3; PRA_4; IMO_1; IMO_2; IMO_3; IMO_4; IMO_5; KBE_1; KBE_2; KBE_3; KBE_4; KBU_1; KBU_2; KBU_3; KBU_4 \n node [shape = oval] \n CANX; PRA; IMO; KBE; KBU \n \n edge [ color = black ] \n PRA->IMO PRA->KBE PRA->KBU IMO->Antworten KBE->Antworten KBU->Antworten CANX->Antworten Alter->Antworten Bildung->Antworten CANX->CANX_1 CANX->CANX_2 CANX->CANX_3 CANX->CANX_4 PRA->PRA_1 PRA->PRA_2 PRA->PRA_3 PRA->PRA_4 IMO->IMO_1 IMO->IMO_2 IMO->IMO_3 IMO->IMO_4 IMO->IMO_5 KBE->KBE_1 KBE->KBE_2 KBE->KBE_3 KBE->KBE_4 KBU->KBU_1 KBU->KBU_2 KBU->KBU_3 KBU->KBU_4 \n}","config":{"engine":"dot","options":null}},"evals":[],"jsHooks":[]}</script>
+<div class="grViz html-widget html-fill-item-overflow-hidden html-fill-item" id="htmlwidget-80c133f278e67fa629c3" style="width:100%;height:464px;"></div>
+<script type="application/json" data-for="htmlwidget-80c133f278e67fa629c3">{"x":{"diagram":" digraph plot { \n graph [ layout = fdp ] \n node [ shape = box ] \n node [shape = box] \n Alter; Bildung; Antworten; CANX_1; CANX_2; CANX_3; CANX_4; PRA_1; PRA_2; PRA_3; PRA_4; IMO_1; IMO_2; IMO_3; IMO_4; IMO_5; KBE_1; KBE_2; KBE_3; KBE_4; KBU_1; KBU_2; KBU_3; KBU_4 \n node [shape = oval] \n CANX; PRA; IMO; KBE; KBU \n \n edge [ color = black ] \n PRA->IMO PRA->KBE PRA->KBU IMO->Antworten KBE->Antworten KBU->Antworten CANX->Antworten Alter->Antworten Bildung->Antworten CANX->CANX_1 CANX->CANX_2 CANX->CANX_3 CANX->CANX_4 PRA->PRA_1 PRA->PRA_2 PRA->PRA_3 PRA->PRA_4 IMO->IMO_1 IMO->IMO_2 IMO->IMO_3 IMO->IMO_4 IMO->IMO_5 KBE->KBE_1 KBE->KBE_2 KBE->KBE_3 KBE->KBE_4 KBU->KBU_1 KBU->KBU_2 KBU->KBU_3 KBU->KBU_4 \n}","config":{"engine":"dot","options":null}},"evals":[],"jsHooks":[]}</script>
 </div>
 </div>
 </section>
-<section id="cfa" class="level2">
-<h2 class="anchored" data-anchor-id="cfa">CFA</h2>
+<section id="cfa" class="level1">
+<h1>CFA</h1>
 <div class="cell">
 <div class="cell-output cell-output-stdout">
-<pre><code>lavaan 0.6.16 ended normally after 64 iterations
+<pre><code>lavaan 0.6.16 ended normally after 89 iterations
 
   Estimator                                         ML
   Optimization method                           NLMINB
-  Number of model parameters                        52
+  Number of model parameters                        63
 
   Number of observations                           554
 
 Model Test User Model:
                                                       
-  Test statistic                               583.553
-  Degrees of freedom                               179
+  Test statistic                               643.513
+  Degrees of freedom                               237
   P-value (Chi-square)                           0.000
 
 Model Test Baseline Model:
 
-  Test statistic                              3957.559
-  Degrees of freedom                               210
+  Test statistic                              4106.093
+  Degrees of freedom                               276
   P-value                                        0.000
 
 User Model versus Baseline Model:
 
-  Comparative Fit Index (CFI)                    0.892
-  Tucker-Lewis Index (TLI)                       0.873
+  Comparative Fit Index (CFI)                    0.894
+  Tucker-Lewis Index (TLI)                       0.876
 
 Loglikelihood and Information Criteria:
 
-  Loglikelihood user model (H0)             -15629.004
+  Loglikelihood user model (H0)             -16419.870
   Loglikelihood unrestricted model (H1)             NA
                                                       
-  Akaike (AIC)                               31362.008
-  Bayesian (BIC)                             31586.500
-  Sample-size adjusted Bayesian (SABIC)      31421.429
+  Akaike (AIC)                               32965.741
+  Bayesian (BIC)                             33237.722
+  Sample-size adjusted Bayesian (SABIC)      33037.732
 
 Root Mean Square Error of Approximation:
 
-  RMSEA                                          0.064
-  90 Percent confidence interval - lower         0.058
-  90 Percent confidence interval - upper         0.070
-  P-value H_0: RMSEA &lt;= 0.050                    0.000
+  RMSEA                                          0.056
+  90 Percent confidence interval - lower         0.051
+  90 Percent confidence interval - upper         0.061
+  P-value H_0: RMSEA &lt;= 0.050                    0.036
   P-value H_0: RMSEA &gt;= 0.080                    0.000
 
 Standardized Root Mean Square Residual:
 
-  SRMR                                           0.061
+  SRMR                                           0.056
 
 Parameter Estimates:
 
@@ -2240,82 +2250,96 @@ Parameter Estimates:
 Latent Variables:
                    Estimate  Std.Err  z-value  P(&gt;|z|)   Std.lv  Std.all
   CANX =~                                                               
-    CANX_1            1.000                               0.382    0.209
-    CANX_2            2.940    0.645    4.557    0.000    1.122    0.644
-    CANX_3            3.526    0.760    4.642    0.000    1.345    0.815
-    CANX_4            3.488    0.751    4.645    0.000    1.331    0.900
+    CANX_1            1.000                               0.385    0.211
+    CANX_2            2.915    0.634    4.597    0.000    1.122    0.644
+    CANX_3            3.494    0.746    4.683    0.000    1.345    0.814
+    CANX_4            3.458    0.738    4.687    0.000    1.331    0.900
   PRA =~                                                                
-    PRA_1             1.000                               0.566    0.614
-    PRA_2             1.193    0.113   10.550    0.000    0.675    0.610
-    PRA_3             1.279    0.112   11.465    0.000    0.723    0.713
-    PRA_4             1.261    0.113   11.163    0.000    0.713    0.671
+    PRA_1             1.000                               0.561    0.609
+    PRA_2             1.205    0.114   10.524    0.000    0.676    0.611
+    PRA_3             1.290    0.113   11.425    0.000    0.724    0.714
+    PRA_4             1.276    0.115   11.139    0.000    0.716    0.673
   IMO =~                                                                
-    IMO_1             1.000                               0.910    0.814
-    IMO_2             0.822    0.048   17.104    0.000    0.748    0.790
-    IMO_3             0.586    0.043   13.598    0.000    0.533    0.610
-    IMO_4             0.651    0.050   13.008    0.000    0.592    0.584
-    IMO_5             0.551    0.057    9.623    0.000    0.501    0.438
+    IMO_1             1.000                               0.909    0.813
+    IMO_2             0.823    0.048   17.187    0.000    0.748    0.790
+    IMO_3             0.586    0.043   13.620    0.000    0.533    0.610
+    IMO_4             0.652    0.050   13.042    0.000    0.593    0.585
+    IMO_5             0.553    0.057    9.654    0.000    0.502    0.439
   KBE =~                                                                
     KBE_1             1.000                               0.501    0.573
-    KBE_2             1.072    0.130    8.255    0.000    0.537    0.421
-    KBE_3             1.248    0.107   11.709    0.000    0.625    0.678
-    KBE_4             1.092    0.090   12.184    0.000    0.547    0.725
+    KBE_2             1.069    0.130    8.245    0.000    0.536    0.420
+    KBE_3             1.248    0.106   11.728    0.000    0.626    0.678
+    KBE_4             1.092    0.089   12.204    0.000    0.547    0.725
   KBU =~                                                                
     KBU_1             1.000                               0.558    0.736
-    KBU_2             1.057    0.090   11.735    0.000    0.589    0.540
-    KBU_3             1.084    0.074   14.606    0.000    0.605    0.674
-    KBU_4             1.105    0.068   16.296    0.000    0.616    0.758
+    KBU_2             1.056    0.090   11.734    0.000    0.589    0.540
+    KBU_3             1.084    0.074   14.609    0.000    0.605    0.674
+    KBU_4             1.105    0.068   16.300    0.000    0.616    0.758
+  ANT =~                                                                
+    WIS_1             1.000                               0.174    0.538
+    WIS_2             1.140    0.269    4.242    0.000    0.199    0.412
+    WIS_3             0.901    0.215    4.188    0.000    0.157    0.384
 
 Covariances:
                    Estimate  Std.Err  z-value  P(&gt;|z|)   Std.lv  Std.all
   CANX ~~                                                               
-    PRA              -0.029    0.013   -2.207    0.027   -0.133   -0.133
-    IMO               0.004    0.017    0.252    0.801    0.013    0.013
-    KBE               0.051    0.015    3.326    0.001    0.267    0.267
-    KBU               0.064    0.018    3.603    0.000    0.301    0.301
+    PRA              -0.029    0.013   -2.203    0.028   -0.132   -0.132
+    IMO               0.004    0.017    0.248    0.804    0.012    0.012
+    KBE               0.052    0.015    3.341    0.001    0.267    0.267
+    KBU               0.065    0.018    3.622    0.000    0.301    0.301
+    ANT              -0.011    0.005   -2.117    0.034   -0.168   -0.168
   PRA ~~                                                                
-    IMO               0.134    0.030    4.510    0.000    0.259    0.259
-    KBE              -0.117    0.020   -5.918    0.000   -0.413   -0.413
-    KBU              -0.113    0.020   -5.741    0.000   -0.359   -0.359
+    IMO               0.132    0.029    4.507    0.000    0.260    0.260
+    KBE              -0.116    0.020   -5.905    0.000   -0.412   -0.412
+    KBU              -0.112    0.020   -5.734    0.000   -0.359   -0.359
+    ANT              -0.004    0.007   -0.514    0.607   -0.038   -0.038
   IMO ~~                                                                
-    KBE              -0.101    0.026   -3.852    0.000   -0.221   -0.221
-    KBU              -0.096    0.027   -3.527    0.000   -0.190   -0.190
+    KBE              -0.101    0.026   -3.856    0.000   -0.222   -0.222
+    KBU              -0.096    0.027   -3.533    0.000   -0.190   -0.190
+    ANT               0.044    0.012    3.612    0.000    0.277    0.277
   KBE ~~                                                                
-    KBU               0.263    0.027    9.763    0.000    0.939    0.939
+    KBU               0.263    0.027    9.771    0.000    0.939    0.939
+    ANT              -0.017    0.007   -2.431    0.015   -0.192   -0.192
+  KBU ~~                                                                
+    ANT              -0.013    0.007   -1.796    0.072   -0.132   -0.132
 
 Variances:
                    Estimate  Std.Err  z-value  P(&gt;|z|)   Std.lv  Std.all
-   .CANX_1            3.184    0.193   16.535    0.000    3.184    0.956
-   .CANX_2            1.772    0.120   14.720    0.000    1.772    0.585
-   .CANX_3            0.917    0.095    9.705    0.000    0.917    0.336
-   .CANX_4            0.417    0.079    5.300    0.000    0.417    0.191
-   .PRA_1             0.530    0.039   13.433    0.000    0.530    0.623
-   .PRA_2             0.770    0.057   13.500    0.000    0.770    0.628
-   .PRA_3             0.507    0.046   11.105    0.000    0.507    0.492
-   .PRA_4             0.623    0.051   12.252    0.000    0.623    0.550
-   .IMO_1             0.422    0.044    9.619    0.000    0.422    0.338
-   .IMO_2             0.338    0.032   10.608    0.000    0.338    0.377
-   .IMO_3             0.480    0.033   14.627    0.000    0.480    0.628
-   .IMO_4             0.676    0.045   14.883    0.000    0.676    0.659
-   .IMO_5             1.057    0.067   15.849    0.000    1.057    0.808
-   .KBE_1             0.514    0.034   15.010    0.000    0.514    0.672
-   .KBE_2             1.338    0.084   15.941    0.000    1.338    0.822
-   .KBE_3             0.461    0.034   13.692    0.000    0.461    0.541
-   .KBE_4             0.271    0.021   12.666    0.000    0.271    0.475
-   .KBU_1             0.264    0.020   13.055    0.000    0.264    0.459
-   .KBU_2             0.843    0.055   15.426    0.000    0.843    0.708
-   .KBU_3             0.439    0.031   14.141    0.000    0.439    0.545
-   .KBU_4             0.281    0.022   12.508    0.000    0.281    0.425
-    CANX              0.146    0.062    2.329    0.020    1.000    1.000
-    PRA               0.320    0.046    6.924    0.000    1.000    1.000
-    IMO               0.827    0.079   10.449    0.000    1.000    1.000
-    KBE               0.251    0.037    6.765    0.000    1.000    1.000
-    KBU               0.311    0.033    9.386    0.000    1.000    1.000</code></pre>
+   .CANX_1            3.181    0.192   16.533    0.000    3.181    0.956
+   .CANX_2            1.772    0.120   14.724    0.000    1.772    0.585
+   .CANX_3            0.919    0.094    9.760    0.000    0.919    0.337
+   .CANX_4            0.417    0.078    5.331    0.000    0.417    0.191
+   .PRA_1             0.535    0.040   13.533    0.000    0.535    0.629
+   .PRA_2             0.768    0.057   13.497    0.000    0.768    0.627
+   .PRA_3             0.505    0.045   11.110    0.000    0.505    0.491
+   .PRA_4             0.619    0.051   12.217    0.000    0.619    0.547
+   .IMO_1             0.423    0.044    9.725    0.000    0.423    0.339
+   .IMO_2             0.338    0.032   10.667    0.000    0.338    0.376
+   .IMO_3             0.480    0.033   14.642    0.000    0.480    0.628
+   .IMO_4             0.676    0.045   14.890    0.000    0.676    0.658
+   .IMO_5             1.056    0.067   15.850    0.000    1.056    0.807
+   .KBE_1             0.514    0.034   15.019    0.000    0.514    0.671
+   .KBE_2             1.339    0.084   15.951    0.000    1.339    0.823
+   .KBE_3             0.461    0.034   13.705    0.000    0.461    0.541
+   .KBE_4             0.270    0.021   12.683    0.000    0.270    0.474
+   .KBU_1             0.263    0.020   13.049    0.000    0.263    0.458
+   .KBU_2             0.843    0.055   15.427    0.000    0.843    0.708
+   .KBU_3             0.439    0.031   14.143    0.000    0.439    0.546
+   .KBU_4             0.281    0.022   12.513    0.000    0.281    0.425
+   .WIS_1             0.075    0.008    8.780    0.000    0.075    0.711
+   .WIS_2             0.193    0.015   12.570    0.000    0.193    0.830
+   .WIS_3             0.143    0.011   13.261    0.000    0.143    0.853
+    CANX              0.148    0.063    2.350    0.019    1.000    1.000
+    PRA               0.315    0.046    6.868    0.000    1.000    1.000
+    IMO               0.826    0.079   10.459    0.000    1.000    1.000
+    KBE               0.251    0.037    6.773    0.000    1.000    1.000
+    KBU               0.311    0.033    9.391    0.000    1.000    1.000
+    ANT               0.030    0.008    3.585    0.000    1.000    1.000</code></pre>
 </div>
 </div>
 </section>
-<section id="efa" class="level2">
-<h2 class="anchored" data-anchor-id="efa">EFA</h2>
+<section id="efa" class="level1">
+<h1>EFA</h1>
 <div class="cell">
 <div class="cell-output-display">
 <p><img src="about_files/figure-html/unnamed-chunk-12-1.png" class="img-fluid" width="672"></p>
@@ -2325,22 +2349,36 @@ Variances:
 
 
 </section>
-</section>
+
 
 <div id="quarto-appendix" class="default"><section class="quarto-appendix-contents" role="doc-bibliography"><h2 class="anchored quarto-appendix-heading">Literatur</h2><div id="refs" class="references csl-bib-body hanging-indent" role="list">
 <div id="ref-eidStatistikUndForschungsmethoden2017" class="csl-entry" role="listitem">
 Eid, Michael, Mario Gollwitzer, und Manfred Schmitt. 2017. <em>Statistik und Forschungsmethoden Lehrbuch. Mit Online-Material</em>. <a href="https://nbn-resolving.org/urn:nbn:de:101:1-2017110712245">https://nbn-resolving.org/urn:nbn:de:101:1-2017110712245</a>.
 </div>
+<div id="ref-huCutoffCriteriaFit1999" class="csl-entry" role="listitem">
+Hu, Li-tze, und Peter M. Bentler. 1999. <span>„Cutoff Criteria for Fit Indexes in Covariance Structure Analysis: Conventional Criteria Versus New Alternatives“</span>. <em>Structural Equation Modeling: A Multidisciplinary Journal</em> 6 (1): 1–55. <a href="https://doi.org/10.1080/10705519909540118">https://doi.org/10.1080/10705519909540118</a>.
+</div>
 <div id="ref-makranskyCognitiveAffectiveModel2021" class="csl-entry" role="listitem">
 Makransky, Guido, und Gustav B. Petersen. 2021. <span>„The Cognitive Affective Model of Immersive Learning (CAMIL): A Theoretical Research-Based Model of Learning in Immersive Virtual Reality“</span>. <em>Educational Psychology Review</em> 33 (3): 937–58. <a href="https://doi.org/10.1007/s10648-020-09586-2">https://doi.org/10.1007/s10648-020-09586-2</a>.
+</div>
+<div id="ref-marcoulidesNewWaysEvaluate2017" class="csl-entry" role="listitem">
+Marcoulides, Katerina M., und Ke-Hai Yuan. 2017. <span>„New Ways to Evaluate Goodness of Fit: A Note on Using Equivalence Testing to Assess Structural Equation Models“</span>. <em>Structural Equation Modeling: A Multidisciplinary Journal</em> 24 (1): 148–53. <a href="https://doi.org/10.1080/10705511.2016.1225260">https://doi.org/10.1080/10705511.2016.1225260</a>.
 </div>
 <div id="ref-rosseelLavaanPackageStructural2012" class="csl-entry" role="listitem">
 Rosseel, Yves. 2012. <span>„<span><strong>Lavaan</strong></span> : An <span><em>R</em></span> Package for Structural Equation Modeling“</span>. <em>Journal of Statistical Software</em> 48 (2). <a href="https://doi.org/10.18637/jss.v048.i02">https://doi.org/10.18637/jss.v048.i02</a>.
 </div>
+<div id="ref-hoyle2023" class="csl-entry" role="listitem">
+West, Stephen G., Wei Wu, Daniel McNeish, und Andrea Savord. 2023. <span>„Model Fit in Structural Equation Modeling“</span>. In, herausgegeben von Rick H. Hoyle, Second edition, 184–205. New York, NY: The Guilford Press.
+</div>
 <div id="ref-williamrevellePsychProceduresPsychological2023" class="csl-entry" role="listitem">
 William Revelle. 2023. <span>„psych: Procedures for psychological, psychometric, and personality research“</span>. Evanston, Illinois. <a href="https://CRAN.R-project.org/package=psych">https://CRAN.R-project.org/package=psych</a>.
 </div>
-</div></section></div></main> <!-- /main -->
+</div></section><section id="footnotes" class="footnotes footnotes-end-of-document" role="doc-endnotes"><h2 class="anchored quarto-appendix-heading">Fußnoten</h2>
+
+<ol>
+<li id="fn1"><p>Diese CutOff Werte werden auch in Frage gestellt, da sie beeinflusst werden können von der Stichprobengrössen, Modellcharakteristika wie Non-Normalität, Anzahl der Indikatoren oder der Magnitude der Faktorladungen <span class="citation" data-cites="hoyle2023">(<a href="#ref-hoyle2023" role="doc-biblioref">West u.&nbsp;a. 2023</a>)</span>. Eine mögliche Korrektur bietet Marcoulides und Yuan <span class="citation" data-cites="marcoulidesNewWaysEvaluate2017">(<a href="#ref-marcoulidesNewWaysEvaluate2017" role="doc-biblioref">2017</a>)</span>. Das vorgestellte Modell bleibt auch hinsichtlich dieser Angaben ein guter Fit.<a href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+</ol>
+</section></div></main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
 window.document.addEventListener("DOMContentLoaded", function (event) {
   const toggleBodyColorMode = (bsSheetEl) => {

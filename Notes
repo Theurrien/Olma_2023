@@ -1,4 +1,5 @@
-# Code für die Model Fit Indices
+##### Code für die Model Fit Indices #####
+Funktioniert nicht für WLSMV Modelle
 performance(model_fit1, metrics = c("Chi2", "Chi2_df", "p_Chi2", "RMSEA", "RMSEA_CI_low", "RMSEA_CI_high", "p_RMSEA", "CFI","GFI","SRMR")) %>% 
   gt() %>% 
   gt::fmt_number(decimals = 3) %>% 
@@ -22,3 +23,8 @@ performance(model_fit1, metrics = c("Chi2", "Chi2_df", "p_Chi2", "RMSEA", "RMSEA
     Chi2_df = "df",
     p_Chi2 = "p"
   )
+  
+  ########## ggpairs #############
+  Verweis auf das SEM Handbook
+  Graphische Analyse von Itemskalen oder bivariaten Korrelation
+  ggpairs(OLMA_Ready_R[,6:9],  lower = list(continuous = "count", combo = "count"))
