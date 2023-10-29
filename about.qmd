@@ -380,13 +380,9 @@ Diese Items wurden aus dem Englischen übersetzt und an das Thema der Kuhhaltung
 Eine Analyse der Itemskala mit der Omega Funktion des psych Packages [@williamrevellePsychProceduresPsychological2023] durchgeführt und zeigen eine akzeptable interne Konsistenz der Skala mit $\omega$=`r round(omega(OLMA_Ready[,14:18], nfactors = 1)$omega_h,2)` und $\alpha$=`r round(omega(OLMA_Ready[,14:18], nfactors = 1)$alpha,2)`. Desweiteren zeigen auch die Faktorladungen, dass das Item 1 sowohl die höchste Ladung, als auch die höchste Komunalität mit dem latenten Faktor der Skala aufweist (siehe @tbl-fakt_IMO). Diesen Analysen folgend macht eine Anpassung des Items IMO_1 keinen Sinn.
 
 # Strukturmodell
-
-Im folgenden Modell werden nun die Verbindungen zwischen den latenten Variablen aufgenommen und die manifesten Variablen Alter und Bildung werden als Indikatoren aufgenommen.
-
 ```{r}
 #| echo: false
 #| warning: false
-
 strukturmodel_1 <- '
         CANX =~ CANX_1+CANX_2 + CANX_3 + CANX_4
         PRA  =~ PRA_1 + PRA_2 + PRA_3 + PRA_4
@@ -405,11 +401,23 @@ model_fit2 <- sem(data=OLMA_Ready_R,
                   model = strukturmodel_1, 
                   ordered = c("WIS_1","WIS_2","WIS_3"),
                   estimator="WLSMV")
+```
 
-fitmeasures(model_fit2, fit.measures = c("chisq", "df", "pvalue", "RMSEA", "rmsea.ci.lower", "rmsea.ci.upper", "p_RMSEA", "CFI","SRMR")) %>% 
+Im folgenden Modell werden nun die Verbindungen zwischen den latenten Variablen aufgenommen und die manifeste Variable Alter wird als Indikator aufgenommen.
+
+Die Gütekriterien des Messmodels sind in der @tbl-fit_ind_str aufgeführt und weisen auf eine akzeptable Passung des Models hin [@huCutoffCriteriaFit1999] (CFI=`r round(fitmeasures(model_fit2, fit.measures = c("CFI")),2)` , GFI=`r round(fitmeasures(model_fit2, fit.measures = c("GFI")),2)`, RMSEA=`r round(fitmeasures(model_fit2, fit.measures = c("RMSEA")),2)`, SRMR=`r round(fitmeasures(model_fit2, fit.measures = c("SRMR")),2)`). Der $\chi^2$-Test ($\chi^2$(`r round(fitmeasures(model_fit2, fit.measures = c("df")),0)`)=`r round(fitmeasures(model_fit2, fit.measures = c("Chisq")),2)`, *p* \<`r round(fitmeasures(model_fit2, fit.measures = c("pvalue")),2)`) fällt auch bei diesem Modell signifikant aus.
+
+```{r}
+#| echo: false
+#| warning: false
+#| tbl-cap-location: margin
+#| tbl-cap: Modellgütekriterien für das Strukturmodell
+#| label: tbl-fit_ind_str
+
+fitmeasures(model_fit2, fit.measures = c("chisq", "df", "pvalue", "RMSEA", "rmsea.ci.lower", "rmsea.ci.upper", "SRMR","CFI","tli", "gfi", "agfi")) %>% 
   enframe(name = "Index", value = "Value") %>%
   spread(Index, Value) %>% 
-  select(chisq, df, pvalue, rmsea, rmsea.ci.lower, rmsea.ci.upper, cfi,srmr) %>% 
+  select(chisq, df, pvalue, rmsea, rmsea.ci.lower, rmsea.ci.upper, srmr,cfi,tli, gfi, agfi) %>% 
   gt() %>% 
   gt::fmt_number() %>% 
   cols_label(
@@ -430,7 +438,11 @@ fitmeasures(model_fit2, fit.measures = c("chisq", "df", "pvalue", "RMSEA", "rmse
     chisq = "Wert",
     df = "df",
     pvalue = "p"
-  )
+  ) %>% 
+  tab_style(locations = cells_column_labels(columns=c(2:9)),
+            style = cell_text(align = "center")) %>% 
+  tab_style(locations = cells_column_labels(columns=1),
+            style = cell_text(align = "left"))
 ```
 
 ```{r}
