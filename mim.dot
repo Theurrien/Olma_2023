@@ -1,0 +1,100 @@
+digraph "pathdiagram" {
+  rankdir=LR;
+  size="8,8";
+  node [fontname="Helvetica" fontsize=14 shape=box];
+  edge [fontname="Helvetica" fontsize=10];
+  center=1;
+  "CANX" [shape=ellipse]
+  "PRA" [shape=ellipse]
+  "IMO" [shape=ellipse]
+  "KBE" [shape=ellipse]
+  "KBU" [shape=ellipse]
+  "WIS" [shape=ellipse]
+  "1" [shape=triangle]
+  "1" -> "1" [label="1"   dir=both]
+  "CANX" -> "CANX_1" [label="1"];
+  "CANX" -> "CANX_2" [label="2.06*"];
+  "CANX" -> "CANX_3" [label="2.37*"];
+  "CANX" -> "CANX_4" [label="2.46*"];
+  "PRA" -> "PRA_1" [label="1"];
+  "PRA" -> "PRA_2" [label="0.65*"];
+  "PRA" -> "PRA_3" [label="0.94*"];
+  "PRA" -> "PRA_4" [label="1.22*"];
+  "IMO" -> "IMO_1" [label="1"];
+  "IMO" -> "IMO_2" [label="0.91*"];
+  "IMO" -> "IMO_3" [label="0.99*"];
+  "IMO" -> "IMO_4" [label="1.03*"];
+  "IMO" -> "IMO_5" [label="0.66*"];
+  "KBE" -> "KBE_1" [label="1"];
+  "KBE" -> "KBE_2" [label="1.03*"];
+  "KBE" -> "KBE_3" [label="1.28*"];
+  "KBE" -> "KBE_4" [label="1.06*"];
+  "KBU" -> "KBU_1" [label="1"];
+  "KBU" -> "KBU_2" [label="0.95*"];
+  "KBU" -> "KBU_3" [label="1.01*"];
+  "KBU" -> "KBU_4" [label="1.04*"];
+  "WIS" -> "WIS_1" [label="1"];
+  "WIS" -> "WIS_2" [label="0.7*"];
+  "WIS" -> "WIS_3" [label="0.73*"];
+  "CANX" -> "PRA" [label="-0.22*"];
+  "PRA" -> "IMO" [label="0.62*"];
+  "PRA" -> "KBE" [label="-1.37*"];
+  "PRA" -> "KBU" [label="-1.48*"];
+  "Alter" -> "WIS" [label="0"];
+  "IMO" -> "WIS" [label="0.32*"];
+  "KBE" -> "WIS" [label="-0.25"];
+  "KBU" -> "WIS" [label="0.11"];
+  "1" -> "CANX_1" [label="2.32*"];
+  "1" -> "CANX_2" [label="2.01*"];
+  "1" -> "CANX_3" [label="1.86*"];
+  "1" -> "CANX_4" [label="1.93*"];
+  "1" -> "PRA_1" [label="4.12*"];
+  "1" -> "PRA_2" [label="2.72*"];
+  "1" -> "PRA_3" [label="3.56*"];
+  "1" -> "PRA_4" [label="3.66*"];
+  "1" -> "IMO_1" [label="3.59*"];
+  "1" -> "IMO_2" [label="3.97*"];
+  "1" -> "IMO_3" [label="4.12*"];
+  "1" -> "IMO_4" [label="4.06*"];
+  "1" -> "IMO_5" [label="3.94*"];
+  "1" -> "KBE_1" [label="1.32*"];
+  "1" -> "KBE_2" [label="2.47*"];
+  "1" -> "KBE_3" [label="1.79*"];
+  "1" -> "KBE_4" [label="1.46*"];
+  "1" -> "KBU_1" [label="1.65*"];
+  "1" -> "KBU_2" [label="1.88*"];
+  "1" -> "KBU_3" [label="1.87*"];
+  "1" -> "KBU_4" [label="1.68*"];
+  "1" -> "Alter" [label="43.97"];
+  "CANX_1" -> "CANX_1" [label="3.05*"  dir=both];
+  "CANX_2" -> "CANX_2" [label="1.87*"  dir=both];
+  "CANX_3" -> "CANX_3" [label="1.19*"  dir=both];
+  "CANX_4" -> "CANX_4" [label="0.55*"  dir=both];
+  "PRA_1" -> "PRA_1" [label="0.7*"  dir=both];
+  "PRA_2" -> "PRA_2" [label="1.17*"  dir=both];
+  "PRA_3" -> "PRA_3" [label="0.92*"  dir=both];
+  "PRA_4" -> "PRA_4" [label="0.94*"  dir=both];
+  "IMO_1" -> "IMO_1" [label="0.78*"  dir=both];
+  "IMO_2" -> "IMO_2" [label="0.5*"  dir=both];
+  "IMO_3" -> "IMO_3" [label="0.3*"  dir=both];
+  "IMO_4" -> "IMO_4" [label="0.53*"  dir=both];
+  "IMO_5" -> "IMO_5" [label="1.1*"  dir=both];
+  "KBE_1" -> "KBE_1" [label="0.5*"  dir=both];
+  "KBE_2" -> "KBE_2" [label="1.35*"  dir=both];
+  "KBE_3" -> "KBE_3" [label="0.44*"  dir=both];
+  "KBE_4" -> "KBE_4" [label="0.28*"  dir=both];
+  "KBU_1" -> "KBU_1" [label="0.24*"  dir=both];
+  "KBU_2" -> "KBU_2" [label="0.89*"  dir=both];
+  "KBU_3" -> "KBU_3" [label="0.46*"  dir=both];
+  "KBU_4" -> "KBU_4" [label="0.29*"  dir=both];
+  "WIS_1" -> "WIS_1" [label="0.43"  dir=both];
+  "WIS_2" -> "WIS_2" [label="0.72"  dir=both];
+  "WIS_3" -> "WIS_3" [label="0.7"  dir=both];
+  "Alter" -> "Alter" [label="344.22"  dir=both];
+  "CANX" -> "CANX" [label="0.27*"  dir=both];
+  "PRA" -> "PRA" [label="0.11*"  dir=both];
+  "IMO" -> "IMO" [label="0.42*"  dir=both];
+  "KBE" -> "KBE" [label="0.02"  dir=both];
+  "KBU" -> "KBU" [label="0.06*"  dir=both];
+  "WIS" -> "WIS" [label="0.51*"  dir=both];
+}

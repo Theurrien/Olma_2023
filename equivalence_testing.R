@@ -175,11 +175,68 @@ calculate_cutoff <- function(df, N, p) {
     + .18763 * ((log(n))^2) - 2.06704 * (n^(1/5)) + .05245 * log(df) * log(n) - .01533 * log(df_i) * log(n)
   )
   
-  cutoff <- cbind(CFI_e90, CFI_e92, CFI_e95, CFI_e99)
-  cutoff_df <- as.data.frame(t(cutoff))
-  rownames(cutoff_df) <- c('mediocre', 'fair', 'close', 'excellent')
-  cutoff_3 <- round(cutoff, 3)
+  RMSEA_e01=exp(
+    1.34863-.51999*log(df)+.01925*log(df)*log(df)-.59811*log(n)+.00902*sqrt(n)+.01796*log(df)*log(n)
+  );
+  #corresponding to R-square=.9997;
   
-  cat('--poor--', cutoff_3[1], '--mediocre--', cutoff_3[2], '--fair--', cutoff_3[3], '--close--', cutoff_3[4], '--excellent--', "\n")
+  RMSEA_e05=exp(
+    2.06034-.62974*log(df)+.02512*log(df)*log(df)-.98388*log(n)
+    +.05442*log(n)*log(n)-.00005188*n+.05260*log(df)*log(n)
+  );
+  #corresponding to R-square=.9996;
+  
+  RMSEA_e08=exp(
+    2.84129-.54809*log(df)+.02296*log(df)*log(df)-.76005*log(n)
+    +.10229*log(n)*log(n)-1.11167*(n^.2)+.04845*log(df)*log(n)
+  );
+  #corresponding to R-square=.9977;
+  
+  RMSEA_e10=exp(
+    2.36352-.49440*log(df)+.02131*log(df)*log(df)-.64445*log(n)
+    +.09043*log(n)*log(n)-1.01634*(n^.2)+.04422*log(df)*log(n)
+  );
+  #corresponding to R-square=.9955;
+  
+  
+  cutoff_CFI <- as.vector(rbind(CFI_e90, CFI_e92, CFI_e95, CFI_e99))
+  cutoff_RMSEA=as.vector(rbind(RMSEA_e10, RMSEA_e08, RMSEA_e05, RMSEA_e01))
+  
+  # Creating the data frame
+  cutoff_df <- data.frame(CFI = cutoff_CFI, RMSEA = cutoff_RMSEA)
+  rownames(cutoff_df) <- c("mediocre", "fair", "close", "excellent")
+  
+  cutoff_3 <- round(cutoff, 3)
   return(cutoff_df)
 }
+#------------------Funktion für die Test-Werte-------
+equivalence_testing <- function(N, p, T_ml, df, T_mli, alpha) {
+  
+  # Calculate df_i
+  df_i = p * (p + 1) / 2 - p
+  
+  # For T-size RMSEA
+  delta_c = max(0, T_ml - df)
+  RMSEA_c = sqrt(delta_c / ((N - 1) * df))
+  
+  delta_t = ncp_chi2(alpha, T_ml, df)
+  RMSEA_t = sqrt(delta_t / (df * (N - 1)))
+  
+  # For T-size CFI
+  delta_i = T_mli - df_i
+  CFI_c = 1 - delta_c / max(delta_c, delta_i, 0)
+  
+  delta_t = ncp_chi2(alpha / 2, T_ml, df)
+  delta_it = ncp_chi2(1 - alpha / 2, T_mli, df_i)
+  CFI_t = 1 - max(delta_t, 0) / max(delta_t, delta_it, 0)
+  
+  # Creating the data frame with results
+  result_df <- data.frame(
+    Method = c("Conventional", "T-Size"),
+    CFI = c(CFI_c, CFI_t),
+    RMSEA = c(RMSEA_c, RMSEA_t)
+  )
+  
+  return(result_df)
+}
+

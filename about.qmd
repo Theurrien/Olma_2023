@@ -209,7 +209,7 @@ model_fit1 <- sem(data=OLMA_Ready_R[,6:29], model = messmodell_1,
 
 ```
 
-Die Gütekriterien des Messmodels sind in der @tbl-fit_ind_measure aufgeführt und weisen auf eine akzeptable Passung des Models hin [@huCutoffCriteriaFit1999] (CFI=`r round(fitmeasures(model_fit1, fit.measures = c("CFI")),2)` , GFI=`r round(fitmeasures(model_fit1, fit.measures = c("GFI")),2)`, RMSEA=`r round(fitmeasures(model_fit1, fit.measures = c("RMSEA")),2)`, SRMR=`r round(fitmeasures(model_fit1, fit.measures = c("SRMR")),2)`). Der $\chi^2$-Test ($\chi^2$(`r round(fitmeasures(model_fit1, fit.measures = c("df")),0)`)=`r round(fitmeasures(model_fit1, fit.measures = c("Chisq")),2)`, *p* \<`r round(fitmeasures(model_fit1, fit.measures = c("pvalue")),2)`) fällt signifikant aus, was bei grossen Stichproben allerdings nicht ungewöhnlich ist, da diese direkt in die Teststatitsik miteinfliesst [@eidStatistikUndForschungsmethoden2017].
+Die Gütekriterien des Messmodels sind in der @tbl-fit_ind_measure aufgeführt und weisen auf eine gute bis sehr gute Passung der Daten auf das Modell hin [@huCutoffCriteriaFit1999] (CFI=`r round(fitmeasures(model_fit1, fit.measures = c("CFI")),2)` , GFI=`r round(fitmeasures(model_fit1, fit.measures = c("GFI")),2)`, RMSEA=`r round(fitmeasures(model_fit1, fit.measures = c("RMSEA")),2)`, SRMR=`r round(fitmeasures(model_fit1, fit.measures = c("SRMR")),2)`). Der $\chi^2$-Test ($\chi^2$(`r round(fitmeasures(model_fit1, fit.measures = c("df")),0)`)=`r round(fitmeasures(model_fit1, fit.measures = c("Chisq")),2)`, *p* \<`r round(fitmeasures(model_fit1, fit.measures = c("pvalue")),2)`) fällt signifikant aus, was bei grossen Stichproben allerdings nicht ungewöhnlich ist, da diese direkt in die Teststatitsik miteinfliesst [@eidStatistikUndForschungsmethoden2017].
 
 ```{r}
 #| echo: false
@@ -380,6 +380,7 @@ Diese Items wurden aus dem Englischen übersetzt und an das Thema der Kuhhaltung
 Eine Analyse der Itemskala mit der Omega Funktion des psych Packages [@williamrevellePsychProceduresPsychological2023] durchgeführt und zeigen eine akzeptable interne Konsistenz der Skala mit $\omega$=`r round(omega(OLMA_Ready[,14:18], nfactors = 1)$omega_h,2)` und $\alpha$=`r round(omega(OLMA_Ready[,14:18], nfactors = 1)$alpha,2)`. Desweiteren zeigen auch die Faktorladungen, dass das Item 1 sowohl die höchste Ladung, als auch die höchste Komunalität mit dem latenten Faktor der Skala aufweist (siehe @tbl-fakt_IMO). Diesen Analysen folgend macht eine Anpassung des Items IMO_1 keinen Sinn.
 
 # Strukturmodell
+
 ```{r}
 #| echo: false
 #| warning: false
@@ -400,7 +401,8 @@ strukturmodel_1 <- '
 model_fit2 <- sem(data=OLMA_Ready_R, 
                   model = strukturmodel_1, 
                   ordered = c("WIS_1","WIS_2","WIS_3"),
-                  estimator="WLSMV")
+                  estimator="WLSMV"
+                  )
 ```
 
 Im folgenden Modell werden nun die Verbindungen zwischen den latenten Variablen aufgenommen und die manifeste Variable Alter wird als Indikator aufgenommen.
@@ -445,8 +447,87 @@ fitmeasures(model_fit2, fit.measures = c("chisq", "df", "pvalue", "RMSEA", "rmse
             style = cell_text(align = "left"))
 ```
 
+### Äuivalenztest
+
+Auch bei diesem Modell wurden die T-Size Werte berechnet. Der korrigierte T-Size Wert für den CFI beträgt `r round(equivalence_testing(554, 25, T_ml=793.014, df=268, T_mli=6278.572, alpha=0.05)[2,2],3)` und der RMSA `r round(equivalence_testing(554, 25, T_ml=793.014, df=268, T_mli=6278.572, alpha=0.05)[2,3],3)`. Verglichen mit den ebenfalls korrgierten T-Size korrigierten Werten (vgl. @tbl-cutoff_aqui_str) kann der CFI als mediocre und der RMSA als fair eingeschätzt werden.
+
+```{r}
+#| echo: false
+#| tbl-cap-location: margin
+#| tbl-cap: Cut-Off Werte für den Äquivalenztest, Strukturmodell
+#| label: tbl-cutoff_aqui_str
+
+calculate_cutoff(268, 554, 25) %>% 
+  rownames_to_column() %>% 
+  gt() %>% 
+  fmt_number(decimals = 3) %>% 
+  tab_style(locations = cells_column_labels(columns=everything()),
+            style = cell_text(align = "center"))
+
+```
+
+### Modifikationsinidices des Strukturmodells
+
+Das Modell könnte sowohl durch einen direkten Pfad von KBE und KBU (\~), als auch durch deren Kovarianz (\~\~) verbessert werden. Wie bereits beiom Messmodell festgestellt, messen die beiden Skalen durchaus ein zugrundeliegendes, gemeinsames Konstrukt, weshalb mindestens die Verbindung durch eine Kovarianz theoretisch begründbar erscheint.
+
+```{r}
+#| echo: false
+#| tbl-cap: Modifikationsindices des Strukturmodells
+#| label: tbl-mod_indices_str
+#| tbl-cap-location: margin
+
+modindices(model_fit2, minimum.value = 10, sort. = TRUE, maximum.number = 5) %>% 
+  gt() %>% 
+  fmt_number() %>% 
+  tab_style(locations = cells_column_labels(columns=c(2:7)),
+            style = cell_text(align = "center"))
+```
+
+### Korrelationsmatrix der Residuen
+
+In der folgenden Grafik (@fig-corr_2) sind die Residualkovarianzen der manifesten Variablen zu sehen. Im Rahmen der SEM beschreiben die Residuen die Diskrepanzen zwischen den beobachteten Datenpunkten und denjenigen, die durch das spezifizierte Modell vorhergesagt wurden. Die Analyse der Kovarianz zwischen diesen Residuen bietet ein nuanciertes Verständnis der Wechselbeziehungen zwischen den Variablen und hebt insbesondere das Ausmaß hervor, in dem die Residuen einer Variablen mit denen einer anderen korrelieren können.
+
+Besonders der Cluster um die Items der Präsenzskala fällt auf, da hier geteilte Varianz vorliegt, welche nicht durch das Modell erklärt werden kann. Auch das Item-Paar KBE_2 und KBU_2 fällt wiederum auf.
+
+```{r}
+#| echo: false
+#| cap-location: margin
+#| fig-cap: Korrelationsmatrix der Residuen
+#| label: fig-corr_2
+
+lavResiduals(model_fit2)$res.cov %>% 
+  as.matrix() %>% 
+  corrplot(type = "lower", method = "square", tl.col = "black", tl.srt = 90, tl.offset = 0.4, tl.pos = "ld", tl.cex = .5, col.lim = c(-0.3,0.5), is.corr = FALSE)
+```
+
+## Modellparameter
+
+```{r}
+summary(model_fit2, standardized=TRUE)$pe %>% 
+  filter(op=="~") %>% 
+  gt() %>% 
+  fmt_number()
+```
+
+## Pfaddarstellung des SEM Modells
+
 ```{r}
 #| echo: false
 
-lavaanPlot2(model_fit2)
+lavaanPlot2(model_fit2, 
+            include = "covs", 
+            graph_options = list(label = ""),
+            node_options = list( fontname = "Helvetica"), 
+            edge_options = list(color = "grey"), 
+            stars = c("latent"), 
+            coef_labels = TRUE)
+```
+
+```{r}
+#versuch mit rampath
+
+bridge2<- lavaan2ram(model_fit2)
+bridge22<-ramPathBridge(bridge2)
+plot(bridge22)
+plot(bridge22, "mim")
 ```
