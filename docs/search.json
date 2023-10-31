@@ -124,5 +124,19 @@
     "title": "Statistische Analyse",
     "section": "Latente Variablen des Messmodells",
     "text": "Latente Variablen des Messmodells\nAbbildung 1 zeigt die latenten Variablen des Messmodells mit den entsprechenden standardisierten Faktorladungen. Alle Ladungen erreichten ein signifikantes Resultat (p&lt;.001).\n\n\n\n\n\nAbbildung 1: Darstellung des Messmodells\n\n\n\n\nBetrachtet man die standardisierten Kovarianzen zwischen den latenten Faktoren des Modells (Abbildung 2) fällt besonders die zwischen den beiden Skalen KBE und KBU auf. Die Kovarianz beträgt 0.264 (SE=.036, z = 7,421, p &lt; .001). Die standardisierte Kovarianz war mit 0,940 bemerkenswert hoch und deutet auf eine starke lineare Beziehung zwischen diesen beiden Konstrukten hin. Alle Kovarianzen sind signifikant (p&lt;.01) ausser CANX~~PRA (p&lt;.085) und CANX~~IMO (p&lt;.795).\n\n\n\n\n\nAbbildung 2: Latente Faktoren und deren Kovarianzen im Messmodell"
+  },
+  {
+    "objectID": "about.html#modellparameter",
+    "href": "about.html#modellparameter",
+    "title": "Statistische Analyse",
+    "section": "Modellparameter",
+    "text": "Modellparameter\n\nsummary(model_fit2, standardized=TRUE)$pe %&gt;% \n  filter(op==\"~\") %&gt;% \n  gt() %&gt;% \n  fmt_number()\n\n\n\n\n\n  \n    \n    \n      lhs\n      op\n      rhs\n      exo\n      est\n      se\n      z\n      pvalue\n      std.lv\n      std.all\n      std.nox\n    \n  \n  \n    PRA\n~\nCANX\n0.00\n−0.22\n0.05\n−4.91\n0.00\n−0.33\n−0.33\n−0.33\n    IMO\n~\nPRA\n0.00\n0.62\n0.11\n5.59\n0.00\n0.32\n0.32\n0.32\n    KBE\n~\nPRA\n0.00\n−1.37\n0.17\n−8.15\n0.00\n−0.96\n−0.96\n−0.96\n    KBU\n~\nPRA\n0.00\n−1.48\n0.17\n−8.70\n0.00\n−0.90\n−0.90\n−0.90\n    WIS\n~\nIMO\n0.00\n0.32\n0.10\n3.22\n0.00\n0.29\n0.29\n0.29\n    WIS\n~\nKBE\n0.00\n−0.25\n0.33\n−0.74\n0.46\n−0.16\n−0.16\n−0.16\n    WIS\n~\nKBU\n0.00\n0.11\n0.28\n0.40\n0.69\n0.09\n0.09\n0.09\n    WIS\n~\nAlter\n1.00\n0.00\n0.00\n−1.60\n0.11\n−0.01\n−0.11\n−0.01"
+  },
+  {
+    "objectID": "about.html#pfaddarstellung-des-sem-modells",
+    "href": "about.html#pfaddarstellung-des-sem-modells",
+    "title": "Statistische Analyse",
+    "section": "Pfaddarstellung des SEM Modells",
+    "text": "Pfaddarstellung des SEM Modells"
   }
 ]

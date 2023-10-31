@@ -39,18 +39,27 @@ OLMA_Ready <- OLMA_Start %>%
     WIS_1=if_else(WIS_1==3,1,0),
     WIS_2=if_else(WIS_2==1,1,0),
     WIS_3=if_else(WIS_3==4,1,0),
-    Antworten=WIS_1+WIS_2+WIS_3,
-    Antworten = factor(Antworten, levels=c(0,1,2,3), ordered=TRUE)
+    WIS_Total=WIS_1+WIS_2+WIS_3,
+    WIS_Total = factor(WIS_Total, levels=c(0,1,2,3), ordered=TRUE)
   ) %>% 
   mutate(
     CANX_1=8-CANX_1,
     IMO_3=6-IMO_3,
     IMO_4=6-IMO_4,
-    Alter = as.numeric(Alter)
+    Alter = as.numeric(Alter),
     ) %>% 
-  select(-c(1:7,40:79))
+  rowwise() %>% 
+  mutate(
+    CANX_mean = mean(c_across(dplyr::starts_with("CANX"))),
+    PRA_mean = mean(c_across(dplyr::starts_with("PRA"))),
+    IMO_mean = mean(c_across(dplyr::starts_with("IMO"))),
+    KBE_mean = mean(c_across(dplyr::starts_with("KBE"))),
+    KBU_mean = mean(c_across(dplyr::starts_with("KBU"))),
+  ) %>% 
+  select(-c(1:6, 40:80)) 
+#%>% write_sav("OLMA_ready_mean.sav")
 
-#Definition einer Funtion für die BErechnung der Äquivalenzwerte
+#Definition einer Funtion für die Berechnung der Äquivalenzwerte
 calculate_cutoff <- function(df, N, p) {
   
   n <- N - 1
@@ -220,7 +229,7 @@ Die Gütekriterien des Messmodels sind in der @tbl-fit_ind_measure aufgeführt u
 fitmeasures(model_fit1, fit.measures = c("chisq", "df", "pvalue", "RMSEA", "rmsea.ci.lower", "rmsea.ci.upper", "SRMR","CFI","tli", "gfi", "agfi")) %>% 
   enframe(name = "Index", value = "Value") %>%
   spread(Index, Value) %>% 
-  select(chisq, df, pvalue, rmsea, rmsea.ci.lower, rmsea.ci.upper, srmr,cfi,tli, gfi, agfi) %>% 
+  dplyr::select(chisq, df, pvalue, rmsea, rmsea.ci.lower, rmsea.ci.upper, srmr,cfi,tli, gfi, agfi) %>% 
   gt() %>% 
   gt::fmt_number() %>% 
   cols_label(
@@ -395,8 +404,20 @@ strukturmodel_1 <- '
         IMO ~ PRA
         KBE ~ PRA
         KBU ~ PRA
-        WIS ~ IMO + KBE + KBU + Alter
+        WIS ~ IMO + KBE + KBU
+        WIS ~ Alter
+        KBE~~KBU
         '
+
+Strukturmodell_sim <-
+  ' CANX =~ CANX_1+CANX_2 + CANX_3 + CANX_4
+        PRA  =~ PRA_1 + PRA_2 + PRA_3 + PRA_4
+        IMO  =~ IMO_1 +IMO_2 + IMO_3 + IMO_4 + IMO_5
+        KBE  =~ KBE_1 + KBE_2 + KBE_3 + KBE_4
+        KBU  =~ KBU_1 + KBU_2 + KBU_3 + KBU_4
+        WIS =~ WIS_1 + WIS_2 + WIS_3
+  WIS ~ CANX+IMO+KBU+KBE+PRA+Alter
+'
 
 model_fit2 <- sem(data=OLMA_Ready_R, 
                   model = strukturmodel_1, 
@@ -514,8 +535,8 @@ summary(model_fit2, standardized=TRUE)$pe %>%
 ```{r}
 #| echo: false
 
-lavaanPlot2(model_fit2, 
-            include = "covs", 
+SEM_plot <-lavaanPlot2(model_fit2, 
+            include = "covs",
             graph_options = list(label = ""),
             node_options = list( fontname = "Helvetica"), 
             edge_options = list(color = "grey"), 
@@ -524,10 +545,9 @@ lavaanPlot2(model_fit2,
 ```
 
 ```{r}
-#versuch mit rampath
 
-bridge2<- lavaan2ram(model_fit2)
-bridge22<-ramPathBridge(bridge2)
-plot(bridge22)
-plot(bridge22, "mim")
+
+
+
+
 ```

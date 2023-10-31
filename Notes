@@ -28,3 +28,10 @@ performance(model_fit1, metrics = c("Chi2", "Chi2_df", "p_Chi2", "RMSEA", "RMSEA
   Verweis auf das SEM Handbook
   Graphische Analyse von Itemskalen oder bivariaten Korrelation
   ggpairs(OLMA_Ready_R[,6:9],  lower = list(continuous = "count", combo = "count"))
+  
+  #versuch mit rampath
+
+bridge2<- lavaan2ram(model_fit2)
+bridge22<-ramPathBridge(bridge2)
+plot(bridge22)
+plot(bridge22, "mim")
