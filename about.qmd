@@ -210,11 +210,28 @@ messmodell_1 <- '
         
 '
 OLMA_Ready_R <- OLMA_Ready %>% 
-  mutate(across(where(is.labelled), as.double))
+  select(dplyr::starts_with(c("KBE", "KBU", "WIS", "PRA", "CANX", "IMO")),Alter,
+         -dplyr::ends_with("_mean")) %>% 
+  mutate(across(where(is.labelled), as.double)) %>%
+  mutate(
+    # Convert WIS to ordered factor with levels 0 and 1
+    across(dplyr::starts_with("WIS"), ~factor(.x, levels = c(0, 1), ordered = TRUE)),
+    
+    # Convert CANX to ordered factor with levels 1 to 7
+    across(dplyr::starts_with("CANX"), ~factor(.x, levels = 1:7, ordered = TRUE)),
+    
+    # Convert all other variables (KBE, KBU, PRA, IMO) to ordered factor with levels 1 to 5
+    across(c(dplyr::starts_with("KBE"), dplyr::starts_with("KBU"), 
+             dplyr::starts_with("PRA"), dplyr::starts_with("IMO")), 
+           ~factor(.x, levels = 1:5, ordered = TRUE))
+  )
+         
 
 model_fit1 <- sem(data=OLMA_Ready_R, model = messmodell_1, 
-                  ordered = c("WIS_1","WIS_2","WIS_3"),
+                  ordered = TRUE,
                   estimator="WLSMV")
+
+
 
 ```
 
@@ -421,7 +438,7 @@ Strukturmodell_sim <-
 
 model_fit2 <- sem(data=OLMA_Ready_R, 
                   model = strukturmodel_1, 
-                  ordered = c("WIS_1","WIS_2","WIS_3"),
+                  ordered = TRUE,
                   estimator="WLSMV"
                   )
 ```
@@ -470,7 +487,7 @@ fitmeasures(model_fit2, fit.measures = c("chisq", "df", "pvalue", "RMSEA", "rmse
 
 ### Äuivalenztest
 
-Auch bei diesem Modell wurden die T-Size Werte berechnet. Der korrigierte T-Size Wert für den CFI beträgt `r round(equivalence_testing(554, 25, T_ml=715.583, df=267, T_mli=6278.572, alpha=0.05)[2,2],3)` und der RMSA `r round(equivalence_testing(554, 25, T_ml=715.583, df=267, T_mli=6278.572, alpha=0.05)[2,3],3)`. Verglichen mit den ebenfalls korrgierten T-Size korrigierten Werten (vgl. @tbl-cutoff_aqui_str) kann der CFI und der RMSA als fair eingeschätzt werden.
+Auch bei diesem Modell wurden die T-Size Werte berechnet. Der korrigierte T-Size Wert für den CFI beträgt `r round(equivalence_testing(554, 26, T_ml=1049.454, df=267, T_mli=27601.652, alpha=0.05)[2,2],3)` und der RMSA `r round(equivalence_testing(554, 26, T_ml=1049.454, df=267, T_mli=27601.652, alpha=0.05)[2,3],3)`. Verglichen mit den ebenfalls korrgierten T-Size Werten (vgl. @tbl-cutoff_aqui_str) kann der CFI als close to excellent und der RMSEA als fair to close eingeschätzt werden.
 
 ```{r}
 #| echo: false
@@ -478,7 +495,7 @@ Auch bei diesem Modell wurden die T-Size Werte berechnet. Der korrigierte T-Size
 #| tbl-cap: Cut-Off Werte für den Äquivalenztest, Strukturmodell
 #| label: tbl-cutoff_aqui_str
 
-calculate_cutoff(267, 554, 25) %>% 
+calculate_cutoff(267, 554, 26) %>% 
   rownames_to_column() %>% 
   gt() %>% 
   fmt_number(decimals = 3) %>% 
