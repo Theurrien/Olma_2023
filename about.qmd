@@ -212,7 +212,7 @@ messmodell_1 <- '
 OLMA_Ready_R <- OLMA_Ready %>% 
   mutate(across(where(is.labelled), as.double))
 
-model_fit1 <- sem(data=OLMA_Ready_R[,6:29], model = messmodell_1, 
+model_fit1 <- sem(data=OLMA_Ready_R, model = messmodell_1, 
                   ordered = c("WIS_1","WIS_2","WIS_3"),
                   estimator="WLSMV")
 
@@ -535,19 +535,11 @@ summary(model_fit2, standardized=TRUE)$pe %>%
 ```{r}
 #| echo: false
 
-SEM_plot <-lavaanPlot2(model_fit2, 
+lavaanPlot2(model_fit2, 
             include = "covs",
             graph_options = list(label = ""),
             node_options = list( fontname = "Helvetica"), 
             edge_options = list(color = "grey"), 
             stars = c("latent"), 
             coef_labels = TRUE)
-```
-
-```{r}
-
-
-
-
-
 ```
