@@ -470,7 +470,7 @@ fitmeasures(model_fit2, fit.measures = c("chisq", "df", "pvalue", "RMSEA", "rmse
 
 ### Äuivalenztest
 
-Auch bei diesem Modell wurden die T-Size Werte berechnet. Der korrigierte T-Size Wert für den CFI beträgt `r round(equivalence_testing(554, 25, T_ml=793.014, df=268, T_mli=6278.572, alpha=0.05)[2,2],3)` und der RMSA `r round(equivalence_testing(554, 25, T_ml=793.014, df=268, T_mli=6278.572, alpha=0.05)[2,3],3)`. Verglichen mit den ebenfalls korrgierten T-Size korrigierten Werten (vgl. @tbl-cutoff_aqui_str) kann der CFI als mediocre und der RMSA als fair eingeschätzt werden.
+Auch bei diesem Modell wurden die T-Size Werte berechnet. Der korrigierte T-Size Wert für den CFI beträgt `r round(equivalence_testing(554, 25, T_ml=715.583, df=267, T_mli=6278.572, alpha=0.05)[2,2],3)` und der RMSA `r round(equivalence_testing(554, 25, T_ml=715.583, df=267, T_mli=6278.572, alpha=0.05)[2,3],3)`. Verglichen mit den ebenfalls korrgierten T-Size korrigierten Werten (vgl. @tbl-cutoff_aqui_str) kann der CFI und der RMSA als fair eingeschätzt werden.
 
 ```{r}
 #| echo: false
@@ -478,7 +478,7 @@ Auch bei diesem Modell wurden die T-Size Werte berechnet. Der korrigierte T-Size
 #| tbl-cap: Cut-Off Werte für den Äquivalenztest, Strukturmodell
 #| label: tbl-cutoff_aqui_str
 
-calculate_cutoff(268, 554, 25) %>% 
+calculate_cutoff(267, 554, 25) %>% 
   rownames_to_column() %>% 
   gt() %>% 
   fmt_number(decimals = 3) %>% 
@@ -524,8 +524,11 @@ lavResiduals(model_fit2)$res.cov %>%
 ## Modellparameter
 
 ```{r}
+#| echo: false
+
+
 summary(model_fit2, standardized=TRUE)$pe %>% 
-  filter(op=="~") %>% 
+  filter(op=="~") %>%
   gt() %>% 
   fmt_number()
 ```
