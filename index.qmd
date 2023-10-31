@@ -3,7 +3,7 @@ title: "Deskriptive Statistik"
 ---
 
 ```{r}
-#| echo: false
+#| code-fold: true
 #| warning: false
 #| label: library
 
@@ -67,7 +67,7 @@ In diesem Datensatz haben bislang `r nrow(OLMA_Start)` Personen teilgennommen.
 Die Angabe des Alters wurde in ganzen Jahren erfasst @fig-alter
 
 ```{r}
-#| echo: false
+#| code-fold: true
 #| label: fig-alter
 #| fig-cap: Verteilung der Altersangaben
 #| cap-location: margin
@@ -108,7 +108,7 @@ OLMA_Start %>%
 Die erreichten Bildungsabschlüsse verteilen sich wie in @tbl-bildung dargestellt.
 
 ```{r}
-#| echo: false
+#| code-fold: true
 #| label: tbl-bildung
 #| cap-location: margin
 #| tbl-cap: "Übersicht der Bildungsabschlüsse"
@@ -139,7 +139,7 @@ OLMA_Ready %>%
 Das Vorwissen umfasst die Häufigkeit mit welcher die Personen bereits Erfahrungen mit VR Endgeräten gesammelt haben (vgl. @fig-VoWi). Bei vorhandenen Erfahrungen wurde weiter erfragt woher diese stammen (vgl @tbl-VoWi)
 
 ```{r}
-#| echo: false
+#| code-fold: true
 #| fig-cap: "Angaben über die Benutzungshäufigkeit von VR Devices"
 #| cap-location: margin
 #| label: fig-VoWi
@@ -162,7 +162,7 @@ OLMA_Start %>%
 Menschen, die bereits einige Vorerfahrung mit VR angaben, wurden gebeten, das Anwendungsfeld zu bezeichnen. Die folgende Tabelle zeigt nur Mehrfachnennungen.
 
 ```{r}
-#| echo: false
+#| code-fold: true
 #| tbl-cap-location: margin
 #| tbl-cap: "Nennungen der Anwendungsorte"
 #| label: tbl-VoWi
@@ -208,7 +208,7 @@ Die Angst oder Furcht vor Computern wurde mit der Computer Anxiety Scale[^1] erf
 ## Übersicht
 
 ```{r}
-#| echo: false
+#| code-fold: true
 #| tbl-cap-location: margin
 #| tbl-cap: "Item Statistik"
 #| label: tbl-item_stat
@@ -249,7 +249,7 @@ OLMA_Items %>%
 ## Reliabilität - Tabelle
 
 ```{r}
-#| echo: false
+#| code-fold: true
 #| warning: false
 #| error: false
 item.list<-list(
@@ -276,7 +276,7 @@ rel_items$result.df %>%
 ## Relibilität - Visualisierung
 
 ```{r}
-#| echo: false
+#| code-fold: true
 
 plot(rel_items)
 ```
@@ -287,7 +287,7 @@ plot(rel_items)
 Das Lernen in der VR sImulation wurde durch drei MC-Fragen operationalisiert.
 
 ```{r}
-#| echo: false
+#| code-fold: true
 OLMA_Ready %>% 
    select(dplyr::starts_with("WIS"), Antworten) %>% 
   group_by(Antworten) %>% 
@@ -299,7 +299,7 @@ OLMA_Ready %>%
 In Abhängigkeit von Alter und Bildungsstufe ergibt sich folgendes Bild:
 
 ```{r}
-#| echo: false
+#| code-fold: true
 OLMA_Ready %>% 
   ggplot(aes(x=Alter, y=Bildung, color=Antworten))+
   geom_point(position = "jitter")+
@@ -319,7 +319,7 @@ OLMA_Ready %>%
 ```
 
 ```{r}
-#| echo: false
+#| code-fold: true
 #| warning: false
 OLMA_Ready %>% 
   ggplot(aes(x=Alter, y=Antworten))+

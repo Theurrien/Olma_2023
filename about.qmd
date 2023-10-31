@@ -4,7 +4,7 @@ bibliography: references.bib
 ---
 
 ```{r}
-#| echo: false
+#| code-fold: true
 #| warning: false
 
 library(tidyverse)
@@ -197,7 +197,7 @@ Das Messmodell beinhaltet sechs latente Variablen, welche durch 24 manifeste Var
 Die Analysen wurden mit dem lavaan Package durchgeführt [@rosseelLavaanPackageStructural2012].
 
 ```{r}
-#| echo: false
+#| code-fold: true
 #| warning: false
 
 messmodell_1 <- '
@@ -238,7 +238,7 @@ model_fit1 <- sem(data=OLMA_Ready_R, model = messmodell_1,
 Die Gütekriterien des Messmodels sind in der @tbl-fit_ind_measure aufgeführt und weisen auf eine gute bis sehr gute Passung der Daten auf das Modell hin [@huCutoffCriteriaFit1999] (CFI=`r round(fitmeasures(model_fit1, fit.measures = c("CFI")),2)` , GFI=`r round(fitmeasures(model_fit1, fit.measures = c("GFI")),2)`, RMSEA=`r round(fitmeasures(model_fit1, fit.measures = c("RMSEA")),2)`, SRMR=`r round(fitmeasures(model_fit1, fit.measures = c("SRMR")),2)`). Der $\chi^2$-Test ($\chi^2$(`r round(fitmeasures(model_fit1, fit.measures = c("df")),0)`)=`r round(fitmeasures(model_fit1, fit.measures = c("Chisq")),2)`, *p* \<`r round(fitmeasures(model_fit1, fit.measures = c("pvalue")),2)`) fällt signifikant aus, was bei grossen Stichproben allerdings nicht ungewöhnlich ist, da diese direkt in die Teststatitsik miteinfliesst [@eidStatistikUndForschungsmethoden2017].
 
 ```{r}
-#| echo: false
+#| code-fold: true
 #| tbl-cap: Gütekriterien des Messmodels
 #| cap-location: margin
 #| label: tbl-fit_ind_measure
@@ -281,7 +281,7 @@ Diese CutOff Werte werden auch in Frage gestellt, da sie beeinflusst werden kön
 Der korrigierte T-Size Wert für den CFI beträgt `r round(equivalence_testing(554, 24, T_ml=457.234, df=227, T_mli=6213.278, alpha=0.05)[2,2],3)` und der RMSA `r round(equivalence_testing(554, 24, T_ml=457.234, df=227, T_mli=6213.278, alpha=0.05)[2,3],3)`. Verglichen mit den ebenfalls korrgierten T-Size korrigierten Cutoff-Werten (vgl. @tbl-cutoff_aqui) kann das Modell als "close" eingeschätzt werden.
 
 ```{r}
-#| echo: false
+#| code-fold: true
 #| tbl-cap-location: margin
 #| tbl-cap: Cut-Off Werte für den Äquivalenztest
 #| label: tbl-cutoff_aqui
@@ -300,7 +300,7 @@ calculate_cutoff(223, 554, 24) %>%
 @fig-Messmodell zeigt die latenten Variablen des Messmodells mit den entsprechenden standardisierten Faktorladungen. Alle Ladungen erreichten ein signifikantes Resultat (*p*\<.001).
 
 ```{r}
-#| echo: false
+#| code-fold: true
 #| warning: false
 #| fig-cap: Darstellung des Messmodells
 #| cap-location: margin
@@ -313,7 +313,7 @@ semPaths(model_fit1, "std", style = "lisrel", layout = "tree2", residuals = FALS
 Betrachtet man die standardisierten Kovarianzen zwischen den latenten Faktoren des Modells (@fig-Mess_latVar) fällt besonders die zwischen den beiden Skalen KBE und KBU auf. Die Kovarianz beträgt 0.264 (SE=.036, *z* = 7,421, *p* \< .001). Die standardisierte Kovarianz war mit 0,940 bemerkenswert hoch und deutet auf eine starke lineare Beziehung zwischen diesen beiden Konstrukten hin. Alle Kovarianzen sind signifikant (p\<.01) ausser CANX\~\~PRA (p\<.085) und CANX\~\~IMO (p\<.795).
 
 ```{r}
-#| echo: false
+#| code-fold: true
 #| warning: false
 #| fig-cap: Latente Faktoren und deren Kovarianzen im Messmodell
 #| cap-location: margin
@@ -341,7 +341,7 @@ semPaths(model_fit1,
 Die Modifikationsindizes (vgl. @tbl-mod_indices) deuten auf mögliche Querladungen zwischen der kognitiven Belastung in VR-Settings (KBU und KBE) und den Items der Skala zur intrinsischen Motivation (IMO_1 und IMO_3) hin. Dies könnte darauf hindeuten, dass bestimmte Items der Skala zur intrinsischen Motivation auch Aspekte der kognitiven Belastung erfassen oder dass es eine gewisse Überschneidung zwischen den Konstrukten gibt. Die vermutete inverse Beziehung zwischen PRA und CANX_1 könnte darauf hindeuten, dass mit zunehmender Präsenz in der VR-Umgebung der Wert von CANX_1 sinkt oder umgekehrt. Aufgrund des sehr guten Modell Fits sind allerdings keine Anpassungen am Modell vorzunehmen, allerdings stellt sich die Frage nach der internen Kongruenz oder Reliabilität der Item-Skalen, besonders der Motivationsskala.
 
 ```{r}
-#| echo: false
+#| code-fold: true
 #| tbl-cap: Modifikationsindices, fünf höchste Werte
 #| label: tbl-mod_indices
 #| tbl-cap-location: margin
@@ -358,7 +358,7 @@ modindices(model_fit1, minimum.value = 10, sort. = TRUE, maximum.number = 5) %>%
 Die gefundenen Zusammenhänge der Items zeigen sich auch in der Kovarianzmatrix (@fig-corr_1).
 
 ```{r}
-#| echo: false
+#| code-fold: true
 #| cap-location: margin
 #| fig-cap: Korrelationsmatrix der Items
 #| label: fig-corr_1
@@ -372,7 +372,7 @@ lavResiduals(model_fit1)$cov %>%
 
 ```{r}
 #| column: margin
-#| echo: false
+#| code-fold: true
 #| warning: false
 #| tbl-cap-location: margin
 #| tbl-cap: Faktorladungen IMO-Skala
@@ -408,7 +408,7 @@ Eine Analyse der Itemskala mit der Omega Funktion des psych Packages [@williamre
 # Strukturmodell
 
 ```{r}
-#| echo: false
+#| code-fold: true
 #| warning: false
 strukturmodel_1 <- '
         CANX =~ CANX_1+CANX_2 + CANX_3 + CANX_4
@@ -448,7 +448,7 @@ Im folgenden Modell werden nun die Verbindungen zwischen den latenten Variablen 
 Die Gütekriterien des Messmodels sind in der @tbl-fit_ind_str aufgeführt und weisen auf eine akzeptable Passung des Models hin [@huCutoffCriteriaFit1999] (CFI=`r round(fitmeasures(model_fit2, fit.measures = c("CFI")),2)` , GFI=`r round(fitmeasures(model_fit2, fit.measures = c("GFI")),2)`, RMSEA=`r round(fitmeasures(model_fit2, fit.measures = c("RMSEA")),2)`, SRMR=`r round(fitmeasures(model_fit2, fit.measures = c("SRMR")),2)`). Der $\chi^2$-Test ($\chi^2$(`r round(fitmeasures(model_fit2, fit.measures = c("df")),0)`)=`r round(fitmeasures(model_fit2, fit.measures = c("Chisq")),2)`, *p* \<`r round(fitmeasures(model_fit2, fit.measures = c("pvalue")),2)`) fällt auch bei diesem Modell signifikant aus.
 
 ```{r}
-#| echo: false
+#| code-fold: true
 #| warning: false
 #| tbl-cap-location: margin
 #| tbl-cap: Modellgütekriterien für das Strukturmodell
@@ -490,7 +490,7 @@ fitmeasures(model_fit2, fit.measures = c("chisq", "df", "pvalue", "RMSEA", "rmse
 Auch bei diesem Modell wurden die T-Size Werte berechnet. Der korrigierte T-Size Wert für den CFI beträgt `r round(equivalence_testing(554, 26, T_ml=1049.454, df=267, T_mli=27601.652, alpha=0.05)[2,2],3)` und der RMSA `r round(equivalence_testing(554, 26, T_ml=1049.454, df=267, T_mli=27601.652, alpha=0.05)[2,3],3)`. Verglichen mit den ebenfalls korrgierten T-Size Werten (vgl. @tbl-cutoff_aqui_str) kann der CFI als close to excellent und der RMSEA als fair to close eingeschätzt werden.
 
 ```{r}
-#| echo: false
+#| code-fold: true
 #| tbl-cap-location: margin
 #| tbl-cap: Cut-Off Werte für den Äquivalenztest, Strukturmodell
 #| label: tbl-cutoff_aqui_str
@@ -509,7 +509,7 @@ calculate_cutoff(267, 554, 26) %>%
 Das Modell könnte sowohl durch einen direkten Pfad von KBE und KBU (\~), als auch durch deren Kovarianz (\~\~) verbessert werden. Wie bereits beiom Messmodell festgestellt, messen die beiden Skalen durchaus ein zugrundeliegendes, gemeinsames Konstrukt, weshalb mindestens die Verbindung durch eine Kovarianz theoretisch begründbar erscheint.
 
 ```{r}
-#| echo: false
+#| code-fold: true
 #| tbl-cap: Modifikationsindices des Strukturmodells
 #| label: tbl-mod_indices_str
 #| tbl-cap-location: margin
@@ -528,7 +528,7 @@ In der folgenden Grafik (@fig-corr_2) sind die Residualkovarianzen der manifeste
 Besonders der Cluster um die Items der Präsenzskala fällt auf, da hier geteilte Varianz vorliegt, welche nicht durch das Modell erklärt werden kann. Auch das Item-Paar KBE_2 und KBU_2 fällt wiederum auf.
 
 ```{r}
-#| echo: false
+#| code-fold: true
 #| cap-location: margin
 #| fig-cap: Korrelationsmatrix der Residuen
 #| label: fig-corr_2
@@ -541,7 +541,7 @@ lavResiduals(model_fit2)$res.cov %>%
 ## Modellparameter
 
 ```{r}
-#| echo: false
+#| code-fold: true
 
 
 summary(model_fit2, standardized=TRUE)$pe %>% 
@@ -553,7 +553,7 @@ summary(model_fit2, standardized=TRUE)$pe %>%
 ## Pfaddarstellung des SEM Modells
 
 ```{r}
-#| echo: false
+#| code-fold: true
 
 lavaanPlot2(model_fit2, 
             include = "covs",

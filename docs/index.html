@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="de" xml:lang="de"><head>
 
 <meta charset="utf-8">
 <meta name="generator" content="quarto-1.3.353">
@@ -19,6 +19,40 @@ ul.task-list li input[type="checkbox"] {
   width: 0.8em;
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
 </style>
 
@@ -47,15 +81,15 @@ ul.task-list li input[type="checkbox"] {
   "type": "overlay",
   "limit": 20,
   "language": {
-    "search-no-results-text": "No results",
-    "search-matching-documents-text": "matching documents",
-    "search-copy-link-title": "Copy link to search",
-    "search-hide-matches-text": "Hide additional matches",
-    "search-more-match-text": "more match in this document",
-    "search-more-matches-text": "more matches in this document",
-    "search-clear-button-title": "Clear",
-    "search-detached-cancel-button-title": "Cancel",
-    "search-submit-button-title": "Submit"
+    "search-no-results-text": "Keine Treffer",
+    "search-matching-documents-text": "Treffer",
+    "search-copy-link-title": "Link in die Suche kopieren",
+    "search-hide-matches-text": "Zusätzliche Treffer verbergen",
+    "search-more-match-text": "weitere Treffer in diesem Dokument",
+    "search-more-matches-text": "weitere Treffer in diesem Dokument",
+    "search-clear-button-title": "Zurücksetzen",
+    "search-detached-cancel-button-title": "Abbrechen",
+    "search-submit-button-title": "Abschicken"
   }
 }</script>
 
@@ -74,8 +108,8 @@ ul.task-list li input[type="checkbox"] {
     <span class="navbar-title">Olma_2023</span>
     </a>
   </div>
-            <div id="quarto-search" class="" title="Search"></div>
-          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+            <div id="quarto-search" class="" title="Suchen"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Navigation umschalten" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
   <span class="navbar-toggler-icon"></span>
 </button>
           <div class="collapse navbar-collapse" id="navbarCollapse">
@@ -100,7 +134,7 @@ ul.task-list li input[type="checkbox"] {
 <!-- sidebar -->
   <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal sidebar-navigation floating overflow-auto">
     <nav id="TOC" role="doc-toc" class="toc-active">
-    <h2 id="toc-title">On this page</h2>
+    <h2 id="toc-title">Auf dieser Seite</h2>
    
   <ul>
   <li><a href="#demographische-angaben" id="toc-demographische-angaben" class="nav-link active" data-scroll-target="#demographische-angaben">Demographische Angaben</a>
@@ -141,18 +175,103 @@ ul.task-list li input[type="checkbox"] {
 
 </header>
 
+<div class="cell">
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(survey)</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(haven)</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(knitr)</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(gt)</span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(lavaan)</span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(psych)</span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(GPArotation)</span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a><span class="co"># Working directory</span></span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a><span class="fu">setwd</span>(<span class="st">"~/Library/Mobile Documents/com~apple~CloudDocs/R_Studio/Olma_2023/Olma_2023"</span>)</span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a><span class="co"># Import data</span></span>
+<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a>OLMA_Start <span class="ot">&lt;-</span> <span class="fu">read_sav</span>(<span class="st">"data_project.sav"</span>)</span>
+<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a><span class="co"># Data Prep</span></span>
+<span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a>OLMA_Ready <span class="ot">&lt;-</span> OLMA_Start <span class="sc">%&gt;%</span> </span>
+<span id="cb1-22"><a href="#cb1-22" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">Bildung =</span> haven<span class="sc">::</span><span class="fu">as_factor</span>(Bildung),</span>
+<span id="cb1-23"><a href="#cb1-23" aria-hidden="true" tabindex="-1"></a>         <span class="at">Bildung =</span> <span class="fu">case_when</span>(</span>
+<span id="cb1-24"><a href="#cb1-24" aria-hidden="true" tabindex="-1"></a>           Bildung <span class="sc">==</span> <span class="st">"Berufsbildung (EBA/EFZ)"</span> <span class="sc">~</span> <span class="st">"Berufsbildung"</span>,</span>
+<span id="cb1-25"><a href="#cb1-25" aria-hidden="true" tabindex="-1"></a>           Bildung <span class="sc">==</span> <span class="st">"Hochschule (Universität, ETH, Fachhochschule)"</span> <span class="sc">~</span> <span class="st">"Hochschule"</span>,</span>
+<span id="cb1-26"><a href="#cb1-26" aria-hidden="true" tabindex="-1"></a>           Bildung <span class="sc">==</span> <span class="st">"höhere Berufsbildung (Berufs- und höhere Fachprüfung, höhere Fachschule)"</span> <span class="sc">~</span> <span class="st">"höhere Berufsbildung"</span>,</span>
+<span id="cb1-27"><a href="#cb1-27" aria-hidden="true" tabindex="-1"></a>           Bildung <span class="sc">==</span> <span class="st">"obligatorische Schule"</span> <span class="sc">~</span> <span class="st">"Volksschule"</span>,</span>
+<span id="cb1-28"><a href="#cb1-28" aria-hidden="true" tabindex="-1"></a>           Bildung <span class="sc">==</span> <span class="st">"Ich habe kein Bildungsabschluss"</span> <span class="sc">~</span> <span class="st">"Ohne"</span>,</span>
+<span id="cb1-29"><a href="#cb1-29" aria-hidden="true" tabindex="-1"></a>           Bildung <span class="sc">==</span> <span class="st">"Andere"</span> <span class="sc">~</span> <span class="st">"Volksschule"</span>,</span>
+<span id="cb1-30"><a href="#cb1-30" aria-hidden="true" tabindex="-1"></a>           Bildung <span class="sc">==</span> <span class="dv">0</span> <span class="sc">~</span> <span class="st">"Volksschule"</span>,</span>
+<span id="cb1-31"><a href="#cb1-31" aria-hidden="true" tabindex="-1"></a>           <span class="cn">TRUE</span> <span class="sc">~</span> <span class="fu">as.character</span>(Bildung)</span>
+<span id="cb1-32"><a href="#cb1-32" aria-hidden="true" tabindex="-1"></a>         ),</span>
+<span id="cb1-33"><a href="#cb1-33" aria-hidden="true" tabindex="-1"></a>         <span class="at">Bildung =</span> <span class="fu">factor</span>(Bildung, <span class="at">levels =</span> <span class="fu">c</span>(<span class="st">"Ohne"</span>, <span class="st">"Volksschule"</span>, <span class="st">"Gymnasium/Fachmittelschule"</span>, <span class="st">"Berufsbildung"</span>, <span class="st">"höhere Berufsbildung"</span>, <span class="st">"Hochschule"</span>, <span class="at">ordered=</span><span class="cn">TRUE</span>))) <span class="sc">%&gt;%</span> </span>
+<span id="cb1-34"><a href="#cb1-34" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
+<span id="cb1-35"><a href="#cb1-35" aria-hidden="true" tabindex="-1"></a>    <span class="at">WIS_1=</span><span class="fu">if_else</span>(WIS_1<span class="sc">==</span><span class="dv">3</span>,<span class="dv">1</span>,<span class="dv">0</span>),</span>
+<span id="cb1-36"><a href="#cb1-36" aria-hidden="true" tabindex="-1"></a>    <span class="at">WIS_2=</span><span class="fu">if_else</span>(WIS_2<span class="sc">==</span><span class="dv">1</span>,<span class="dv">1</span>,<span class="dv">0</span>),</span>
+<span id="cb1-37"><a href="#cb1-37" aria-hidden="true" tabindex="-1"></a>    <span class="at">WIS_3=</span><span class="fu">if_else</span>(WIS_3<span class="sc">==</span><span class="dv">4</span>,<span class="dv">1</span>,<span class="dv">0</span>),</span>
+<span id="cb1-38"><a href="#cb1-38" aria-hidden="true" tabindex="-1"></a>    <span class="at">Antworten=</span>WIS_1<span class="sc">+</span>WIS_2<span class="sc">+</span>WIS_3,</span>
+<span id="cb1-39"><a href="#cb1-39" aria-hidden="true" tabindex="-1"></a>    <span class="at">Antworten =</span> <span class="fu">factor</span>(Antworten, <span class="at">levels=</span><span class="fu">c</span>(<span class="dv">0</span>,<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">3</span>), <span class="at">ordered=</span><span class="cn">TRUE</span>)</span>
+<span id="cb1-40"><a href="#cb1-40" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">%&gt;%</span> </span>
+<span id="cb1-41"><a href="#cb1-41" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
+<span id="cb1-42"><a href="#cb1-42" aria-hidden="true" tabindex="-1"></a>    <span class="at">CANX_1=</span><span class="dv">8</span><span class="sc">-</span>CANX_1,</span>
+<span id="cb1-43"><a href="#cb1-43" aria-hidden="true" tabindex="-1"></a>    <span class="at">IMO_3=</span><span class="dv">6</span><span class="sc">-</span>IMO_3,</span>
+<span id="cb1-44"><a href="#cb1-44" aria-hidden="true" tabindex="-1"></a>    <span class="at">IMO_4=</span><span class="dv">6</span><span class="sc">-</span>IMO_4,</span>
+<span id="cb1-45"><a href="#cb1-45" aria-hidden="true" tabindex="-1"></a>    <span class="at">Alter =</span> <span class="fu">as.numeric</span>(Alter)</span>
+<span id="cb1-46"><a href="#cb1-46" aria-hidden="true" tabindex="-1"></a>    ) <span class="sc">%&gt;%</span> </span>
+<span id="cb1-47"><a href="#cb1-47" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(<span class="sc">-</span><span class="fu">c</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">7</span>,<span class="dv">40</span><span class="sc">:</span><span class="dv">79</span>))</span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
 <section id="demographische-angaben" class="level2 page-columns page-full">
 <h2 class="anchored" data-anchor-id="demographische-angaben">Demographische Angaben</h2>
 <p>In diesem Datensatz haben bislang 554 Personen teilgennommen.</p>
 <section id="alter" class="level3 page-columns page-full">
 <h3 class="anchored" data-anchor-id="alter">Alter</h3>
-<p>Die Angabe des Alters wurde in ganzen Jahren erfasst <a href="#fig-alter">Figure&nbsp;1</a></p>
+<p>Die Angabe des Alters wurde in ganzen Jahren erfasst <a href="#fig-alter">Abbildung&nbsp;1</a></p>
 <div class="cell page-columns page-full">
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Calculate the count for each bin</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>bins <span class="ot">&lt;-</span> <span class="fu">cut</span>(OLMA_Start<span class="sc">$</span>Alter, <span class="at">breaks =</span> <span class="fu">seq</span>(<span class="fu">min</span>(OLMA_Start<span class="sc">$</span>Alter, <span class="at">na.rm =</span> <span class="cn">TRUE</span>), </span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>                                           <span class="fu">max</span>(OLMA_Start<span class="sc">$</span>Alter, <span class="at">na.rm =</span> <span class="cn">TRUE</span>), <span class="at">by =</span> <span class="dv">10</span>), <span class="at">include.lowest =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>bin_counts <span class="ot">&lt;-</span> <span class="fu">as.numeric</span>(<span class="fu">table</span>(bins))</span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a><span class="co"># Find the maximum height of the bins</span></span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>max_count <span class="ot">&lt;-</span> <span class="fu">max</span>(bin_counts)</span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a><span class="co"># First, calculate the mean and median outside of the ggplot2 calls</span></span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a>alter_mean <span class="ot">&lt;-</span> <span class="fu">mean</span>(OLMA_Start<span class="sc">$</span>Alter, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a>alter_median <span class="ot">&lt;-</span> <span class="fu">median</span>(OLMA_Start<span class="sc">$</span>Alter, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a>OLMA_Start <span class="sc">%&gt;%</span></span>
+<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>() <span class="sc">+</span></span>
+<span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_histogram</span>(<span class="fu">aes</span>(Alter), <span class="at">binwidth =</span> <span class="dv">5</span>) <span class="sc">+</span></span>
+<span id="cb2-16"><a href="#cb2-16" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_vline</span>(<span class="fu">aes</span>(<span class="at">xintercept =</span> alter_mean), <span class="at">color =</span> <span class="st">"red"</span>, <span class="at">linetype =</span> <span class="st">"dashed"</span>) <span class="sc">+</span></span>
+<span id="cb2-17"><a href="#cb2-17" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_vline</span>(<span class="fu">aes</span>(<span class="at">xintercept =</span> alter_median), <span class="at">color =</span> <span class="st">"red"</span>, <span class="at">linetype =</span> <span class="st">"dashed"</span>)<span class="sc">+</span></span>
+<span id="cb2-18"><a href="#cb2-18" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_text</span>(<span class="fu">aes</span>(<span class="at">x =</span> alter_mean, <span class="at">y =</span> max_count, </span>
+<span id="cb2-19"><a href="#cb2-19" aria-hidden="true" tabindex="-1"></a>                <span class="at">label =</span> <span class="fu">sprintf</span>(<span class="st">"Mw"</span>)),</span>
+<span id="cb2-20"><a href="#cb2-20" aria-hidden="true" tabindex="-1"></a>            <span class="at">color =</span> <span class="st">"black"</span>, <span class="at">check_overlap =</span> <span class="cn">TRUE</span>,  <span class="at">hjust=</span><span class="sc">-</span><span class="fl">0.2</span>) <span class="sc">+</span></span>
+<span id="cb2-21"><a href="#cb2-21" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_text</span>(<span class="fu">aes</span>(<span class="at">x =</span> alter_median, <span class="at">y =</span> max_count, </span>
+<span id="cb2-22"><a href="#cb2-22" aria-hidden="true" tabindex="-1"></a>                <span class="at">label =</span> <span class="fu">sprintf</span>(<span class="st">"M"</span>)),</span>
+<span id="cb2-23"><a href="#cb2-23" aria-hidden="true" tabindex="-1"></a>            <span class="at">color =</span> <span class="st">"black"</span>, <span class="at">check_overlap =</span> <span class="cn">TRUE</span>,  <span class="at">hjust=</span><span class="sc">-</span><span class="fl">0.2</span>)<span class="sc">+</span></span>
+<span id="cb2-24"><a href="#cb2-24" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(</span>
+<span id="cb2-25"><a href="#cb2-25" aria-hidden="true" tabindex="-1"></a>    <span class="at">title =</span> <span class="st">"Altersverteilung"</span>,</span>
+<span id="cb2-26"><a href="#cb2-26" aria-hidden="true" tabindex="-1"></a>    <span class="at">subtitle =</span> <span class="st">"mit Mittelwert (Mw) und Median (M)"</span>,</span>
+<span id="cb2-27"><a href="#cb2-27" aria-hidden="true" tabindex="-1"></a>    <span class="at">caption =</span> <span class="fu">paste</span>(<span class="fu">sprintf</span>(<span class="st">"Mittelwert: %.2f;"</span>, alter_mean), <span class="fu">sprintf</span>(<span class="st">"Median: %.2f"</span>, alter_median))</span>
+<span id="cb2-28"><a href="#cb2-28" aria-hidden="true" tabindex="-1"></a>  )<span class="sc">+</span></span>
+<span id="cb2-29"><a href="#cb2-29" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ylab</span>(<span class="st">"Anzahl"</span>)<span class="sc">+</span></span>
+<span id="cb2-30"><a href="#cb2-30" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>()</span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 <div class="cell-output-display page-columns page-full">
 <div id="fig-alter" class="quarto-figure quarto-figure-center anchored page-columns page-full">
 <figure class="figure page-columns page-full">
 <p><img src="index_files/figure-html/fig-alter-1.png" class="img-fluid figure-img" width="672"></p>
-<figcaption class="figure-caption margin-caption">Figure&nbsp;1: Verteilung der Altersangaben</figcaption>
+<figcaption class="figure-caption margin-caption">Abbildung&nbsp;1: Verteilung der Altersangaben</figcaption>
 </figure>
 </div>
 </div>
@@ -160,28 +279,50 @@ ul.task-list li input[type="checkbox"] {
 </section>
 <section id="bildungsabschluss" class="level3 page-columns page-full">
 <h3 class="anchored" data-anchor-id="bildungsabschluss">Bildungsabschluss</h3>
-<p>Die erreichten Bildungsabschlüsse verteilen sich wie in <a href="#tbl-bildung">Table&nbsp;1</a> dargestellt.</p>
+<p>Die erreichten Bildungsabschlüsse verteilen sich wie in <a href="#tbl-bildung">Tabelle&nbsp;1</a> dargestellt.</p>
 <div class="cell page-columns page-full">
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>OLMA_Ready <span class="sc">%&gt;%</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(Bildung) <span class="sc">%&gt;%</span></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">Anzahl =</span> <span class="fu">n</span>(),</span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>            <span class="st">'Mw Alter'</span> <span class="ot">=</span> <span class="fu">round</span>(<span class="fu">mean</span>(Alter),<span class="dv">1</span>),</span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>            <span class="st">'SD Alter'</span> <span class="ot">=</span> <span class="fu">round</span>(<span class="fu">sd</span>(Alter),<span class="dv">1</span>)</span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>            ) <span class="sc">%&gt;%</span></span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="st">'%'</span><span class="ot">=</span><span class="fu">round</span>(Anzahl<span class="sc">/</span><span class="fu">sum</span>(Anzahl)<span class="sc">*</span><span class="dv">100</span>,<span class="dv">2</span>)) <span class="sc">%&gt;%</span> </span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(Bildung, Anzahl, <span class="st">'%'</span>, <span class="st">'Mw Alter'</span>, <span class="st">'SD Alter'</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a> <span class="fu">gt</span>() <span class="sc">%&gt;%</span> </span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">tab_style</span>(</span>
+<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a>    <span class="at">style =</span> <span class="fu">cell_text</span>(</span>
+<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a>      <span class="at">align =</span> <span class="st">"left"</span>),</span>
+<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a>    <span class="at">locations =</span> <span class="fu">cells_body</span>(</span>
+<span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a>      <span class="at">columns=</span>Bildung</span>
+<span id="cb3-15"><a href="#cb3-15" aria-hidden="true" tabindex="-1"></a>    )) <span class="sc">%&gt;%</span> </span>
+<span id="cb3-16"><a href="#cb3-16" aria-hidden="true" tabindex="-1"></a>  <span class="fu">tab_style</span>(</span>
+<span id="cb3-17"><a href="#cb3-17" aria-hidden="true" tabindex="-1"></a>    <span class="at">style =</span> <span class="fu">cell_text</span>(<span class="at">align =</span> <span class="st">"left"</span>),</span>
+<span id="cb3-18"><a href="#cb3-18" aria-hidden="true" tabindex="-1"></a>    <span class="at">locations =</span> <span class="fu">cells_column_labels</span>(<span class="at">columns=</span>Bildung)</span>
+<span id="cb3-19"><a href="#cb3-19" aria-hidden="true" tabindex="-1"></a>  )</span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 <div class="cell-output-display page-columns page-full">
 <div id="tbl-bildung" class="anchored page-columns page-full">
 
-<div id="nvfgwbxnfn" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;" class="page-columns page-full">
-<style>#nvfgwbxnfn table {
+<div id="dnbodbwerm" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;" class="page-columns page-full">
+<style>#dnbodbwerm table {
   font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-#nvfgwbxnfn thead, #nvfgwbxnfn tbody, #nvfgwbxnfn tfoot, #nvfgwbxnfn tr, #nvfgwbxnfn td, #nvfgwbxnfn th {
+#dnbodbwerm thead, #dnbodbwerm tbody, #dnbodbwerm tfoot, #dnbodbwerm tr, #dnbodbwerm td, #dnbodbwerm th {
   border-style: none;
 }
 
-#nvfgwbxnfn p {
+#dnbodbwerm p {
   margin: 0;
   padding: 0;
 }
 
-#nvfgwbxnfn .gt_table {
+#dnbodbwerm .gt_table {
   display: table;
   border-collapse: collapse;
   line-height: normal;
@@ -207,12 +348,12 @@ ul.task-list li input[type="checkbox"] {
   border-left-color: #D3D3D3;
 }
 
-#nvfgwbxnfn .gt_caption {
+#dnbodbwerm .gt_caption {
   padding-top: 4px;
   padding-bottom: 4px;
 }
 
-#nvfgwbxnfn .gt_title {
+#dnbodbwerm .gt_title {
   color: #333333;
   font-size: 125%;
   font-weight: initial;
@@ -224,7 +365,7 @@ ul.task-list li input[type="checkbox"] {
   border-bottom-width: 0;
 }
 
-#nvfgwbxnfn .gt_subtitle {
+#dnbodbwerm .gt_subtitle {
   color: #333333;
   font-size: 85%;
   font-weight: initial;
@@ -236,7 +377,7 @@ ul.task-list li input[type="checkbox"] {
   border-top-width: 0;
 }
 
-#nvfgwbxnfn .gt_heading {
+#dnbodbwerm .gt_heading {
   background-color: #FFFFFF;
   text-align: center;
   border-bottom-color: #FFFFFF;
@@ -248,13 +389,13 @@ ul.task-list li input[type="checkbox"] {
   border-right-color: #D3D3D3;
 }
 
-#nvfgwbxnfn .gt_bottom_border {
+#dnbodbwerm .gt_bottom_border {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
 }
 
-#nvfgwbxnfn .gt_col_headings {
+#dnbodbwerm .gt_col_headings {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -269,7 +410,7 @@ ul.task-list li input[type="checkbox"] {
   border-right-color: #D3D3D3;
 }
 
-#nvfgwbxnfn .gt_col_heading {
+#dnbodbwerm .gt_col_heading {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -289,7 +430,7 @@ ul.task-list li input[type="checkbox"] {
   overflow-x: hidden;
 }
 
-#nvfgwbxnfn .gt_column_spanner_outer {
+#dnbodbwerm .gt_column_spanner_outer {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -301,15 +442,15 @@ ul.task-list li input[type="checkbox"] {
   padding-right: 4px;
 }
 
-#nvfgwbxnfn .gt_column_spanner_outer:first-child {
+#dnbodbwerm .gt_column_spanner_outer:first-child {
   padding-left: 0;
 }
 
-#nvfgwbxnfn .gt_column_spanner_outer:last-child {
+#dnbodbwerm .gt_column_spanner_outer:last-child {
   padding-right: 0;
 }
 
-#nvfgwbxnfn .gt_column_spanner {
+#dnbodbwerm .gt_column_spanner {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
@@ -321,11 +462,11 @@ ul.task-list li input[type="checkbox"] {
   width: 100%;
 }
 
-#nvfgwbxnfn .gt_spanner_row {
+#dnbodbwerm .gt_spanner_row {
   border-bottom-style: hidden;
 }
 
-#nvfgwbxnfn .gt_group_heading {
+#dnbodbwerm .gt_group_heading {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -351,7 +492,7 @@ ul.task-list li input[type="checkbox"] {
   text-align: left;
 }
 
-#nvfgwbxnfn .gt_empty_group_heading {
+#dnbodbwerm .gt_empty_group_heading {
   padding: 0.5px;
   color: #333333;
   background-color: #FFFFFF;
@@ -366,15 +507,15 @@ ul.task-list li input[type="checkbox"] {
   vertical-align: middle;
 }
 
-#nvfgwbxnfn .gt_from_md > :first-child {
+#dnbodbwerm .gt_from_md > :first-child {
   margin-top: 0;
 }
 
-#nvfgwbxnfn .gt_from_md > :last-child {
+#dnbodbwerm .gt_from_md > :last-child {
   margin-bottom: 0;
 }
 
-#nvfgwbxnfn .gt_row {
+#dnbodbwerm .gt_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -393,7 +534,7 @@ ul.task-list li input[type="checkbox"] {
   overflow-x: hidden;
 }
 
-#nvfgwbxnfn .gt_stub {
+#dnbodbwerm .gt_stub {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -406,7 +547,7 @@ ul.task-list li input[type="checkbox"] {
   padding-right: 5px;
 }
 
-#nvfgwbxnfn .gt_stub_row_group {
+#dnbodbwerm .gt_stub_row_group {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -420,15 +561,15 @@ ul.task-list li input[type="checkbox"] {
   vertical-align: top;
 }
 
-#nvfgwbxnfn .gt_row_group_first td {
+#dnbodbwerm .gt_row_group_first td {
   border-top-width: 2px;
 }
 
-#nvfgwbxnfn .gt_row_group_first th {
+#dnbodbwerm .gt_row_group_first th {
   border-top-width: 2px;
 }
 
-#nvfgwbxnfn .gt_summary_row {
+#dnbodbwerm .gt_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -438,16 +579,16 @@ ul.task-list li input[type="checkbox"] {
   padding-right: 5px;
 }
 
-#nvfgwbxnfn .gt_first_summary_row {
+#dnbodbwerm .gt_first_summary_row {
   border-top-style: solid;
   border-top-color: #D3D3D3;
 }
 
-#nvfgwbxnfn .gt_first_summary_row.thick {
+#dnbodbwerm .gt_first_summary_row.thick {
   border-top-width: 2px;
 }
 
-#nvfgwbxnfn .gt_last_summary_row {
+#dnbodbwerm .gt_last_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -457,7 +598,7 @@ ul.task-list li input[type="checkbox"] {
   border-bottom-color: #D3D3D3;
 }
 
-#nvfgwbxnfn .gt_grand_summary_row {
+#dnbodbwerm .gt_grand_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -467,7 +608,7 @@ ul.task-list li input[type="checkbox"] {
   padding-right: 5px;
 }
 
-#nvfgwbxnfn .gt_first_grand_summary_row {
+#dnbodbwerm .gt_first_grand_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -477,7 +618,7 @@ ul.task-list li input[type="checkbox"] {
   border-top-color: #D3D3D3;
 }
 
-#nvfgwbxnfn .gt_last_grand_summary_row_top {
+#dnbodbwerm .gt_last_grand_summary_row_top {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -487,11 +628,11 @@ ul.task-list li input[type="checkbox"] {
   border-bottom-color: #D3D3D3;
 }
 
-#nvfgwbxnfn .gt_striped {
+#dnbodbwerm .gt_striped {
   background-color: rgba(128, 128, 128, 0.05);
 }
 
-#nvfgwbxnfn .gt_table_body {
+#dnbodbwerm .gt_table_body {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -500,7 +641,7 @@ ul.task-list li input[type="checkbox"] {
   border-bottom-color: #D3D3D3;
 }
 
-#nvfgwbxnfn .gt_footnotes {
+#dnbodbwerm .gt_footnotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -514,7 +655,7 @@ ul.task-list li input[type="checkbox"] {
   border-right-color: #D3D3D3;
 }
 
-#nvfgwbxnfn .gt_footnote {
+#dnbodbwerm .gt_footnote {
   margin: 0px;
   font-size: 90%;
   padding-top: 4px;
@@ -523,7 +664,7 @@ ul.task-list li input[type="checkbox"] {
   padding-right: 5px;
 }
 
-#nvfgwbxnfn .gt_sourcenotes {
+#dnbodbwerm .gt_sourcenotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -537,7 +678,7 @@ ul.task-list li input[type="checkbox"] {
   border-right-color: #D3D3D3;
 }
 
-#nvfgwbxnfn .gt_sourcenote {
+#dnbodbwerm .gt_sourcenote {
   font-size: 90%;
   padding-top: 4px;
   padding-bottom: 4px;
@@ -545,63 +686,63 @@ ul.task-list li input[type="checkbox"] {
   padding-right: 5px;
 }
 
-#nvfgwbxnfn .gt_left {
+#dnbodbwerm .gt_left {
   text-align: left;
 }
 
-#nvfgwbxnfn .gt_center {
+#dnbodbwerm .gt_center {
   text-align: center;
 }
 
-#nvfgwbxnfn .gt_right {
+#dnbodbwerm .gt_right {
   text-align: right;
   font-variant-numeric: tabular-nums;
 }
 
-#nvfgwbxnfn .gt_font_normal {
+#dnbodbwerm .gt_font_normal {
   font-weight: normal;
 }
 
-#nvfgwbxnfn .gt_font_bold {
+#dnbodbwerm .gt_font_bold {
   font-weight: bold;
 }
 
-#nvfgwbxnfn .gt_font_italic {
+#dnbodbwerm .gt_font_italic {
   font-style: italic;
 }
 
-#nvfgwbxnfn .gt_super {
+#dnbodbwerm .gt_super {
   font-size: 65%;
 }
 
-#nvfgwbxnfn .gt_footnote_marks {
+#dnbodbwerm .gt_footnote_marks {
   font-size: 75%;
   vertical-align: 0.4em;
   position: initial;
 }
 
-#nvfgwbxnfn .gt_asterisk {
+#dnbodbwerm .gt_asterisk {
   font-size: 100%;
   vertical-align: 0;
 }
 
-#nvfgwbxnfn .gt_indent_1 {
+#dnbodbwerm .gt_indent_1 {
   text-indent: 5px;
 }
 
-#nvfgwbxnfn .gt_indent_2 {
+#dnbodbwerm .gt_indent_2 {
   text-indent: 10px;
 }
 
-#nvfgwbxnfn .gt_indent_3 {
+#dnbodbwerm .gt_indent_3 {
   text-indent: 15px;
 }
 
-#nvfgwbxnfn .gt_indent_4 {
+#dnbodbwerm .gt_indent_4 {
   text-indent: 20px;
 }
 
-#nvfgwbxnfn .gt_indent_5 {
+#dnbodbwerm .gt_indent_5 {
   text-indent: 25px;
 }
 </style>
@@ -651,7 +792,7 @@ ul.task-list li input[type="checkbox"] {
   
   
 </table>
-<div class="quarto-table-caption margin-caption">Table&nbsp;1:  <p>Übersicht der Bildungsabschlüsse</p> </div></div>
+<div class="quarto-table-caption margin-caption">Tabelle&nbsp;1:  <p>Übersicht der Bildungsabschlüsse</p> </div></div>
 </div>
 </div>
 </div>
@@ -659,13 +800,27 @@ ul.task-list li input[type="checkbox"] {
 </section>
 <section id="vorwissen-mit-vr" class="level2 page-columns page-full">
 <h2 class="anchored" data-anchor-id="vorwissen-mit-vr">Vorwissen mit VR</h2>
-<p>Das Vorwissen umfasst die Häufigkeit mit welcher die Personen bereits Erfahrungen mit VR Endgeräten gesammelt haben (vgl. <a href="#fig-VoWi">Figure&nbsp;2</a>). Bei vorhandenen Erfahrungen wurde weiter erfragt woher diese stammen (vgl <a href="#tbl-VoWi">Table&nbsp;2</a>)</p>
+<p>Das Vorwissen umfasst die Häufigkeit mit welcher die Personen bereits Erfahrungen mit VR Endgeräten gesammelt haben (vgl. <a href="#fig-VoWi">Abbildung&nbsp;2</a>). Bei vorhandenen Erfahrungen wurde weiter erfragt woher diese stammen (vgl <a href="#tbl-VoWi">Tabelle&nbsp;2</a>)</p>
 <div class="cell page-columns page-full">
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>OLMA_Start <span class="sc">%&gt;%</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">VoWi_Count =</span> haven<span class="sc">::</span><span class="fu">as_factor</span>(VoWi_Count)) <span class="sc">%&gt;%</span></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(VoWi_Count) <span class="sc">%&gt;%</span></span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>() <span class="sc">+</span></span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_bar</span>(<span class="fu">aes</span>(VoWi_Count))<span class="sc">+</span></span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(</span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>    <span class="at">title =</span> <span class="st">"Angaben über Vorwissen in VR"</span></span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a>  )<span class="sc">+</span></span>
+<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ylab</span>(<span class="st">"Anzahl"</span>)<span class="sc">+</span></span>
+<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">xlab</span>(<span class="st">""</span>)<span class="sc">+</span></span>
+<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>()</span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 <div class="cell-output-display page-columns page-full">
 <div id="fig-VoWi" class="quarto-figure quarto-figure-center anchored page-columns page-full">
 <figure class="figure page-columns page-full">
 <p><img src="index_files/figure-html/fig-VoWi-1.png" class="img-fluid figure-img" width="672"></p>
-<figcaption class="figure-caption margin-caption">Figure&nbsp;2: Angaben über die Benutzungshäufigkeit von VR Devices</figcaption>
+<figcaption class="figure-caption margin-caption">Abbildung&nbsp;2: Angaben über die Benutzungshäufigkeit von VR Devices</figcaption>
 </figure>
 </div>
 </div>
@@ -674,26 +829,57 @@ ul.task-list li input[type="checkbox"] {
 <h3 class="anchored" data-anchor-id="anwendung-der-vr-technologie">Anwendung der VR Technologie</h3>
 <p>Menschen, die bereits einige Vorerfahrung mit VR angaben, wurden gebeten, das Anwendungsfeld zu bezeichnen. Die folgende Tabelle zeigt nur Mehrfachnennungen.</p>
 <div class="cell page-columns page-full">
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>OLMA_Start <span class="sc">%&gt;%</span> </span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(<span class="fu">starts_with</span>(<span class="st">"VoWi"</span>)) <span class="sc">%&gt;%</span> </span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(VoWi_Anlass <span class="sc">!=</span> <span class="sc">-</span><span class="dv">99</span>,</span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>         VoWi_Count <span class="sc">!=</span><span class="dv">1</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">Aussage=</span><span class="fu">str_to_lower</span>(VoWi_Anlass),</span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>         <span class="at">Kategorie=</span>haven<span class="sc">::</span><span class="fu">as_factor</span>(VoWi_Count)) <span class="sc">%&gt;%</span> </span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>   <span class="fu">group_by</span>(Kategorie, Aussage) <span class="sc">%&gt;%</span>   <span class="co"># Group by both category and word</span></span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">tally</span>() <span class="sc">%&gt;%</span>                         <span class="co"># Count occurrences</span></span>
+<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(Kategorie, <span class="fu">desc</span>(n)) <span class="sc">%&gt;%</span> </span>
+<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(n<span class="sc">&gt;</span><span class="dv">1</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">gt</span>() <span class="sc">%&gt;%</span> </span>
+<span id="cb5-12"><a href="#cb5-12" aria-hidden="true" tabindex="-1"></a>    <span class="fu">tab_style</span>(</span>
+<span id="cb5-13"><a href="#cb5-13" aria-hidden="true" tabindex="-1"></a>    <span class="at">style =</span> <span class="fu">list</span>(</span>
+<span id="cb5-14"><a href="#cb5-14" aria-hidden="true" tabindex="-1"></a>      <span class="fu">cell_fill</span>(<span class="at">color =</span> <span class="st">"bisque"</span>),</span>
+<span id="cb5-15"><a href="#cb5-15" aria-hidden="true" tabindex="-1"></a>      <span class="fu">cell_text</span>(<span class="at">weight =</span> <span class="st">"bold"</span>)),</span>
+<span id="cb5-16"><a href="#cb5-16" aria-hidden="true" tabindex="-1"></a>    <span class="at">locations =</span> <span class="fu">cells_row_groups</span>(<span class="at">groups =</span> <span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">2</span>))</span>
+<span id="cb5-17"><a href="#cb5-17" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">%&gt;%</span> </span>
+<span id="cb5-18"><a href="#cb5-18" aria-hidden="true" tabindex="-1"></a>  <span class="fu">cols_width</span>(</span>
+<span id="cb5-19"><a href="#cb5-19" aria-hidden="true" tabindex="-1"></a>    <span class="fu">everything</span>() <span class="sc">~</span> <span class="fu">pct</span>(<span class="dv">50</span>)</span>
+<span id="cb5-20"><a href="#cb5-20" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">|&gt;</span> </span>
+<span id="cb5-21"><a href="#cb5-21" aria-hidden="true" tabindex="-1"></a>  <span class="fu">cols_align</span>(</span>
+<span id="cb5-22"><a href="#cb5-22" aria-hidden="true" tabindex="-1"></a>    <span class="at">align =</span> <span class="st">"center"</span>,</span>
+<span id="cb5-23"><a href="#cb5-23" aria-hidden="true" tabindex="-1"></a>    <span class="at">columns =</span> n</span>
+<span id="cb5-24"><a href="#cb5-24" aria-hidden="true" tabindex="-1"></a>  )  <span class="sc">%&gt;%</span> </span>
+<span id="cb5-25"><a href="#cb5-25" aria-hidden="true" tabindex="-1"></a>  <span class="fu">cols_align</span>(</span>
+<span id="cb5-26"><a href="#cb5-26" aria-hidden="true" tabindex="-1"></a>    <span class="at">align =</span> <span class="st">"auto"</span>,</span>
+<span id="cb5-27"><a href="#cb5-27" aria-hidden="true" tabindex="-1"></a>    <span class="at">columns =</span> Aussage</span>
+<span id="cb5-28"><a href="#cb5-28" aria-hidden="true" tabindex="-1"></a>  )</span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 <div class="cell-output-display page-columns page-full">
 <div id="tbl-VoWi" class="anchored page-columns page-full">
 
-<div id="qkssujrmhu" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;" class="page-columns page-full">
-<style>#qkssujrmhu table {
+<div id="xnknpyalac" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;" class="page-columns page-full">
+<style>#xnknpyalac table {
   font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-#qkssujrmhu thead, #qkssujrmhu tbody, #qkssujrmhu tfoot, #qkssujrmhu tr, #qkssujrmhu td, #qkssujrmhu th {
+#xnknpyalac thead, #xnknpyalac tbody, #xnknpyalac tfoot, #xnknpyalac tr, #xnknpyalac td, #xnknpyalac th {
   border-style: none;
 }
 
-#qkssujrmhu p {
+#xnknpyalac p {
   margin: 0;
   padding: 0;
 }
 
-#qkssujrmhu .gt_table {
+#xnknpyalac .gt_table {
   display: table;
   border-collapse: collapse;
   line-height: normal;
@@ -719,12 +905,12 @@ ul.task-list li input[type="checkbox"] {
   border-left-color: #D3D3D3;
 }
 
-#qkssujrmhu .gt_caption {
+#xnknpyalac .gt_caption {
   padding-top: 4px;
   padding-bottom: 4px;
 }
 
-#qkssujrmhu .gt_title {
+#xnknpyalac .gt_title {
   color: #333333;
   font-size: 125%;
   font-weight: initial;
@@ -736,7 +922,7 @@ ul.task-list li input[type="checkbox"] {
   border-bottom-width: 0;
 }
 
-#qkssujrmhu .gt_subtitle {
+#xnknpyalac .gt_subtitle {
   color: #333333;
   font-size: 85%;
   font-weight: initial;
@@ -748,7 +934,7 @@ ul.task-list li input[type="checkbox"] {
   border-top-width: 0;
 }
 
-#qkssujrmhu .gt_heading {
+#xnknpyalac .gt_heading {
   background-color: #FFFFFF;
   text-align: center;
   border-bottom-color: #FFFFFF;
@@ -760,13 +946,13 @@ ul.task-list li input[type="checkbox"] {
   border-right-color: #D3D3D3;
 }
 
-#qkssujrmhu .gt_bottom_border {
+#xnknpyalac .gt_bottom_border {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
 }
 
-#qkssujrmhu .gt_col_headings {
+#xnknpyalac .gt_col_headings {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -781,7 +967,7 @@ ul.task-list li input[type="checkbox"] {
   border-right-color: #D3D3D3;
 }
 
-#qkssujrmhu .gt_col_heading {
+#xnknpyalac .gt_col_heading {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -801,7 +987,7 @@ ul.task-list li input[type="checkbox"] {
   overflow-x: hidden;
 }
 
-#qkssujrmhu .gt_column_spanner_outer {
+#xnknpyalac .gt_column_spanner_outer {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -813,15 +999,15 @@ ul.task-list li input[type="checkbox"] {
   padding-right: 4px;
 }
 
-#qkssujrmhu .gt_column_spanner_outer:first-child {
+#xnknpyalac .gt_column_spanner_outer:first-child {
   padding-left: 0;
 }
 
-#qkssujrmhu .gt_column_spanner_outer:last-child {
+#xnknpyalac .gt_column_spanner_outer:last-child {
   padding-right: 0;
 }
 
-#qkssujrmhu .gt_column_spanner {
+#xnknpyalac .gt_column_spanner {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
@@ -833,11 +1019,11 @@ ul.task-list li input[type="checkbox"] {
   width: 100%;
 }
 
-#qkssujrmhu .gt_spanner_row {
+#xnknpyalac .gt_spanner_row {
   border-bottom-style: hidden;
 }
 
-#qkssujrmhu .gt_group_heading {
+#xnknpyalac .gt_group_heading {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -863,7 +1049,7 @@ ul.task-list li input[type="checkbox"] {
   text-align: left;
 }
 
-#qkssujrmhu .gt_empty_group_heading {
+#xnknpyalac .gt_empty_group_heading {
   padding: 0.5px;
   color: #333333;
   background-color: #FFFFFF;
@@ -878,15 +1064,15 @@ ul.task-list li input[type="checkbox"] {
   vertical-align: middle;
 }
 
-#qkssujrmhu .gt_from_md > :first-child {
+#xnknpyalac .gt_from_md > :first-child {
   margin-top: 0;
 }
 
-#qkssujrmhu .gt_from_md > :last-child {
+#xnknpyalac .gt_from_md > :last-child {
   margin-bottom: 0;
 }
 
-#qkssujrmhu .gt_row {
+#xnknpyalac .gt_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -905,7 +1091,7 @@ ul.task-list li input[type="checkbox"] {
   overflow-x: hidden;
 }
 
-#qkssujrmhu .gt_stub {
+#xnknpyalac .gt_stub {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -918,7 +1104,7 @@ ul.task-list li input[type="checkbox"] {
   padding-right: 5px;
 }
 
-#qkssujrmhu .gt_stub_row_group {
+#xnknpyalac .gt_stub_row_group {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -932,15 +1118,15 @@ ul.task-list li input[type="checkbox"] {
   vertical-align: top;
 }
 
-#qkssujrmhu .gt_row_group_first td {
+#xnknpyalac .gt_row_group_first td {
   border-top-width: 2px;
 }
 
-#qkssujrmhu .gt_row_group_first th {
+#xnknpyalac .gt_row_group_first th {
   border-top-width: 2px;
 }
 
-#qkssujrmhu .gt_summary_row {
+#xnknpyalac .gt_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -950,16 +1136,16 @@ ul.task-list li input[type="checkbox"] {
   padding-right: 5px;
 }
 
-#qkssujrmhu .gt_first_summary_row {
+#xnknpyalac .gt_first_summary_row {
   border-top-style: solid;
   border-top-color: #D3D3D3;
 }
 
-#qkssujrmhu .gt_first_summary_row.thick {
+#xnknpyalac .gt_first_summary_row.thick {
   border-top-width: 2px;
 }
 
-#qkssujrmhu .gt_last_summary_row {
+#xnknpyalac .gt_last_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -969,7 +1155,7 @@ ul.task-list li input[type="checkbox"] {
   border-bottom-color: #D3D3D3;
 }
 
-#qkssujrmhu .gt_grand_summary_row {
+#xnknpyalac .gt_grand_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -979,7 +1165,7 @@ ul.task-list li input[type="checkbox"] {
   padding-right: 5px;
 }
 
-#qkssujrmhu .gt_first_grand_summary_row {
+#xnknpyalac .gt_first_grand_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -989,7 +1175,7 @@ ul.task-list li input[type="checkbox"] {
   border-top-color: #D3D3D3;
 }
 
-#qkssujrmhu .gt_last_grand_summary_row_top {
+#xnknpyalac .gt_last_grand_summary_row_top {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -999,11 +1185,11 @@ ul.task-list li input[type="checkbox"] {
   border-bottom-color: #D3D3D3;
 }
 
-#qkssujrmhu .gt_striped {
+#xnknpyalac .gt_striped {
   background-color: rgba(128, 128, 128, 0.05);
 }
 
-#qkssujrmhu .gt_table_body {
+#xnknpyalac .gt_table_body {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -1012,7 +1198,7 @@ ul.task-list li input[type="checkbox"] {
   border-bottom-color: #D3D3D3;
 }
 
-#qkssujrmhu .gt_footnotes {
+#xnknpyalac .gt_footnotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -1026,7 +1212,7 @@ ul.task-list li input[type="checkbox"] {
   border-right-color: #D3D3D3;
 }
 
-#qkssujrmhu .gt_footnote {
+#xnknpyalac .gt_footnote {
   margin: 0px;
   font-size: 90%;
   padding-top: 4px;
@@ -1035,7 +1221,7 @@ ul.task-list li input[type="checkbox"] {
   padding-right: 5px;
 }
 
-#qkssujrmhu .gt_sourcenotes {
+#xnknpyalac .gt_sourcenotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -1049,7 +1235,7 @@ ul.task-list li input[type="checkbox"] {
   border-right-color: #D3D3D3;
 }
 
-#qkssujrmhu .gt_sourcenote {
+#xnknpyalac .gt_sourcenote {
   font-size: 90%;
   padding-top: 4px;
   padding-bottom: 4px;
@@ -1057,63 +1243,63 @@ ul.task-list li input[type="checkbox"] {
   padding-right: 5px;
 }
 
-#qkssujrmhu .gt_left {
+#xnknpyalac .gt_left {
   text-align: left;
 }
 
-#qkssujrmhu .gt_center {
+#xnknpyalac .gt_center {
   text-align: center;
 }
 
-#qkssujrmhu .gt_right {
+#xnknpyalac .gt_right {
   text-align: right;
   font-variant-numeric: tabular-nums;
 }
 
-#qkssujrmhu .gt_font_normal {
+#xnknpyalac .gt_font_normal {
   font-weight: normal;
 }
 
-#qkssujrmhu .gt_font_bold {
+#xnknpyalac .gt_font_bold {
   font-weight: bold;
 }
 
-#qkssujrmhu .gt_font_italic {
+#xnknpyalac .gt_font_italic {
   font-style: italic;
 }
 
-#qkssujrmhu .gt_super {
+#xnknpyalac .gt_super {
   font-size: 65%;
 }
 
-#qkssujrmhu .gt_footnote_marks {
+#xnknpyalac .gt_footnote_marks {
   font-size: 75%;
   vertical-align: 0.4em;
   position: initial;
 }
 
-#qkssujrmhu .gt_asterisk {
+#xnknpyalac .gt_asterisk {
   font-size: 100%;
   vertical-align: 0;
 }
 
-#qkssujrmhu .gt_indent_1 {
+#xnknpyalac .gt_indent_1 {
   text-indent: 5px;
 }
 
-#qkssujrmhu .gt_indent_2 {
+#xnknpyalac .gt_indent_2 {
   text-indent: 10px;
 }
 
-#qkssujrmhu .gt_indent_3 {
+#xnknpyalac .gt_indent_3 {
   text-indent: 15px;
 }
 
-#qkssujrmhu .gt_indent_4 {
+#xnknpyalac .gt_indent_4 {
   text-indent: 20px;
 }
 
-#qkssujrmhu .gt_indent_5 {
+#xnknpyalac .gt_indent_5 {
   text-indent: 25px;
 }
 </style>
@@ -1188,7 +1374,7 @@ ul.task-list li input[type="checkbox"] {
   
   
 </table>
-<div class="quarto-table-caption margin-caption">Table&nbsp;2:  <p>Nennungen der Anwendungsorte</p> </div></div>
+<div class="quarto-table-caption margin-caption">Tabelle&nbsp;2:  <p>Nennungen der Anwendungsorte</p> </div></div>
 </div>
 </div>
 </div>
@@ -1202,26 +1388,61 @@ ul.task-list li input[type="checkbox"] {
 <div class="tab-content page-columns page-full">
 <div id="tabset-1-1" class="tab-pane active page-columns page-full" role="tabpanel" aria-labelledby="tabset-1-1-tab">
 <div class="cell page-columns page-full">
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>OLMA_Items <span class="ot">&lt;-</span> OLMA_Start <span class="sc">%&gt;%</span> </span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(dplyr<span class="sc">::</span><span class="fu">starts_with</span>(<span class="fu">c</span>(<span class="st">"CAN"</span>, <span class="st">"PRA"</span>, <span class="st">"IMO"</span>, <span class="st">"KBE"</span>, <span class="st">"KBU"</span>))) <span class="sc">%&gt;%</span> </span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">CANX_1=</span><span class="dv">8</span><span class="sc">-</span>CANX_1,</span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">IMO_3=</span><span class="dv">6</span><span class="sc">-</span>IMO_3,</span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">IMO_4=</span><span class="dv">6</span><span class="sc">-</span>IMO_4</span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a>Scale_Names <span class="ot">&lt;-</span> <span class="fu">c</span>(</span>
+<span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a>  <span class="at">CAN =</span> <span class="st">"Computer Ängstlichkeit"</span>,</span>
+<span id="cb6-11"><a href="#cb6-11" aria-hidden="true" tabindex="-1"></a>  <span class="at">PRA =</span> <span class="st">"Präsenz"</span>,</span>
+<span id="cb6-12"><a href="#cb6-12" aria-hidden="true" tabindex="-1"></a>  <span class="at">IMO =</span> <span class="st">"Intrinsische Motivation"</span>,</span>
+<span id="cb6-13"><a href="#cb6-13" aria-hidden="true" tabindex="-1"></a>  <span class="at">KBE =</span> <span class="st">"Kognitive Belastung durch externe Faktoren"</span>,</span>
+<span id="cb6-14"><a href="#cb6-14" aria-hidden="true" tabindex="-1"></a>  <span class="at">KBU =</span> <span class="st">"Kognitive Belastung durch die Umgebung"</span></span>
+<span id="cb6-15"><a href="#cb6-15" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb6-16"><a href="#cb6-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-17"><a href="#cb6-17" aria-hidden="true" tabindex="-1"></a>OLMA_Items <span class="sc">%&gt;%</span> </span>
+<span id="cb6-18"><a href="#cb6-18" aria-hidden="true" tabindex="-1"></a>  <span class="fu">describe</span>() <span class="sc">%&gt;%</span> </span>
+<span id="cb6-19"><a href="#cb6-19" aria-hidden="true" tabindex="-1"></a>  <span class="fu">as.data.frame</span>() <span class="sc">%&gt;%</span> </span>
+<span id="cb6-20"><a href="#cb6-20" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">Variable =</span> <span class="fu">rownames</span>(.)) <span class="sc">%&gt;%</span> </span>
+<span id="cb6-21"><a href="#cb6-21" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(Variable, dplyr<span class="sc">::</span><span class="fu">everything</span>()) <span class="sc">%&gt;%</span> </span>
+<span id="cb6-22"><a href="#cb6-22" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(<span class="sc">-</span>vars, <span class="sc">-</span>n, <span class="sc">-</span>trimmed, <span class="sc">-</span>mad) <span class="sc">%&gt;%</span> </span>
+<span id="cb6-23"><a href="#cb6-23" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">Scale =</span> <span class="fu">substr</span>(Variable, <span class="dv">1</span>, <span class="dv">3</span>)) <span class="sc">%&gt;%</span> </span>
+<span id="cb6-24"><a href="#cb6-24" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">Scale =</span> Scale_Names[Scale]) <span class="sc">%&gt;%</span> </span>
+<span id="cb6-25"><a href="#cb6-25" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(Scale) <span class="sc">%&gt;%</span> </span>
+<span id="cb6-26"><a href="#cb6-26" aria-hidden="true" tabindex="-1"></a>  <span class="fu">gt</span>() <span class="sc">%&gt;%</span> </span>
+<span id="cb6-27"><a href="#cb6-27" aria-hidden="true" tabindex="-1"></a>  <span class="fu">fmt_number</span>() <span class="sc">%&gt;%</span> </span>
+<span id="cb6-28"><a href="#cb6-28" aria-hidden="true" tabindex="-1"></a>  <span class="fu">tab_style</span>(</span>
+<span id="cb6-29"><a href="#cb6-29" aria-hidden="true" tabindex="-1"></a>      <span class="at">style =</span> <span class="fu">list</span>(</span>
+<span id="cb6-30"><a href="#cb6-30" aria-hidden="true" tabindex="-1"></a>      <span class="fu">cell_fill</span>(<span class="at">color =</span> <span class="st">"bisque"</span>),</span>
+<span id="cb6-31"><a href="#cb6-31" aria-hidden="true" tabindex="-1"></a>      <span class="fu">cell_text</span>(<span class="at">weight =</span> <span class="st">"bold"</span>)),</span>
+<span id="cb6-32"><a href="#cb6-32" aria-hidden="true" tabindex="-1"></a>      <span class="at">locations =</span> <span class="fu">cells_row_groups</span>(<span class="at">groups =</span> <span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">3</span>,<span class="dv">4</span>,<span class="dv">5</span>)))</span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 <div class="cell-output-display page-columns page-full">
 <div id="tbl-item_stat" class="anchored page-columns page-full">
 
-<div id="xnuwfcknat" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;" class="page-columns page-full">
-<style>#xnuwfcknat table {
+<div id="ithgbrcxpd" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;" class="page-columns page-full">
+<style>#ithgbrcxpd table {
   font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-#xnuwfcknat thead, #xnuwfcknat tbody, #xnuwfcknat tfoot, #xnuwfcknat tr, #xnuwfcknat td, #xnuwfcknat th {
+#ithgbrcxpd thead, #ithgbrcxpd tbody, #ithgbrcxpd tfoot, #ithgbrcxpd tr, #ithgbrcxpd td, #ithgbrcxpd th {
   border-style: none;
 }
 
-#xnuwfcknat p {
+#ithgbrcxpd p {
   margin: 0;
   padding: 0;
 }
 
-#xnuwfcknat .gt_table {
+#ithgbrcxpd .gt_table {
   display: table;
   border-collapse: collapse;
   line-height: normal;
@@ -1247,12 +1468,12 @@ ul.task-list li input[type="checkbox"] {
   border-left-color: #D3D3D3;
 }
 
-#xnuwfcknat .gt_caption {
+#ithgbrcxpd .gt_caption {
   padding-top: 4px;
   padding-bottom: 4px;
 }
 
-#xnuwfcknat .gt_title {
+#ithgbrcxpd .gt_title {
   color: #333333;
   font-size: 125%;
   font-weight: initial;
@@ -1264,7 +1485,7 @@ ul.task-list li input[type="checkbox"] {
   border-bottom-width: 0;
 }
 
-#xnuwfcknat .gt_subtitle {
+#ithgbrcxpd .gt_subtitle {
   color: #333333;
   font-size: 85%;
   font-weight: initial;
@@ -1276,7 +1497,7 @@ ul.task-list li input[type="checkbox"] {
   border-top-width: 0;
 }
 
-#xnuwfcknat .gt_heading {
+#ithgbrcxpd .gt_heading {
   background-color: #FFFFFF;
   text-align: center;
   border-bottom-color: #FFFFFF;
@@ -1288,13 +1509,13 @@ ul.task-list li input[type="checkbox"] {
   border-right-color: #D3D3D3;
 }
 
-#xnuwfcknat .gt_bottom_border {
+#ithgbrcxpd .gt_bottom_border {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
 }
 
-#xnuwfcknat .gt_col_headings {
+#ithgbrcxpd .gt_col_headings {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -1309,7 +1530,7 @@ ul.task-list li input[type="checkbox"] {
   border-right-color: #D3D3D3;
 }
 
-#xnuwfcknat .gt_col_heading {
+#ithgbrcxpd .gt_col_heading {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1329,7 +1550,7 @@ ul.task-list li input[type="checkbox"] {
   overflow-x: hidden;
 }
 
-#xnuwfcknat .gt_column_spanner_outer {
+#ithgbrcxpd .gt_column_spanner_outer {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1341,15 +1562,15 @@ ul.task-list li input[type="checkbox"] {
   padding-right: 4px;
 }
 
-#xnuwfcknat .gt_column_spanner_outer:first-child {
+#ithgbrcxpd .gt_column_spanner_outer:first-child {
   padding-left: 0;
 }
 
-#xnuwfcknat .gt_column_spanner_outer:last-child {
+#ithgbrcxpd .gt_column_spanner_outer:last-child {
   padding-right: 0;
 }
 
-#xnuwfcknat .gt_column_spanner {
+#ithgbrcxpd .gt_column_spanner {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
@@ -1361,11 +1582,11 @@ ul.task-list li input[type="checkbox"] {
   width: 100%;
 }
 
-#xnuwfcknat .gt_spanner_row {
+#ithgbrcxpd .gt_spanner_row {
   border-bottom-style: hidden;
 }
 
-#xnuwfcknat .gt_group_heading {
+#ithgbrcxpd .gt_group_heading {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1391,7 +1612,7 @@ ul.task-list li input[type="checkbox"] {
   text-align: left;
 }
 
-#xnuwfcknat .gt_empty_group_heading {
+#ithgbrcxpd .gt_empty_group_heading {
   padding: 0.5px;
   color: #333333;
   background-color: #FFFFFF;
@@ -1406,15 +1627,15 @@ ul.task-list li input[type="checkbox"] {
   vertical-align: middle;
 }
 
-#xnuwfcknat .gt_from_md > :first-child {
+#ithgbrcxpd .gt_from_md > :first-child {
   margin-top: 0;
 }
 
-#xnuwfcknat .gt_from_md > :last-child {
+#ithgbrcxpd .gt_from_md > :last-child {
   margin-bottom: 0;
 }
 
-#xnuwfcknat .gt_row {
+#ithgbrcxpd .gt_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1433,7 +1654,7 @@ ul.task-list li input[type="checkbox"] {
   overflow-x: hidden;
 }
 
-#xnuwfcknat .gt_stub {
+#ithgbrcxpd .gt_stub {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1446,7 +1667,7 @@ ul.task-list li input[type="checkbox"] {
   padding-right: 5px;
 }
 
-#xnuwfcknat .gt_stub_row_group {
+#ithgbrcxpd .gt_stub_row_group {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1460,15 +1681,15 @@ ul.task-list li input[type="checkbox"] {
   vertical-align: top;
 }
 
-#xnuwfcknat .gt_row_group_first td {
+#ithgbrcxpd .gt_row_group_first td {
   border-top-width: 2px;
 }
 
-#xnuwfcknat .gt_row_group_first th {
+#ithgbrcxpd .gt_row_group_first th {
   border-top-width: 2px;
 }
 
-#xnuwfcknat .gt_summary_row {
+#ithgbrcxpd .gt_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -1478,16 +1699,16 @@ ul.task-list li input[type="checkbox"] {
   padding-right: 5px;
 }
 
-#xnuwfcknat .gt_first_summary_row {
+#ithgbrcxpd .gt_first_summary_row {
   border-top-style: solid;
   border-top-color: #D3D3D3;
 }
 
-#xnuwfcknat .gt_first_summary_row.thick {
+#ithgbrcxpd .gt_first_summary_row.thick {
   border-top-width: 2px;
 }
 
-#xnuwfcknat .gt_last_summary_row {
+#ithgbrcxpd .gt_last_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1497,7 +1718,7 @@ ul.task-list li input[type="checkbox"] {
   border-bottom-color: #D3D3D3;
 }
 
-#xnuwfcknat .gt_grand_summary_row {
+#ithgbrcxpd .gt_grand_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -1507,7 +1728,7 @@ ul.task-list li input[type="checkbox"] {
   padding-right: 5px;
 }
 
-#xnuwfcknat .gt_first_grand_summary_row {
+#ithgbrcxpd .gt_first_grand_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1517,7 +1738,7 @@ ul.task-list li input[type="checkbox"] {
   border-top-color: #D3D3D3;
 }
 
-#xnuwfcknat .gt_last_grand_summary_row_top {
+#ithgbrcxpd .gt_last_grand_summary_row_top {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1527,11 +1748,11 @@ ul.task-list li input[type="checkbox"] {
   border-bottom-color: #D3D3D3;
 }
 
-#xnuwfcknat .gt_striped {
+#ithgbrcxpd .gt_striped {
   background-color: rgba(128, 128, 128, 0.05);
 }
 
-#xnuwfcknat .gt_table_body {
+#ithgbrcxpd .gt_table_body {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -1540,7 +1761,7 @@ ul.task-list li input[type="checkbox"] {
   border-bottom-color: #D3D3D3;
 }
 
-#xnuwfcknat .gt_footnotes {
+#ithgbrcxpd .gt_footnotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -1554,7 +1775,7 @@ ul.task-list li input[type="checkbox"] {
   border-right-color: #D3D3D3;
 }
 
-#xnuwfcknat .gt_footnote {
+#ithgbrcxpd .gt_footnote {
   margin: 0px;
   font-size: 90%;
   padding-top: 4px;
@@ -1563,7 +1784,7 @@ ul.task-list li input[type="checkbox"] {
   padding-right: 5px;
 }
 
-#xnuwfcknat .gt_sourcenotes {
+#ithgbrcxpd .gt_sourcenotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -1577,7 +1798,7 @@ ul.task-list li input[type="checkbox"] {
   border-right-color: #D3D3D3;
 }
 
-#xnuwfcknat .gt_sourcenote {
+#ithgbrcxpd .gt_sourcenote {
   font-size: 90%;
   padding-top: 4px;
   padding-bottom: 4px;
@@ -1585,63 +1806,63 @@ ul.task-list li input[type="checkbox"] {
   padding-right: 5px;
 }
 
-#xnuwfcknat .gt_left {
+#ithgbrcxpd .gt_left {
   text-align: left;
 }
 
-#xnuwfcknat .gt_center {
+#ithgbrcxpd .gt_center {
   text-align: center;
 }
 
-#xnuwfcknat .gt_right {
+#ithgbrcxpd .gt_right {
   text-align: right;
   font-variant-numeric: tabular-nums;
 }
 
-#xnuwfcknat .gt_font_normal {
+#ithgbrcxpd .gt_font_normal {
   font-weight: normal;
 }
 
-#xnuwfcknat .gt_font_bold {
+#ithgbrcxpd .gt_font_bold {
   font-weight: bold;
 }
 
-#xnuwfcknat .gt_font_italic {
+#ithgbrcxpd .gt_font_italic {
   font-style: italic;
 }
 
-#xnuwfcknat .gt_super {
+#ithgbrcxpd .gt_super {
   font-size: 65%;
 }
 
-#xnuwfcknat .gt_footnote_marks {
+#ithgbrcxpd .gt_footnote_marks {
   font-size: 75%;
   vertical-align: 0.4em;
   position: initial;
 }
 
-#xnuwfcknat .gt_asterisk {
+#ithgbrcxpd .gt_asterisk {
   font-size: 100%;
   vertical-align: 0;
 }
 
-#xnuwfcknat .gt_indent_1 {
+#ithgbrcxpd .gt_indent_1 {
   text-indent: 5px;
 }
 
-#xnuwfcknat .gt_indent_2 {
+#ithgbrcxpd .gt_indent_2 {
   text-indent: 10px;
 }
 
-#xnuwfcknat .gt_indent_3 {
+#ithgbrcxpd .gt_indent_3 {
   text-indent: 15px;
 }
 
-#xnuwfcknat .gt_indent_4 {
+#ithgbrcxpd .gt_indent_4 {
   text-indent: 20px;
 }
 
-#xnuwfcknat .gt_indent_5 {
+#ithgbrcxpd .gt_indent_5 {
   text-indent: 25px;
 }
 </style>
@@ -1891,32 +2112,53 @@ ul.task-list li input[type="checkbox"] {
   
   
 </table>
-<div class="quarto-table-caption margin-caption">Table&nbsp;3:  <p>Item Statistik</p> </div></div>
+<div class="quarto-table-caption margin-caption">Tabelle&nbsp;3:  <p>Item Statistik</p> </div></div>
 </div>
 </div>
 </div>
 </div>
 <div id="tabset-1-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-1-2-tab">
 <div class="cell">
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>item.list<span class="ot">&lt;-</span><span class="fu">list</span>(</span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">CANX =</span> <span class="fu">c</span>(<span class="st">"CANX_1"</span>,<span class="st">"CANX_2"</span>, <span class="st">"CANX_3"</span>, <span class="st">"CANX_4"</span>),</span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">PRA =</span> <span class="fu">c</span>(<span class="st">"PRA_1"</span>, <span class="st">"PRA_2"</span>, <span class="st">"PRA_3"</span>, <span class="st">"PRA_4"</span>),</span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">IMO =</span> <span class="fu">c</span>(<span class="st">"IMO_1"</span>, <span class="st">"IMO_2"</span>, <span class="st">"IMO_3"</span>, <span class="st">"IMO_4"</span>, <span class="st">"IMO_5"</span>),</span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">KBE =</span> <span class="fu">c</span>(<span class="st">"KBE_1"</span>, <span class="st">"KBE_2"</span>, <span class="st">"KBE_3"</span>, <span class="st">"KBE_4"</span>),</span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a>  <span class="at">KBU =</span> <span class="fu">c</span>(<span class="st">"KBU_1"</span>, <span class="st">"KBU_2"</span>, <span class="st">"KBU_3"</span>, <span class="st">"KBU_4"</span>)</span>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a>rel_items <span class="ot">&lt;-</span><span class="fu">reliability</span>(<span class="at">keys =</span> item.list, OLMA_Items)</span>
+<span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-11"><a href="#cb7-11" aria-hidden="true" tabindex="-1"></a>rel_items<span class="sc">$</span>result.df <span class="sc">%&gt;%</span> </span>
+<span id="cb7-12"><a href="#cb7-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">as.data.frame</span>() <span class="sc">%&gt;%</span> </span>
+<span id="cb7-13"><a href="#cb7-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">Variable=</span><span class="fu">rownames</span>(rel_items<span class="sc">$</span>result.d)) <span class="sc">%&gt;%</span> </span>
+<span id="cb7-14"><a href="#cb7-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(Variable, dplyr<span class="sc">::</span><span class="fu">everything</span>()) <span class="sc">%&gt;%</span> </span>
+<span id="cb7-15"><a href="#cb7-15" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(<span class="sc">-</span>omega_h, <span class="sc">-</span>min.split, <span class="sc">-</span>cong) <span class="sc">%&gt;%</span> </span>
+<span id="cb7-16"><a href="#cb7-16" aria-hidden="true" tabindex="-1"></a>  <span class="fu">gt</span>() <span class="sc">%&gt;%</span> </span>
+<span id="cb7-17"><a href="#cb7-17" aria-hidden="true" tabindex="-1"></a>  <span class="fu">fmt_number</span>() <span class="sc">%&gt;%</span> </span>
+<span id="cb7-18"><a href="#cb7-18" aria-hidden="true" tabindex="-1"></a>  <span class="fu">fmt_number</span>(<span class="at">columns =</span> n.items, <span class="at">decimals =</span> <span class="dv">0</span>) </span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 <div class="cell-output-display">
 
-<div id="uvzvnewhpf" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
-<style>#uvzvnewhpf table {
+<div id="druabgytmo" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>#druabgytmo table {
   font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-#uvzvnewhpf thead, #uvzvnewhpf tbody, #uvzvnewhpf tfoot, #uvzvnewhpf tr, #uvzvnewhpf td, #uvzvnewhpf th {
+#druabgytmo thead, #druabgytmo tbody, #druabgytmo tfoot, #druabgytmo tr, #druabgytmo td, #druabgytmo th {
   border-style: none;
 }
 
-#uvzvnewhpf p {
+#druabgytmo p {
   margin: 0;
   padding: 0;
 }
 
-#uvzvnewhpf .gt_table {
+#druabgytmo .gt_table {
   display: table;
   border-collapse: collapse;
   line-height: normal;
@@ -1942,12 +2184,12 @@ ul.task-list li input[type="checkbox"] {
   border-left-color: #D3D3D3;
 }
 
-#uvzvnewhpf .gt_caption {
+#druabgytmo .gt_caption {
   padding-top: 4px;
   padding-bottom: 4px;
 }
 
-#uvzvnewhpf .gt_title {
+#druabgytmo .gt_title {
   color: #333333;
   font-size: 125%;
   font-weight: initial;
@@ -1959,7 +2201,7 @@ ul.task-list li input[type="checkbox"] {
   border-bottom-width: 0;
 }
 
-#uvzvnewhpf .gt_subtitle {
+#druabgytmo .gt_subtitle {
   color: #333333;
   font-size: 85%;
   font-weight: initial;
@@ -1971,7 +2213,7 @@ ul.task-list li input[type="checkbox"] {
   border-top-width: 0;
 }
 
-#uvzvnewhpf .gt_heading {
+#druabgytmo .gt_heading {
   background-color: #FFFFFF;
   text-align: center;
   border-bottom-color: #FFFFFF;
@@ -1983,13 +2225,13 @@ ul.task-list li input[type="checkbox"] {
   border-right-color: #D3D3D3;
 }
 
-#uvzvnewhpf .gt_bottom_border {
+#druabgytmo .gt_bottom_border {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
 }
 
-#uvzvnewhpf .gt_col_headings {
+#druabgytmo .gt_col_headings {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -2004,7 +2246,7 @@ ul.task-list li input[type="checkbox"] {
   border-right-color: #D3D3D3;
 }
 
-#uvzvnewhpf .gt_col_heading {
+#druabgytmo .gt_col_heading {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -2024,7 +2266,7 @@ ul.task-list li input[type="checkbox"] {
   overflow-x: hidden;
 }
 
-#uvzvnewhpf .gt_column_spanner_outer {
+#druabgytmo .gt_column_spanner_outer {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -2036,15 +2278,15 @@ ul.task-list li input[type="checkbox"] {
   padding-right: 4px;
 }
 
-#uvzvnewhpf .gt_column_spanner_outer:first-child {
+#druabgytmo .gt_column_spanner_outer:first-child {
   padding-left: 0;
 }
 
-#uvzvnewhpf .gt_column_spanner_outer:last-child {
+#druabgytmo .gt_column_spanner_outer:last-child {
   padding-right: 0;
 }
 
-#uvzvnewhpf .gt_column_spanner {
+#druabgytmo .gt_column_spanner {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
@@ -2056,11 +2298,11 @@ ul.task-list li input[type="checkbox"] {
   width: 100%;
 }
 
-#uvzvnewhpf .gt_spanner_row {
+#druabgytmo .gt_spanner_row {
   border-bottom-style: hidden;
 }
 
-#uvzvnewhpf .gt_group_heading {
+#druabgytmo .gt_group_heading {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -2086,7 +2328,7 @@ ul.task-list li input[type="checkbox"] {
   text-align: left;
 }
 
-#uvzvnewhpf .gt_empty_group_heading {
+#druabgytmo .gt_empty_group_heading {
   padding: 0.5px;
   color: #333333;
   background-color: #FFFFFF;
@@ -2101,15 +2343,15 @@ ul.task-list li input[type="checkbox"] {
   vertical-align: middle;
 }
 
-#uvzvnewhpf .gt_from_md > :first-child {
+#druabgytmo .gt_from_md > :first-child {
   margin-top: 0;
 }
 
-#uvzvnewhpf .gt_from_md > :last-child {
+#druabgytmo .gt_from_md > :last-child {
   margin-bottom: 0;
 }
 
-#uvzvnewhpf .gt_row {
+#druabgytmo .gt_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -2128,7 +2370,7 @@ ul.task-list li input[type="checkbox"] {
   overflow-x: hidden;
 }
 
-#uvzvnewhpf .gt_stub {
+#druabgytmo .gt_stub {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -2141,7 +2383,7 @@ ul.task-list li input[type="checkbox"] {
   padding-right: 5px;
 }
 
-#uvzvnewhpf .gt_stub_row_group {
+#druabgytmo .gt_stub_row_group {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -2155,15 +2397,15 @@ ul.task-list li input[type="checkbox"] {
   vertical-align: top;
 }
 
-#uvzvnewhpf .gt_row_group_first td {
+#druabgytmo .gt_row_group_first td {
   border-top-width: 2px;
 }
 
-#uvzvnewhpf .gt_row_group_first th {
+#druabgytmo .gt_row_group_first th {
   border-top-width: 2px;
 }
 
-#uvzvnewhpf .gt_summary_row {
+#druabgytmo .gt_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -2173,16 +2415,16 @@ ul.task-list li input[type="checkbox"] {
   padding-right: 5px;
 }
 
-#uvzvnewhpf .gt_first_summary_row {
+#druabgytmo .gt_first_summary_row {
   border-top-style: solid;
   border-top-color: #D3D3D3;
 }
 
-#uvzvnewhpf .gt_first_summary_row.thick {
+#druabgytmo .gt_first_summary_row.thick {
   border-top-width: 2px;
 }
 
-#uvzvnewhpf .gt_last_summary_row {
+#druabgytmo .gt_last_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -2192,7 +2434,7 @@ ul.task-list li input[type="checkbox"] {
   border-bottom-color: #D3D3D3;
 }
 
-#uvzvnewhpf .gt_grand_summary_row {
+#druabgytmo .gt_grand_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -2202,7 +2444,7 @@ ul.task-list li input[type="checkbox"] {
   padding-right: 5px;
 }
 
-#uvzvnewhpf .gt_first_grand_summary_row {
+#druabgytmo .gt_first_grand_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -2212,7 +2454,7 @@ ul.task-list li input[type="checkbox"] {
   border-top-color: #D3D3D3;
 }
 
-#uvzvnewhpf .gt_last_grand_summary_row_top {
+#druabgytmo .gt_last_grand_summary_row_top {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -2222,11 +2464,11 @@ ul.task-list li input[type="checkbox"] {
   border-bottom-color: #D3D3D3;
 }
 
-#uvzvnewhpf .gt_striped {
+#druabgytmo .gt_striped {
   background-color: rgba(128, 128, 128, 0.05);
 }
 
-#uvzvnewhpf .gt_table_body {
+#druabgytmo .gt_table_body {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -2235,7 +2477,7 @@ ul.task-list li input[type="checkbox"] {
   border-bottom-color: #D3D3D3;
 }
 
-#uvzvnewhpf .gt_footnotes {
+#druabgytmo .gt_footnotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -2249,7 +2491,7 @@ ul.task-list li input[type="checkbox"] {
   border-right-color: #D3D3D3;
 }
 
-#uvzvnewhpf .gt_footnote {
+#druabgytmo .gt_footnote {
   margin: 0px;
   font-size: 90%;
   padding-top: 4px;
@@ -2258,7 +2500,7 @@ ul.task-list li input[type="checkbox"] {
   padding-right: 5px;
 }
 
-#uvzvnewhpf .gt_sourcenotes {
+#druabgytmo .gt_sourcenotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -2272,7 +2514,7 @@ ul.task-list li input[type="checkbox"] {
   border-right-color: #D3D3D3;
 }
 
-#uvzvnewhpf .gt_sourcenote {
+#druabgytmo .gt_sourcenote {
   font-size: 90%;
   padding-top: 4px;
   padding-bottom: 4px;
@@ -2280,63 +2522,63 @@ ul.task-list li input[type="checkbox"] {
   padding-right: 5px;
 }
 
-#uvzvnewhpf .gt_left {
+#druabgytmo .gt_left {
   text-align: left;
 }
 
-#uvzvnewhpf .gt_center {
+#druabgytmo .gt_center {
   text-align: center;
 }
 
-#uvzvnewhpf .gt_right {
+#druabgytmo .gt_right {
   text-align: right;
   font-variant-numeric: tabular-nums;
 }
 
-#uvzvnewhpf .gt_font_normal {
+#druabgytmo .gt_font_normal {
   font-weight: normal;
 }
 
-#uvzvnewhpf .gt_font_bold {
+#druabgytmo .gt_font_bold {
   font-weight: bold;
 }
 
-#uvzvnewhpf .gt_font_italic {
+#druabgytmo .gt_font_italic {
   font-style: italic;
 }
 
-#uvzvnewhpf .gt_super {
+#druabgytmo .gt_super {
   font-size: 65%;
 }
 
-#uvzvnewhpf .gt_footnote_marks {
+#druabgytmo .gt_footnote_marks {
   font-size: 75%;
   vertical-align: 0.4em;
   position: initial;
 }
 
-#uvzvnewhpf .gt_asterisk {
+#druabgytmo .gt_asterisk {
   font-size: 100%;
   vertical-align: 0;
 }
 
-#uvzvnewhpf .gt_indent_1 {
+#druabgytmo .gt_indent_1 {
   text-indent: 5px;
 }
 
-#uvzvnewhpf .gt_indent_2 {
+#druabgytmo .gt_indent_2 {
   text-indent: 10px;
 }
 
-#uvzvnewhpf .gt_indent_3 {
+#druabgytmo .gt_indent_3 {
   text-indent: 15px;
 }
 
-#uvzvnewhpf .gt_indent_4 {
+#druabgytmo .gt_indent_4 {
   text-indent: 20px;
 }
 
-#uvzvnewhpf .gt_indent_5 {
+#druabgytmo .gt_indent_5 {
   text-indent: 25px;
 }
 </style>
@@ -2411,6 +2653,10 @@ ul.task-list li input[type="checkbox"] {
 </div>
 <div id="tabset-1-3" class="tab-pane" role="tabpanel" aria-labelledby="tabset-1-3-tab">
 <div class="cell">
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(rel_items)</span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 <div class="cell-output-display">
 <p><img src="index_files/figure-html/unnamed-chunk-8-1.png" class="img-fluid" width="672"></p>
 </div>
@@ -2423,25 +2669,34 @@ ul.task-list li input[type="checkbox"] {
 <h2 class="anchored" data-anchor-id="wissensfragen">Wissensfragen</h2>
 <p>Das Lernen in der VR sImulation wurde durch drei MC-Fragen operationalisiert.</p>
 <div class="cell">
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>OLMA_Ready <span class="sc">%&gt;%</span> </span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>   <span class="fu">select</span>(dplyr<span class="sc">::</span><span class="fu">starts_with</span>(<span class="st">"WIS"</span>), Antworten) <span class="sc">%&gt;%</span> </span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(Antworten) <span class="sc">%&gt;%</span> </span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">Anzahl=</span><span class="fu">n</span>()) <span class="sc">%&gt;%</span> </span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="st">'%'</span><span class="ot">=</span><span class="fu">round</span>(Anzahl<span class="sc">/</span><span class="fu">sum</span>(Anzahl)<span class="sc">*</span><span class="dv">100</span>,<span class="dv">2</span>)) <span class="sc">%&gt;%</span> </span>
+<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">gt</span>()</span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 <div class="cell-output-display">
 
-<div id="gnpmpelhod" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
-<style>#gnpmpelhod table {
+<div id="lijgwpmijh" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>#lijgwpmijh table {
   font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-#gnpmpelhod thead, #gnpmpelhod tbody, #gnpmpelhod tfoot, #gnpmpelhod tr, #gnpmpelhod td, #gnpmpelhod th {
+#lijgwpmijh thead, #lijgwpmijh tbody, #lijgwpmijh tfoot, #lijgwpmijh tr, #lijgwpmijh td, #lijgwpmijh th {
   border-style: none;
 }
 
-#gnpmpelhod p {
+#lijgwpmijh p {
   margin: 0;
   padding: 0;
 }
 
-#gnpmpelhod .gt_table {
+#lijgwpmijh .gt_table {
   display: table;
   border-collapse: collapse;
   line-height: normal;
@@ -2467,12 +2722,12 @@ ul.task-list li input[type="checkbox"] {
   border-left-color: #D3D3D3;
 }
 
-#gnpmpelhod .gt_caption {
+#lijgwpmijh .gt_caption {
   padding-top: 4px;
   padding-bottom: 4px;
 }
 
-#gnpmpelhod .gt_title {
+#lijgwpmijh .gt_title {
   color: #333333;
   font-size: 125%;
   font-weight: initial;
@@ -2484,7 +2739,7 @@ ul.task-list li input[type="checkbox"] {
   border-bottom-width: 0;
 }
 
-#gnpmpelhod .gt_subtitle {
+#lijgwpmijh .gt_subtitle {
   color: #333333;
   font-size: 85%;
   font-weight: initial;
@@ -2496,7 +2751,7 @@ ul.task-list li input[type="checkbox"] {
   border-top-width: 0;
 }
 
-#gnpmpelhod .gt_heading {
+#lijgwpmijh .gt_heading {
   background-color: #FFFFFF;
   text-align: center;
   border-bottom-color: #FFFFFF;
@@ -2508,13 +2763,13 @@ ul.task-list li input[type="checkbox"] {
   border-right-color: #D3D3D3;
 }
 
-#gnpmpelhod .gt_bottom_border {
+#lijgwpmijh .gt_bottom_border {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
 }
 
-#gnpmpelhod .gt_col_headings {
+#lijgwpmijh .gt_col_headings {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -2529,7 +2784,7 @@ ul.task-list li input[type="checkbox"] {
   border-right-color: #D3D3D3;
 }
 
-#gnpmpelhod .gt_col_heading {
+#lijgwpmijh .gt_col_heading {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -2549,7 +2804,7 @@ ul.task-list li input[type="checkbox"] {
   overflow-x: hidden;
 }
 
-#gnpmpelhod .gt_column_spanner_outer {
+#lijgwpmijh .gt_column_spanner_outer {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -2561,15 +2816,15 @@ ul.task-list li input[type="checkbox"] {
   padding-right: 4px;
 }
 
-#gnpmpelhod .gt_column_spanner_outer:first-child {
+#lijgwpmijh .gt_column_spanner_outer:first-child {
   padding-left: 0;
 }
 
-#gnpmpelhod .gt_column_spanner_outer:last-child {
+#lijgwpmijh .gt_column_spanner_outer:last-child {
   padding-right: 0;
 }
 
-#gnpmpelhod .gt_column_spanner {
+#lijgwpmijh .gt_column_spanner {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
@@ -2581,11 +2836,11 @@ ul.task-list li input[type="checkbox"] {
   width: 100%;
 }
 
-#gnpmpelhod .gt_spanner_row {
+#lijgwpmijh .gt_spanner_row {
   border-bottom-style: hidden;
 }
 
-#gnpmpelhod .gt_group_heading {
+#lijgwpmijh .gt_group_heading {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -2611,7 +2866,7 @@ ul.task-list li input[type="checkbox"] {
   text-align: left;
 }
 
-#gnpmpelhod .gt_empty_group_heading {
+#lijgwpmijh .gt_empty_group_heading {
   padding: 0.5px;
   color: #333333;
   background-color: #FFFFFF;
@@ -2626,15 +2881,15 @@ ul.task-list li input[type="checkbox"] {
   vertical-align: middle;
 }
 
-#gnpmpelhod .gt_from_md > :first-child {
+#lijgwpmijh .gt_from_md > :first-child {
   margin-top: 0;
 }
 
-#gnpmpelhod .gt_from_md > :last-child {
+#lijgwpmijh .gt_from_md > :last-child {
   margin-bottom: 0;
 }
 
-#gnpmpelhod .gt_row {
+#lijgwpmijh .gt_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -2653,7 +2908,7 @@ ul.task-list li input[type="checkbox"] {
   overflow-x: hidden;
 }
 
-#gnpmpelhod .gt_stub {
+#lijgwpmijh .gt_stub {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -2666,7 +2921,7 @@ ul.task-list li input[type="checkbox"] {
   padding-right: 5px;
 }
 
-#gnpmpelhod .gt_stub_row_group {
+#lijgwpmijh .gt_stub_row_group {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -2680,15 +2935,15 @@ ul.task-list li input[type="checkbox"] {
   vertical-align: top;
 }
 
-#gnpmpelhod .gt_row_group_first td {
+#lijgwpmijh .gt_row_group_first td {
   border-top-width: 2px;
 }
 
-#gnpmpelhod .gt_row_group_first th {
+#lijgwpmijh .gt_row_group_first th {
   border-top-width: 2px;
 }
 
-#gnpmpelhod .gt_summary_row {
+#lijgwpmijh .gt_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -2698,16 +2953,16 @@ ul.task-list li input[type="checkbox"] {
   padding-right: 5px;
 }
 
-#gnpmpelhod .gt_first_summary_row {
+#lijgwpmijh .gt_first_summary_row {
   border-top-style: solid;
   border-top-color: #D3D3D3;
 }
 
-#gnpmpelhod .gt_first_summary_row.thick {
+#lijgwpmijh .gt_first_summary_row.thick {
   border-top-width: 2px;
 }
 
-#gnpmpelhod .gt_last_summary_row {
+#lijgwpmijh .gt_last_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -2717,7 +2972,7 @@ ul.task-list li input[type="checkbox"] {
   border-bottom-color: #D3D3D3;
 }
 
-#gnpmpelhod .gt_grand_summary_row {
+#lijgwpmijh .gt_grand_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -2727,7 +2982,7 @@ ul.task-list li input[type="checkbox"] {
   padding-right: 5px;
 }
 
-#gnpmpelhod .gt_first_grand_summary_row {
+#lijgwpmijh .gt_first_grand_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -2737,7 +2992,7 @@ ul.task-list li input[type="checkbox"] {
   border-top-color: #D3D3D3;
 }
 
-#gnpmpelhod .gt_last_grand_summary_row_top {
+#lijgwpmijh .gt_last_grand_summary_row_top {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -2747,11 +3002,11 @@ ul.task-list li input[type="checkbox"] {
   border-bottom-color: #D3D3D3;
 }
 
-#gnpmpelhod .gt_striped {
+#lijgwpmijh .gt_striped {
   background-color: rgba(128, 128, 128, 0.05);
 }
 
-#gnpmpelhod .gt_table_body {
+#lijgwpmijh .gt_table_body {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -2760,7 +3015,7 @@ ul.task-list li input[type="checkbox"] {
   border-bottom-color: #D3D3D3;
 }
 
-#gnpmpelhod .gt_footnotes {
+#lijgwpmijh .gt_footnotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -2774,7 +3029,7 @@ ul.task-list li input[type="checkbox"] {
   border-right-color: #D3D3D3;
 }
 
-#gnpmpelhod .gt_footnote {
+#lijgwpmijh .gt_footnote {
   margin: 0px;
   font-size: 90%;
   padding-top: 4px;
@@ -2783,7 +3038,7 @@ ul.task-list li input[type="checkbox"] {
   padding-right: 5px;
 }
 
-#gnpmpelhod .gt_sourcenotes {
+#lijgwpmijh .gt_sourcenotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -2797,7 +3052,7 @@ ul.task-list li input[type="checkbox"] {
   border-right-color: #D3D3D3;
 }
 
-#gnpmpelhod .gt_sourcenote {
+#lijgwpmijh .gt_sourcenote {
   font-size: 90%;
   padding-top: 4px;
   padding-bottom: 4px;
@@ -2805,63 +3060,63 @@ ul.task-list li input[type="checkbox"] {
   padding-right: 5px;
 }
 
-#gnpmpelhod .gt_left {
+#lijgwpmijh .gt_left {
   text-align: left;
 }
 
-#gnpmpelhod .gt_center {
+#lijgwpmijh .gt_center {
   text-align: center;
 }
 
-#gnpmpelhod .gt_right {
+#lijgwpmijh .gt_right {
   text-align: right;
   font-variant-numeric: tabular-nums;
 }
 
-#gnpmpelhod .gt_font_normal {
+#lijgwpmijh .gt_font_normal {
   font-weight: normal;
 }
 
-#gnpmpelhod .gt_font_bold {
+#lijgwpmijh .gt_font_bold {
   font-weight: bold;
 }
 
-#gnpmpelhod .gt_font_italic {
+#lijgwpmijh .gt_font_italic {
   font-style: italic;
 }
 
-#gnpmpelhod .gt_super {
+#lijgwpmijh .gt_super {
   font-size: 65%;
 }
 
-#gnpmpelhod .gt_footnote_marks {
+#lijgwpmijh .gt_footnote_marks {
   font-size: 75%;
   vertical-align: 0.4em;
   position: initial;
 }
 
-#gnpmpelhod .gt_asterisk {
+#lijgwpmijh .gt_asterisk {
   font-size: 100%;
   vertical-align: 0;
 }
 
-#gnpmpelhod .gt_indent_1 {
+#lijgwpmijh .gt_indent_1 {
   text-indent: 5px;
 }
 
-#gnpmpelhod .gt_indent_2 {
+#lijgwpmijh .gt_indent_2 {
   text-indent: 10px;
 }
 
-#gnpmpelhod .gt_indent_3 {
+#lijgwpmijh .gt_indent_3 {
   text-indent: 15px;
 }
 
-#gnpmpelhod .gt_indent_4 {
+#lijgwpmijh .gt_indent_4 {
   text-indent: 20px;
 }
 
-#gnpmpelhod .gt_indent_5 {
+#lijgwpmijh .gt_indent_5 {
   text-indent: 25px;
 }
 </style>
@@ -2896,11 +3151,43 @@ ul.task-list li input[type="checkbox"] {
 </div>
 <p>In Abhängigkeit von Alter und Bildungsstufe ergibt sich folgendes Bild:</p>
 <div class="cell">
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>OLMA_Ready <span class="sc">%&gt;%</span> </span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x=</span>Alter, <span class="at">y=</span>Bildung, <span class="at">color=</span>Antworten))<span class="sc">+</span></span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">position =</span> <span class="st">"jitter"</span>)<span class="sc">+</span></span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">annotate</span>(</span>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a>    <span class="st">'rect'</span>,</span>
+<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">ymax=</span><span class="fl">2.8</span>,</span>
+<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a>    <span class="at">xmin=</span><span class="dv">2</span>,</span>
+<span id="cb10-8"><a href="#cb10-8" aria-hidden="true" tabindex="-1"></a>    <span class="at">ymin=</span><span class="fl">0.5</span>,</span>
+<span id="cb10-9"><a href="#cb10-9" aria-hidden="true" tabindex="-1"></a>    <span class="at">xmax =</span> <span class="dv">20</span>,</span>
+<span id="cb10-10"><a href="#cb10-10" aria-hidden="true" tabindex="-1"></a>    <span class="at">alpha=</span><span class="fl">0.25</span></span>
+<span id="cb10-11"><a href="#cb10-11" aria-hidden="true" tabindex="-1"></a>  )<span class="sc">+</span></span>
+<span id="cb10-12"><a href="#cb10-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">annotate</span>(</span>
+<span id="cb10-13"><a href="#cb10-13" aria-hidden="true" tabindex="-1"></a>    <span class="st">'text'</span>,</span>
+<span id="cb10-14"><a href="#cb10-14" aria-hidden="true" tabindex="-1"></a>    <span class="at">x=</span><span class="dv">50</span>,</span>
+<span id="cb10-15"><a href="#cb10-15" aria-hidden="true" tabindex="-1"></a>    <span class="at">y=</span><span class="fl">1.2</span>,</span>
+<span id="cb10-16"><a href="#cb10-16" aria-hidden="true" tabindex="-1"></a>    <span class="at">label=</span><span class="st">"Gruppe der Jugendlichen"</span>)</span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 <div class="cell-output-display">
 <p><img src="index_files/figure-html/unnamed-chunk-10-1.png" class="img-fluid" width="672"></p>
 </div>
 </div>
 <div class="cell">
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>OLMA_Ready <span class="sc">%&gt;%</span> </span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x=</span>Alter, <span class="at">y=</span>Antworten))<span class="sc">+</span></span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">position =</span> <span class="st">"jitter"</span>)<span class="sc">+</span></span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a>   <span class="fu">geom_smooth</span>(<span class="fu">aes</span>(<span class="at">group=</span><span class="dv">1</span>), <span class="at">method =</span> <span class="st">'lm'</span>,  <span class="at">color=</span><span class="st">"blue"</span>)<span class="sc">+</span></span>
+<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">facet_wrap</span>(<span class="sc">~</span>Bildung)<span class="sc">+</span></span>
+<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>()<span class="sc">+</span></span>
+<span id="cb11-7"><a href="#cb11-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(</span>
+<span id="cb11-8"><a href="#cb11-8" aria-hidden="true" tabindex="-1"></a>    <span class="at">title =</span> <span class="st">"Lernerfolg nach Bildung und Alter"</span>,</span>
+<span id="cb11-9"><a href="#cb11-9" aria-hidden="true" tabindex="-1"></a>    <span class="at">subtitle =</span> <span class="st">"einfache lineare Regression"</span></span>
+<span id="cb11-10"><a href="#cb11-10" aria-hidden="true" tabindex="-1"></a>  )</span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 <div class="cell-output-display">
 <p><img src="index_files/figure-html/unnamed-chunk-11-1.png" class="img-fluid" width="672"></p>
 </div>
@@ -2910,7 +3197,7 @@ ul.task-list li input[type="checkbox"] {
 </section>
 
 
-<div id="quarto-appendix" class="default"><section id="footnotes" class="footnotes footnotes-end-of-document" role="doc-endnotes"><h2 class="anchored quarto-appendix-heading">Footnotes</h2>
+<div id="quarto-appendix" class="default"><section id="footnotes" class="footnotes footnotes-end-of-document" role="doc-endnotes"><h2 class="anchored quarto-appendix-heading">Fußnoten</h2>
 
 <ol>
 <li id="fn1"><p>The degree of “an individual’s apprehension, or even fear, when she/he is faced with the possibility of using computers” <span class="citation" data-cites="venkateshDeterminantsPerceivedEase2000">[@venkateshDeterminantsPerceivedEase2000, p.349]</span><a href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
@@ -2970,12 +3257,12 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     // flash "checked"
     button.classList.add('code-copy-button-checked');
     var currentTitle = button.getAttribute("title");
-    button.setAttribute("title", "Copied!");
+    button.setAttribute("title", "Kopiert");
     let tooltip;
     if (window.bootstrap) {
       button.setAttribute("data-bs-toggle", "tooltip");
       button.setAttribute("data-bs-placement", "left");
-      button.setAttribute("data-bs-title", "Copied!");
+      button.setAttribute("data-bs-title", "Kopiert");
       tooltip = new bootstrap.Tooltip(button, 
         { trigger: "manual", 
           customClass: "code-copy-button-tooltip",
