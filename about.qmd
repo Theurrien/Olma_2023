@@ -379,7 +379,7 @@ lavResiduals(model_fit1)$cov %>%
 #| label: tbl-fakt_IMO
 
 
-omega(OLMA_Ready[,14:18], nfactors = 1)$schmid$sl %>% 
+omega(OLMA_Ready[,15:19], nfactors = 1)$schmid$sl %>% 
   as.data.frame() %>% 
   mutate(Item=rownames(omega(OLMA_Ready[,14:18], nfactors = 1)$schmid$sl)) %>% 
   select(Item,dplyr::everything(), -"F1*", -"p2") %>% 
